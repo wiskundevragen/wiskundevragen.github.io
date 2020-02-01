@@ -39,6 +39,7 @@
 		{{ content }}
 
 		{% if page.see_also %}
+		<br>
 		<h2>Zie ook</h2>
 		<ul>
 			{% for item in page.see_also %}
@@ -46,6 +47,10 @@
 			{% endfor %}
 		</ul>
 		{% endif %}
+		<footer class="site-footer">
+			<span class="site-footer-credits">Made by <a href='https://linkedin.com/in/stan-van-baarsen'>Stan van
+					Baarsen</a>.</span>
+		</footer>
 	</main>
 </body>
 
