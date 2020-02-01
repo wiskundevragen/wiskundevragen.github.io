@@ -37,6 +37,15 @@
 
 	<main id="content" class="main-content" role="main">
 		{{ content }}
+
+		{% if page.see_also %}
+		<h2>Zie ook</h2>
+		<ul>
+			{% for item in page.see_also %}
+			<li><a href='{{item.url}}'>{{item.title}}</a></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
 	</main>
 </body>
 
