@@ -7,3 +7,6 @@ defaults:
     values:
       layout: "default"
       latex: true
+
+options: {"a": "Hallo", "b": "doei", "c": "groetjes"}
+choice: "b"
