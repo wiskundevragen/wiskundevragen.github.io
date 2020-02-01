@@ -376,3 +376,7 @@ a {
 .site-footer-credits {
   color: $blockquote-text-color;
 }
+
+table tr:nth-of-type(2n + 1) {
+  background: #f4f4f4;
+}
