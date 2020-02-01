@@ -1,11 +1,86 @@
 ---
 desc: Uitleg over primitiveren!
 title: Hoe moet je primitiveren?
-see_also: "prim_lijst", "gonio"
+see_also: "prim_lijst", "afg_lijst", "afg_lijst", "help_diff"
 ---
+
 <h1>Hoe moet je primitiveren?</h1>
 Hier komt hopelijk z.s.m. een helder stappenplan over hoe je moet primitiveren, maar voor nu is dit een zogeheten
 work-in-progress, dus stay tuned!
 <br>
 Bekijk in de tussentijd vooral de volgende externe website alvast: <a href='https://wiskundevragen.github.io'>Niets
 	beschikbaar</a>
+
+<h2>Overzicht veelvoorkomende functies met hun primitieve</h2>
+<table>
+	<tr>
+		<td><b>Functie</b></td>
+		<td><b>Primitieve</b></td>
+		<td><b>Opmerking</b></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=x^n\)</td>
+		<td>\(F(x)=\frac1{n+1} \cdot x^{n+1}+C\)</td>
+		<td>voor \(x\neq -1\)</td>
+	</tr>
+	<tr>
+		<td>\(f(x)=a\)</td>
+		<td>\(F(x)=ax+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\frac1x\)</td>
+		<td>\(F(x)=\ln(x)+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\ln(x)\)</td>
+		<td>\(F(x)=x\ln(x)-x+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=e^x\)</td>
+		<td>\(F(x)=e^{x}+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=a^{x}\)</td>
+		<td>\(F(x)=\frac{a^x}{\ln(a)}+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=g(x) + h(x)\)</td>
+		<td>\(F(x)=G(x) + H(x)+C\)</td>
+		<td>Somregel</td>
+	</tr>
+	<tr>
+		<td>\(f(x)=g'(x)h(x)\)</td>
+		<td>\(F(x)=g(x)h(x) - \int{g(x)h'(x)}\)</td>
+		<td>"Omgekeerde Productregel" (geen examenstof)</td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\sin(x)\)</td>
+		<td>\(F(x)=-\cos(x)+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\cos(x)\)</td>
+		<td>\(F(x)=\sin(x)+C\)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\arcsin(x)\)</td>
+		<td>\(F(x)=x\cdot\arcsin(x) + \sqrt{1-x^2}+C\)</td>
+		<td><a href='arcsinx.html'>Uitleg</a></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\arccos(x)\)</td>
+		<td>\(F(x)=x\cdot \arccos(x)) - \sqrt{1-x^2}+C\)</td>
+		<td><a href='arccosx.html'>Uitleg</a></td>
+	</tr>
+	<tr>
+		<td>\(f(x)=\arctan(x)\)</td>
+		<td>\(F(x)=x\cdot\arctan(x) - \frac12\ln(1+x^2)+C\)</td>
+		<td><a href='arctanx.html'>Uitleg</a></td>
+	</tr>
+</table>
