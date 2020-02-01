@@ -1,13 +1,15 @@
 https://wiskundevragen.github.io/
-https://wiskundevragen.github.io/afgeleides
+https://wiskundevragen.github.io/afgeleides/
+https://wiskundevragen.github.io/afgeleides/afgeleides
 https://wiskundevragen.github.io/afgeleides/arcsinx
 https://wiskundevragen.github.io/afgeleides/arctanx
 https://wiskundevragen.github.io/afgeleides/arccos
 https://wiskundevragen.github.io/afgeleides/differentieren
+https://wiskundevragen.github.io/primitieven/
 https://wiskundevragen.github.io/primitieven/primitieven
 https://wiskundevragen.github.io/primitieven/integreren
 https://wiskundevragen.github.io/primitieven/arctanx
 https://wiskundevragen.github.io/primitieven/arcsinx
 https://wiskundevragen.github.io/primitieven/arccosx
-https://wiskundevragen.github.io/gonio/index.html
+https://wiskundevragen.github.io/gonio/
 https://wiskundevragen.github.io/gonio/eenheidscirkel
