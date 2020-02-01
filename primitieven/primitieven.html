@@ -1,7 +1,7 @@
 ---
 desc: Lijst met primitieven op wiskundevragen.github.io
 title: Lijst met primitieven
-see_also: ["afg_lijst", "gonio"]
+see_also: "afg_lijst", "gonio"
 ---
 
 <h1>Lijst met primitieven</h1>
@@ -13,91 +13,76 @@ Hieronder vind je een lijst met alle primitieven die ik tot nu toe op de website
 	<li><a href='arccosx.html'>y = arccos(x)</a></li>
 </ul>
 
-<h2>Overzicht veelvoorkomende functies met hun afgeleides</h2>
+<h2>Overzicht veelvoorkomende functies met hun primitieve/integraal</h2>
 <table>
 	<tr>
 		<td><b>Functie</b></td>
-		<td><b>Afgeleide</b></td>
+		<td><b>Primitieve</b></td>
 		<td><b>Opmerking</b></td>
 	</tr>
 	<tr>
-		<td>\(f(x)=a\cdot x^n\)</td>
-		<td>\(f'(x)=n\cdot a \cdot x^{n-1}\)</td>
+		<td>\(f(x)=x^n\)</td>
+		<td>\(F(x)=\frac1{n+1} \cdot x^{n+1}+C\)</td>
+		<td>voor \(x\neq -1\)</td>
+	</tr>
+	<tr>
+		<td>\(f(x)=a\)</td>
+		<td>\(F(x)=ax+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>\(f(x)=\sqrt{x}=x^{\frac12}\)</td>
-		<td>\(f'(x)=\dfrac1{2\sqrt{x}}\)</td>
+		<td>\(f(x)=\frac1x\)</td>
+		<td>\(F(x)=\ln(x)+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\ln(x)\)</td>
-		<td>\(f'(x)=\dfrac1x=x^{-1}\)</td>
+		<td>\(F(x)=x\ln(x)-x+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>\(f(x)=\log_a(x)\)</td>
-		<td>\(f'(x)=\dfrac1{x\cdot\ln(a)}\)</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>\(f(x)=e^{ax}\)</td>
-		<td>\(f'(x)=a\cdot e^{ax}\)</td>
+		<td>\(f(x)=e^x\)</td>
+		<td>\(F(x)=e^{x}+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=a^{x}\)</td>
-		<td>\(f'(x)=a^x \cdot \ln(a)\)</td>
+		<td>\(F(x)=\frac{a^x}{\ln(a)}+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=g(x) + h(x)\)</td>
-		<td>\(f'(x)=g'(x) + h'(x)\)</td>
+		<td>\(F(x)=G(x) + H(x)+C\)</td>
 		<td>Somregel</td>
 	</tr>
 	<tr>
-		<td>\(f(x)=g(x)h(x)\)</td>
-		<td>\(f'(x)=g'(x)h(x) + g(x)h'(x)\)</td>
-		<td>Productregel</td>
-	</tr>
-	<tr>
-		<td>\(f(x)=g(h(x))\)</td>
-		<td>\(f'(x)=g'(h(x))\cdot h'(x)\)</td>
-		<td>Kettingregel</td>
-	</tr>
-	<tr>
-		<td>\(f(x)=\dfrac{t(x)}{n(x)}\)</td>
-		<td>\(f'(x)=\dfrac{n(x)\cdot t'(x) - t(x)\cdot n'(x)}{(n(x))^2}\)</td>
-		<td>Quotiëntregel</td>
+		<td>\(f(x)=g'(x)h(x)\)</td>
+		<td>\(F(x)=g(x)h(x) - \int{g(x)h'(x)}\)</td>
+		<td>"Omgekeerde Productregel" (geen examenstof)</td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\sin(x)\)</td>
-		<td>\(f'(x)=\cos(x)\)</td>
+		<td>\(F(x)=-\cos(x)+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\cos(x)\)</td>
-		<td>\(f'(x)=\sin(x)\)</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>\(f(x)=\tan(x)\)</td>
-		<td>\(f'(x)=\dfrac1{cos^2(x)}=1+\tan^2(x)\)</td>
+		<td>\(F(x)=\sin(x)+C\)</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\arcsin(x)\)</td>
-		<td>\(f'(x)=\dfrac{1}{\sqrt{1-x^2}}\)</td>
+		<td>\(F(x)=x\cdot\arcsin(x) + \sqrt{1-x^2}+C\)</td>
 		<td><a href='arcsinx.html'>Uitleg</a></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\arccos(x)\)</td>
-		<td>\(f'(x)=\dfrac{-1}{\sqrt{1-x^2}}\)</td>
+		<td>\(F(x)=x\cdot \arccos(x)) - \sqrt{1-x^2}+C\)</td>
 		<td><a href='arccosx.html'>Uitleg</a></td>
 	</tr>
 	<tr>
 		<td>\(f(x)=\arctan(x)\)</td>
-		<td>\(f'(x)=\dfrac1{x^2+1}\)</td>
+		<td>\(F(x)=x\cdot\arctan(x) - \frac12\ln(1+x^2)+C\)</td>
 		<td><a href='arctanx.html'>Uitleg</a></td>
 	</tr>
 </table>
