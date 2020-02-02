@@ -56,5 +56,8 @@ page_names:
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven.html
+  natk:
+    desc: "Wiskunde overzichtspagina"
+    url: ../wiskunde
 theme: jekyll-theme-cayman
 title: "Wiskunde Vragen"
