@@ -43,6 +43,7 @@
 
 <body>
 	<header class="page-header" role="banner">
+		<!--googleoff: all-->
 		<h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
 		<h2 class="project-tagline">
 			{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
@@ -52,8 +53,10 @@
 	</header>
 
 	<main id="content" class="main-content" role="main">
+		<!--googleon: all-->
 		{{ content }}
 
+		<!--googleoff: all-->
 		{% if page.see_also %}
 		<br>
 		<h2>Zie ook</h2>
