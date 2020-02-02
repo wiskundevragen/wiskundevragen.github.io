@@ -4,4 +4,4 @@ Disallow:
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
-Sitemap: https://wiskundevragen.github.io/sitemap.txt
+Sitemap: https://wiskundevragen.github.io/sitemap.xml
