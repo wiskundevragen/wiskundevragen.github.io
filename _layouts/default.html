@@ -19,6 +19,12 @@
 	{% endif %}
 
 	{% seo %}
+	<link rel="manifest" href="/manifest.json">
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js');
+		}
+	</script>
 	<meta name='description' content='{{page.desc}}'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#157878">
