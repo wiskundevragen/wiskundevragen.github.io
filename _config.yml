@@ -34,7 +34,7 @@ page_names:
     url: ../primitiveren/integreren
   home:
     desc: "Homepagina WiskundeVragen"
-    url: ../home
+    url: ../
   nat_form_havo:
     desc: "Natuurkundeformules HAVO"
     url: ../natuurkunde/formules/havo
@@ -56,7 +56,7 @@ page_names:
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven.html
-  natk:
+  wisk:
     desc: "Wiskunde overzichtspagina"
     url: ../wiskunde
 theme: jekyll-theme-cayman
