@@ -5,7 +5,7 @@
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#157878",
-	"description": "Antwoord op al je wiskunde vragen!",
+	"description": "Antwoord op al je wiskundevragen!",
 	"icons": [
 		{
 			"src": "Images/Icon.png",
