@@ -35,6 +35,9 @@ page_names:
   home:
     desc: "Homepagina WiskundeVragen"
     url: ../
+  nat_form:
+    desc: "Formules Natuurkunde"
+    url: ../natuurkunde/formules
   nat_form_havo:
     desc: "Natuurkundeformules HAVO"
     url: ../natuurkunde/formules/havo
