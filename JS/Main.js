@@ -5,7 +5,7 @@ fixMath = function () {
 		let el = mathEls[i];
 		el.innerHTML = "\\(" + el.getAttribute("data") + "\\)";
 	}
-	refreshMath();
+	// refreshMath();
 }
 
 window.onload = function () {
