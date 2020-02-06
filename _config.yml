@@ -26,6 +26,9 @@ page_names:
   gonio:
     desc: Goniometrie
     url: ../gonio/index.html
+  havo_rooster:
+    desc: "Eindexamenrooster HAVO 2020"
+    url: ../examen/havo
   help_diff:
     desc: "Hoe differentieer ik?"
     url: ../afgeleides/differentieren
@@ -59,6 +62,9 @@ page_names:
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven.html
+  vwo_rooster:
+    desc: "Eindexamenrooster VWO 2020"
+    url: ../examen/vwo
   wisk:
     desc: "Wiskunde overzichtspagina"
     url: ../wiskunde
