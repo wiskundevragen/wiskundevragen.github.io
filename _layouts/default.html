@@ -10,6 +10,7 @@
 		gtag('config', '{{ site.google_analytics }}');
 	</script>
 	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	{% if page.latex %}
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -42,6 +43,16 @@
 		{% if page.home != true %}
 		<a href="https://wiskundevragen.github.io/" class="btn">Homepagina</a>
 		{% endif %}
+		<center>
+			<div id="searchBoxO">
+				<div id="searchBox">
+					<i class='material-icons' id='balance'>search</i>
+					<input type="text" id="search" autocomplete="off">
+					<i class='material-icons' type='submit' id='searchIcon' title="Doorzoek WiskundeVragen">search</i>
+					<span id='searchHelp'></span>
+				</div>
+			</div>
+		</center>
 	</header>
 
 	<main id="content" class="main-content" role="main">
@@ -61,10 +72,6 @@
 			{% endfor %}
 		</ul>
 		{% endif %}
-		<!--<footer class="site-footer">
-			<span class="site-footer-credits">Gemaakt door <a href='https://linkedin.com/in/stan-van-baarsen'>Stan van
-					Baarsen</a>.</span>
-		</footer>-->
 	</main>
 </body>
 
