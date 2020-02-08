@@ -434,3 +434,7 @@ table tr:nth-of-type(2n + 1) {
 #search:focus {
   outline: none;
 }
+
+* {
+  transition-duration: 400ms;
+}
