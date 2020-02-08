@@ -12,6 +12,9 @@
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+	{% if page.search %}
+	<script src='JS/Search.js'></script>
+	{% endif %}
 	{% if page.latex %}
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -39,10 +42,8 @@
 		<!--googleoff: all-->
 		<h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
 		<h2 class="project-tagline">
-			{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-		{% if page.home != true %}
-		<a href="https://wiskundevragen.github.io/" class="btn">Homepagina</a>
-		{% endif %}
+			{{ page.description | default: site.description | default: site.github.project_tagline }}
+		</h2>
 		<center>
 			<div id="searchBoxO">
 				<div id="searchBox">
@@ -53,13 +54,16 @@
 				</div>
 			</div>
 		</center>
+		{% if page.home != true %}
+		<a href="https://wiskundevragen.github.io/" class="btn">Homepagina</a>
+		{% endif %}
 	</header>
 
 	<main id="content" class="main-content" role="main">
+		<!--googleon: all-->
 		{% if page.home != true %}
 		<h1>{{page.title}}</h1>
 		{% endif %}
-		<!--googleon: all-->
 		{{ content }}
 
 		<!--googleoff: all-->
