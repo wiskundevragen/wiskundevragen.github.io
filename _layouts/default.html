@@ -2,6 +2,41 @@
 <html lang="nl">
 
 <head>
+	{% if page.title %}
+	{% if site.page_names[page.title] %}
+	<script>
+		alert(innerWidth);
+		/* type="application/ld+json">
+			{
+			  "@context": "https://schema.org",
+			  "@type": "BreadcrumbList",
+			  "itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Books",
+					"item": "https://example.com/books"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Authors",
+					"item": "https://example.com/books/authors"
+				},{
+					"@type": "ListItem",
+					"position": 3,
+					"name": "Ann Leckie",
+					"item": "https://example.com/books/authors/annleckie"
+				},{
+					"@type": "ListItem",
+					"position": 4,
+					"name": "Ancillary Justice",
+					"item": "https://example.com/books/authors/ancillaryjustice"
+				}
+			  ]
+			}
+			*/
+	</script>
 	{% if site.google_analytics %}
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
