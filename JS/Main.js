@@ -8,12 +8,48 @@ fixMath = function () {
 	refreshMath();
 }
 
+
+function id(a) {
+	return document.getElementById(a);
+}
+
 window.onload = function () {
 	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('../service-worker.js');
+		navigator.serviceWorker.register('service-worker.js', {
+			scope: '.' // <--- THIS BIT IS REQUIRED
+		}).then(function (registration) {
+			// Registration was successful
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}, function (err) {
+			// registration failed :(
+			console.log('ServiceWorker registration failed: ', err);
 		});
 	}
 
 	fixMath();
+
+
+	id("search").addEventListener("focusout", function () {
+		if (id("search").value) return true;
+		id("searchBox").style.background = 'rgba(255, 255, 255, 0.29)';
+		id("searchIcon").style.color = 'white';
+		id("search").style.color = 'white';
+	});
+
+	id("search").addEventListener("keyup", function (e) {
+		if (e.keyCode == 13) {
+			send();
+			return false;
+		}
+	});
+
+	id("balance").addEventListener("click", function () {
+		id('search').focus();
+	});
+
+	id("searchIcon").addEventListener("click", send);
+};
+
+function send() {
+	console.log("oké", id("search").value);
 };
