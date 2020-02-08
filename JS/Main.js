@@ -29,6 +29,12 @@ window.onload = function () {
 	fixMath();
 
 
+	id('search').addEventListener('focus', function () {
+		id("searchBox").style.background = 'rgba(255, 255, 255, 0.80)';
+		id("searchIcon").style.color = 'black';
+		id("search").style.color = 'black';
+	});
+
 	id("search").addEventListener("focusout", function () {
 		if (id("search").value) return true;
 		id("searchBox").style.background = 'rgba(255, 255, 255, 0.29)';
