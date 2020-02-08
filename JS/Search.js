@@ -1,1 +1,1 @@
-document.getElementById("#searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];
+document.getElementById("searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];
