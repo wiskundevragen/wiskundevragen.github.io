@@ -20,6 +20,17 @@
 	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	{% endif %}
 
+	{% if page.search %}
+	<script>
+		var search = true;
+	</script>
+	{% endif %}
+	{% if page.search != true %}
+	<script>
+		var search = false;
+	</script>
+	{% endif %}
+
 	{% seo %}
 	<link rel='apple-touch-icon' href='../Images/apple-touch-icon.png'>
 	<link rel="manifest" href="../manifest.json">

@@ -13,10 +13,9 @@ function id(a) {
 	return document.getElementById(a);
 }
 
-var prev_handler = window.onload;
 window.onload = function () {
-	if (prev_handler) {
-		prev_handler();
+	if (search) {
+		document.getElementById("searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];
 	}
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('../service-worker.js', {
