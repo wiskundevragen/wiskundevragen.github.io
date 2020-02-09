@@ -4,8 +4,7 @@ function fixMath() {
 		let el = mathEls[i];
 		el.innerHTML = "\\(" + el.getAttribute("data") + "\\)";
 	}
-	refreshMath = MathJax.typeset;
-	refreshMath();
+	MathJax.typeset();
 }
 
 
