@@ -21,9 +21,19 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 <script>
 	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos'];
 
+	function clearOutputs() {
+		id("parsed-function").innerHTML = ''
+		id("derived-function").innerHTML = ''
+	}
+
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
 			let fn = id("src-functie").value;
+			if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
+				console.log("cancelling calculation");
+				clearOutputs();
+				return;
+			}
 			for (let i = 0; i < synonyms.length; i += 2) {
 				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
 			}
@@ -41,8 +51,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(fn, "x")).toTex({ implicit: 'hide' }) + "\\)";
 				}
 			} catch (err) {
-				id("parsed-function").innerHTML = ''
-				id("derived-function").innerHTML = ''
+				clearOutputs();
 			}
 			MathJax.typeset();
 		});
