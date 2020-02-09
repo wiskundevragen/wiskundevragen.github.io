@@ -27,11 +27,16 @@ Resultaat: <span id="result"></span>
 		id("calc").addEventListener("click", function () {
 			var nval = id("n").value;
 			var kval = id("k").value;
+			console.log(nval, kval);
 			if (nval < 0) {
 				erreur();
-			} else if (kval < 0 || (nval < kval)) {
-				id("result").innerHTML = 0;
 			} else {
+				if (kval < 0) {
+					id("result").innerHTML = 56789;
+				}
+				if (nval < kval) {
+					id("result").innerHTML = 876;
+				}
 				id("result").innerHTML = faculteit(n) / (faculteit(k) * (faculteit(n - k)));
 			}
 		});
