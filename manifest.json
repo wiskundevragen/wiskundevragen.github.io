@@ -53,6 +53,16 @@
 			"type": "image/png"
 		},
 		{
+			"src": "Images/Icon-32x32.png",
+			"sizes": "32x32",
+			"type": "image/png"
+		},
+		{
+			"src": "Images/Icon-16x16.png",
+			"sizes": "16x16",
+			"type": "image/png"
+		},
+		{
 			"src": "Images/Icon-512x512.png",
 			"sizes": "512x512",
 			"type": "image/png"
