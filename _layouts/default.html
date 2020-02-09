@@ -10,11 +10,10 @@
 		gtag('config', '{{ site.google_analytics }}');
 	</script>
 	<meta charset="UTF-8">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../Fonts/Material-Icons.css" rel="stylesheet">
 
 	{% if page.latex %}
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script id="MathMathJax-script" src="../JS/latex-mathjax.js"></script>
 	{% endif %}
 
 	{% if page.search %}
@@ -32,7 +31,7 @@
 	<meta property="og:locale" content="en_US">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="{%if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-	<meta property='og:title' content='https://wiskundevragen.github.io/Images/Icon.png'>
+	<meta property='og:icon' content='https://wiskundevragen.github.io/Images/Icon.png'>
 	<meta property="og:description"
 		content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
