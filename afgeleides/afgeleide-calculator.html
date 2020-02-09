@@ -8,14 +8,16 @@ afgeleide van deze functie is:
 <center>
 	<input id='src-functie' /><br>
 </center>
-Jouw functie: <span id='parsed-function'></span>
-De afgeleide: <span id="derived-function"></span>
+<div style='margin: 8px; background: #eaeaea; padding: 6px;'>
+	Jouw functie: <span id='parsed-function'></span><br>
+	De afgeleide: <span id="derived-function"></span>
+</div>
 <script src='../JS/math.js'></script>
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
 			id("parsed-function").innerHTML = math.parse(id("src-functie").value).toTex();
-			id("derived-function").innerHTML = "\\(" + math.derivative(this.value, "x").toTex() + "\\)";
+			id("derived-function").innerHTML = "\\(" + math.derivative(id("src-functie").value, "x").toTex() + "\\)";
 			MathJax.typeset();
 		});
 	});
