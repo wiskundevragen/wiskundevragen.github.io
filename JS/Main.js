@@ -26,7 +26,7 @@ window.onload = function () {
 		});
 	}
 
-	fixMath();
+	if (!home) fixMath();
 
 
 	id('search').addEventListener('focus', function () {
