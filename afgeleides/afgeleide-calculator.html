@@ -31,8 +31,15 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				if (!fn.length) {
 					throw 'fn not defined';
 				}
-				id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(fn).toTex() + "\\)";
-				id("derived-function").innerHTML = "\\(f'(x)=" + math.derivative(fn, "x").toTex() + "\\)";
+				parsedFn = math.parse(fn);
+				simplifiedFn = math.simplify(math.parse(fn)); \
+				if (parsedFn != simplifiedFn) {
+					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn + "=" + simplifiedFn + "\\)";
+					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(simplifiedFn, "x")).toTex() + "\\)";
+				} else {
+					id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(fn).toTex() + "\\)";
+					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(fn, "x")).toTex() + "\\)";
+				}
 			} catch (err) {
 				id("parsed-function").innerHTML = ''
 				id("derived-function").innerHTML = ''
