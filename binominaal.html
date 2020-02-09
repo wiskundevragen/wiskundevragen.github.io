@@ -36,7 +36,8 @@ Resultaat: <span id="result"></span>
 			if (kval < 0 || (nval < kval)) {
 				id("result").innerHTML = 0;
 			} else {
-				id("result").innerHTML = faculteit(nval) / (faculteit(kval) * (faculteit(nval - kval)));
+				var v = faculteit(nval) / (faculteit(kval) * (faculteit(nval - kval)));
+				id("result").innerHTML = Math.round(v * 1000) / 1000;
 			}
 		}
 	}
