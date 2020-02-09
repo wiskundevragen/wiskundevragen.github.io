@@ -5,7 +5,6 @@ title: Binomiaalcoëfficiënt berekenen
 ---
 n: <input id='n' /><br>
 k: <input id='k' /><br>
-<button id='calc'>Berekenen</button><br>
 Resultaat: <span id="result"></span>
 
 <script>
@@ -23,19 +22,23 @@ Resultaat: <span id="result"></span>
 		id("result").innerHTML = 'Er ging iets fout!';
 	}
 
-	window.addEventListener("DOMContentLoaded", (event) => {
-		id("calc").addEventListener("click", function () {
-			var nval = +id("n").value;
-			var kval = +id("k").value;
-			if (nval < 0 || isNaN(nval) || isNaN(kval)) {
-				erreur();
+	function handleInput() {
+		if (!nval || !kval) return;
+		var nval = +id("n").value;
+		var kval = +id("k").value;
+		if (nval < 0 || isNaN(nval) || isNaN(kval)) {
+			erreur();
+		} else {
+			if (kval < 0 || (nval < kval)) {
+				id("result").innerHTML = 0;
 			} else {
-				if (kval < 0 || (nval < kval)) {
-					id("result").innerHTML = 0;
-				} else {
-					id("result").innerHTML = faculteit(nval) / (faculteit(kval) * (faculteit(nval - kval)));
-				}
+				id("result").innerHTML = faculteit(nval) / (faculteit(kval) * (faculteit(nval - kval)));
 			}
-		});
+		}
+	}
+
+	window.addEventListener("DOMContentLoaded", (event) => {
+		id("n").addEventListener("input", handleInput);
+		id("k").addEventListener("input", handleInput);
 	});
 </script>
