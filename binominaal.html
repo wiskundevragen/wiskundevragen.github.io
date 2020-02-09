@@ -27,9 +27,9 @@ Resultaat: <span id="result"></span>
 	}
 
 	function handleInput() {
-		if (!nval || !kval) return;
 		var nval = +id("n").value;
 		var kval = +id("k").value;
+		if (!nval || !kval) return;
 		if (nval < 0 || isNaN(nval) || isNaN(kval)) {
 			erreur();
 		} else {
