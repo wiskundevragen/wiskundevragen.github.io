@@ -17,8 +17,13 @@ de afgeleide van deze functie is:
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
-			id("parsed-function").innerHTML = "\\(" + math.parse(id("src-functie").value).toTex() + "\\)";
-			id("derived-function").innerHTML = "\\(" + math.derivative(id("src-functie").value, "x").toTex() + "\\)";
+			try {
+				id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(id("src-functie").value).toTex() + "\\)";
+				id("derived-function").innerHTML = "\\(f'(x)" + math.derivative(id("src-functie").value, "x").toTex() + "\\)";
+			} catch (err) {
+				id("parsed-function").innerHTML = ''
+				id("derived-function").innerHTML = ''
+			}
 			MathJax.typeset();
 		});
 	});
