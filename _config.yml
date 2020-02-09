@@ -15,6 +15,9 @@ page_names:
   afg_arctan:
     desc: "De afgeleide van arctan(x)"
     url: ../afgeleides/arctanx
+  afg_calc:
+    desc: "Afgeleide Calculator"
+    url: ../afgeleides/afgeleide-calculator
   afg_lijst:
     desc: "Lijst met afgeleides"
     url: ../afgeleides/afgeleides
