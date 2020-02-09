@@ -38,6 +38,9 @@ page_names:
   home:
     desc: "Homepagina WiskundeVragen"
     url: ../
+  integr:
+    desc: "Hoe moet je primitiveren?"
+    url: ../primitieven/primitieven
   nat_form:
     desc: "Formules Natuurkunde"
     url: ../natuurkunde/formules
