@@ -4,6 +4,7 @@ defaults:
       layout: default
 description: "Dé website voor al je brandende wiskundevragen!"
 google_analytics: UA-157507939-1
+lang: nl_NL
 page_names:
   afg_arccos:
     desc: "De afgeleide van arccos(x)"
