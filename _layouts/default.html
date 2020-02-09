@@ -29,6 +29,15 @@
 	{% endif %}
 
 	{% seo %}
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="{%if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+	<meta property='og:title' content='https://wiskundevragen.github.io/Images/Icon.png'>
+	<meta property="og:description"
+		content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+	<meta itemprop="description" name="description"
+		content="{% if page.description %}{{ page.description | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}" />
 	<link rel='apple-touch-icon' href='../Images/apple-touch-icon.png'>
 	<link rel="manifest" href="../manifest.json">
 	<meta name='description' content='{{page.desc}}'>
@@ -36,10 +45,10 @@
 	<meta name="theme-color" content="#157878">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<link rel="stylesheet" href="{{ '/assets/css/style.css' }}">
-	<link rel='icon' href='../Images/Icon.png'>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/Images/Icon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/Images/Icon-16x16.png">
+	<link alt='WiskundeVragen Logo' rel='icon' href='../Images/Icon.png'>
+	<link alt='WiskundeVragen Logo' rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="32x32" href="/Images/Icon-32x32.png">
+	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="16x16" href="/Images/Icon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<script src='../JS/Main.js'></script>
