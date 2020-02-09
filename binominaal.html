@@ -30,12 +30,8 @@ Resultaat: <span id="result"></span>
 			if (nval < 0) {
 				erreur();
 			} else {
-				if (kval < 0) {
-					id("result").innerHTML = 56789;
-				}
-				console.log(nval, kval, nval < kval);
-				if (nval < kval) {
-					id("result").innerHTML = 876;
+				if (kval < 0 || (+nval < +kval)) {
+					id("result").innerHTML = 0;
 				} else {
 					id("result").innerHTML = faculteit(n) / (faculteit(k) * (faculteit(n - k)));
 				}
