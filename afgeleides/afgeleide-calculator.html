@@ -34,11 +34,11 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				parsedFn = math.parse(fn);
 				simplifiedFn = math.simplify(math.parse(fn));
 				if (parsedFn.toTex() != simplifiedFn.toTex()) {
-					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex() + "=" + simplifiedFn.toTex() + "\\)";
-					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(simplifiedFn, "x")).toTex() + "\\)";
+					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex({ implicit: 'hide' }) + "=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\)";
+					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(simplifiedFn, "x")).toTex({ implicit: 'hide' }) + "\\)";
 				} else {
 					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex() + "\\)";
-					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(fn, "x")).toTex() + "\\)";
+					id("derived-function").innerHTML = "\\(f'(x)=" + math.simplify(math.derivative(fn, "x")).toTex({ implicit: 'hide' }) + "\\)";
 				}
 			} catch (err) {
 				id("parsed-function").innerHTML = ''
