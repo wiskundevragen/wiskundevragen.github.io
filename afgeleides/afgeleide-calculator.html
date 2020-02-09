@@ -7,7 +7,7 @@ see_also: ["afg_lisjt", "prim_lijst", "gonio", "help_diff", "help_prim"]
 Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat
 de afgeleide van deze functie is:
 <center>
-	f(x)=<input id='src-functie' /><br>
+	<input id='src-functie' value='f(x)=' /><br>
 </center>
 <div style='margin: 8px; background: #eaeaea; padding: 12px;'>
 	Jouw functie:&nbsp;&nbsp;<span id='parsed-function'></span><br><br>
@@ -37,6 +37,9 @@ de afgeleide van deze functie is:
 				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
 			}
 			try {
+				if (!fn.length) {
+					throw 'fn not defined';
+				}
 				id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(fn).toTex() + "\\)";
 				id("derived-function").innerHTML = "\\(f'(x)=" + math.derivative(fn, "x").toTex() + "\\)";
 			} catch (err) {
