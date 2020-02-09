@@ -13,7 +13,11 @@ function id(a) {
 	return document.getElementById(a);
 }
 
+var prev_handler = window.onload;
 window.onload = function () {
+	if (prev_handler) {
+		prev_handler();
+	}
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('../service-worker.js', {
 			scope: '.' // <--- THIS BIT IS REQUIRED
