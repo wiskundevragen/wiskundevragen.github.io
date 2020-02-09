@@ -21,13 +21,13 @@ de afgeleide van deze functie is:
 		document.getElementById("src-functie").addEventListener("input", (event) => {
 			if (!id("src-functie").value.startsWith("f(x)=")) {
 				if (id("src-functie").value.startsWith("f(x)")) {
-					id("src-functie").value = "=" + id("src-functie").value
+					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(4);
 				} else if (id("src-functie").value.startsWith("f(x")) {
-					id("src-functie").value = ")=" + id("src-functie").value
+					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(3);
 				} else if (id("src-functie").value.startsWith("f(")) {
-					id("src-functie").value = "x)=" + id("src-functie").value
+					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(2);
 				} else if (id("src-functie").value.startsWith("f")) {
-					id("src-functie").value = "(x)=" + id("src-functie").value
+					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(1);
 				} else {
 					id("src-functie").value = "f(x)=" + id("src-functie").value
 				}
