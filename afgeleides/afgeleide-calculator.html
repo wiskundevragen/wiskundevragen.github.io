@@ -1,6 +1,6 @@
 ---
-desc: Een online tool waarmee je afgeleides kunt laten berekenen! Toets eenvoudig je functie in en wij berkenen de
-afgeleide ervan.
+desc: "Een online tool waarmee je afgeleides kunt laten berekenen! Toets eenvoudig je functie in en wij berkenen de
+afgeleide ervan."
 title: Afgeleide calculator
 see_also: ["prim_lijst", "gonio", "help_diff", "help_prim"]
 ---
@@ -15,11 +15,17 @@ de afgeleide van deze functie is:
 </div>
 <script src='../JS/math.js'></script>
 <script>
+	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos'];
+
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
+			let fn = id("src-functie").value;
+			for (let i = 0; i < synonyms.length; i += 2) {
+				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
+			}
 			try {
-				id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(id("src-functie").value).toTex() + "\\)";
-				id("derived-function").innerHTML = "\\(f'(x)=" + math.derivative(id("src-functie").value, "x").toTex() + "\\)";
+				id("parsed-function").innerHTML = "\\(f(x)=" + math.parse(fn).toTex() + "\\)";
+				id("derived-function").innerHTML = "\\(f'(x)=" + math.derivative(fn, "x").toTex() + "\\)";
 			} catch (err) {
 				id("parsed-function").innerHTML = ''
 				id("derived-function").innerHTML = ''
