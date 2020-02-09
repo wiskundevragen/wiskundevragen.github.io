@@ -54,7 +54,15 @@
 				</div>
 			</div>
 		</center>
+		{% if page.home %}
+		<script>
+			var home = true;
+		</script>
+		{% endif %}
 		{% if page.home != true %}
+		<script>
+			var home = false;
+		</script>
 		<a href="https://wiskundevragen.github.io/" class="btn">Homepagina</a>
 		{% endif %}
 	</header>
