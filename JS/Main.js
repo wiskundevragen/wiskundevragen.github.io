@@ -59,5 +59,5 @@ window.onload = function () {
 };
 
 function send() {
-	location = '../search.html?q=' + id("search").value;
+	location = '../search?q=' + id("search").value;
 };

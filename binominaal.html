@@ -1,0 +1,39 @@
+---
+desc: "Hier wordt uitgelegd wat het binominaalcoëfficiënt is, hoe je het berekent en er is een kleine rekenmachine waar
+je het snel kan laten uitrekenen."
+title: Binomiaalcoëfficiënt berekenen
+---
+n: <input id='n' /><br>
+k: <input id='k' /><br>
+<button id='calc'>Berekenen</button><br>
+Resultaat: <span id="result"></span>
+
+<script>
+	faculteiten = [];
+	function faculteit(n) {
+		if (n < 2) return n;
+		if (faculteiten[n]) return faculteiten[n];
+		else {
+			a = n * faculteit(n - 1);
+			faculteiten[n] = a;
+			return a;
+		}
+	}
+
+	function erreur() {
+		id("result").innerHTML = 'fout.';
+	}
+
+	window.addEventListener("DOMContentLoaded", (event) => {
+		id("calc").addEventListener("click", function () {
+			var nval = id("n").value;
+			if (nval < 0) {
+				erreur();
+			} else if (kval < 0 || nval < kval) {
+				id("result").innerHTML = 0;
+			} else {
+				id("result").innerHTML = faculteit(n) / (faculteit(k) * (faculteit(n - k)));
+			}
+		});
+	});
+</script>
