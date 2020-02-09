@@ -1,4 +1,4 @@
-fixMath = function () {
+function fixMath() {
 	var mathEls = document.querySelectorAll("mathEl");
 	for (let i = 0; i < mathEls.length; i++) {
 		let el = mathEls[i];
