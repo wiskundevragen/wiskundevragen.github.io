@@ -2,7 +2,7 @@
 desc: "Een online tool waarmee je afgeleides kunt laten berekenen! Toets eenvoudig je functie in en wij berkenen de
 afgeleide ervan."
 title: Afgeleide calculator
-see_also: ["prim_lijst", "gonio", "help_diff", "help_prim"]
+see_also: ["afg_lisjt", "prim_lijst", "gonio", "help_diff", "help_prim"]
 ---
 Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat
 de afgeleide van deze functie is:
@@ -19,7 +19,20 @@ de afgeleide van deze functie is:
 
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
-			let fn = id("src-functie").value;
+			if (!id("src-functie").value.startsWith("f(x)=")) {
+				if (id("src-functie").value.startsWith("f(x)")) {
+					id("src-functie").value = "=" + id("src-functie").value
+				} else if (id("src-functie").value.startsWith("f(x")) {
+					id("src-functie").value = ")=" + id("src-functie").value
+				} else if (id("src-functie").value.startsWith("f(")) {
+					id("src-functie").value = "x)=" + id("src-functie").value
+				} else if (id("src-functie").value.startsWith("f")) {
+					id("src-functie").value = "(x)=" + id("src-functie").value
+				} else {
+					id("src-functie").value = "f(x)=" + id("src-functie").value
+				}
+			}
+			let fn = id("src-functie").value.substr(5);
 			for (let i = 0; i < synonyms.length; i += 2) {
 				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
 			}
