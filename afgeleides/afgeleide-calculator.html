@@ -5,18 +5,18 @@ see_also: ["prim_lijst", "gonio", "help_diff", "help_prim"]
 ---
 Hier kun je online afgeleides berekenen! Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de
 afgeleide van deze functie is:
-<input id='src-functie' /><br>
+<center>
+	<input id='src-functie' /><br>
+</center>
 Jouw functie: <span id='parsed-function'></span>
 De afgeleide: <span id="derived-function"></span>
 <script src='../JS/math.js'></script>
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
-			document.getElementById("parsed-function").innerHTML = math.parse(this.value).toTex();
-			document.getElementById("derived-function").innerHTML = "\\(" + math.derivative(this.value, "x").toTex() + "\\)";
-
+			id("parsed-function").innerHTML = math.parse(id("src-functie").value).toTex();
+			id("derived-function").innerHTML = "\\(" + math.derivative(this.value, "x").toTex() + "\\)";
 			MathJax.typeset();
-			console.log("HELP", 'event');
 		});
 	});
 </script>
