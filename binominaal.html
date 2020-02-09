@@ -25,13 +25,13 @@ Resultaat: <span id="result"></span>
 
 	window.addEventListener("DOMContentLoaded", (event) => {
 		id("calc").addEventListener("click", function () {
-			var nval = id("n").value;
-			var kval = id("k").value;
-			if (nval < 0) {
+			var nval = +id("n").value;
+			var kval = +id("k").value;
+			if (nval < 0 || isNaN(nval) || isNaN(kval)) {
 				erreur();
 			} else {
-				if (kval < 0 || (+nval < +kval)) {
-					id("result").innerHTML = 0;
+				if (kval < 0 || (nval < kval)) {
+					id("result").innerHTML = 876;
 				} else {
 					id("result").innerHTML = faculteit(n) / (faculteit(k) * (faculteit(n - k)));
 				}
