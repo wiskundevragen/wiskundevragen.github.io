@@ -9,14 +9,14 @@ afgeleide van deze functie is:
 	<input id='src-functie' /><br>
 </center>
 <div style='margin: 8px; background: #eaeaea; padding: 6px;'>
-	Jouw functie: <span id='parsed-function'></span><br>
+	Jouw functie: <span id='parsed-function'></span><br><br>
 	De afgeleide: <span id="derived-function"></span>
 </div>
 <script src='../JS/math.js'></script>
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
-			id("parsed-function").innerHTML = math.parse(id("src-functie").value).toTex();
+			id("parsed-function").innerHTML = "\\(" + math.parse(id("src-functie").value).toTex() + "\\)";
 			id("derived-function").innerHTML = "\\(" + math.derivative(id("src-functie").value, "x").toTex() + "\\)";
 			MathJax.typeset();
 		});
