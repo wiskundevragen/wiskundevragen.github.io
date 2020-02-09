@@ -7,9 +7,12 @@ see_also: ["afg_lijst", "prim_lijst", "gonio", "help_diff", "help_prim"]
 Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat
 de afgeleide van deze functie is:
 <center>
-	<input id='src-functie' value='f(x)=' /><br>
+	<span class="textbox">
+		f(x)=
+		<input id='src-functie' /><br>
+	</span>
 </center>
-<div style='margin: 8px; background: #eaeaea; padding: 12px;'>
+<div style=' margin: 8px; background: #eaeaea; padding: 12px;'>
 	Jouw functie:&nbsp;&nbsp;<span id='parsed-function'></span><br><br>
 	De afgeleide:&nbsp;&nbsp;<span id="derived-function"></span>
 </div>
@@ -21,20 +24,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 
 	window.addEventListener('DOMContentLoaded', (event) => {
 		document.getElementById("src-functie").addEventListener("input", (event) => {
-			if (!id("src-functie").value.startsWith("f(x)=")) {
-				if (id("src-functie").value.startsWith("f(x)")) {
-					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(4);
-				} else if (id("src-functie").value.startsWith("f(x")) {
-					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(3);
-				} else if (id("src-functie").value.startsWith("f(")) {
-					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(2);
-				} else if (id("src-functie").value.startsWith("f")) {
-					id("src-functie").value = "f(x)=" + id("src-functie").value.substr(1);
-				} else {
-					id("src-functie").value = "f(x)=" + id("src-functie").value
-				}
-			}
-			let fn = id("src-functie").value.substr(5);
+			let fn = id("src-functie").value;
 			for (let i = 0; i < synonyms.length; i += 2) {
 				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
 			}
@@ -52,3 +42,20 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		});
 	});
 </script>
+
+<style>
+	span.textbox {
+		background-color: #FFF;
+		color: #888;
+		line-height: 20px;
+		height: 20px;
+		padding: 3px;
+		border: 1px #888 solid;
+		font-size: 9pt;
+	}
+
+	span.textbox input {
+		border: 0px;
+		background-color: #FFF;
+	}
+</style>
