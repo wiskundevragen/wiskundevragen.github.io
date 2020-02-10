@@ -52,7 +52,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				deriv = calcDeriv(simplifiedFn, false);
 				simplifiedDeriv = calcDeriv(simplifiedFn, true);
 				if (deriv != simplifiedDeriv) {
-					id("derived-function").innerHTML = "\\(\\begin{align*}f'(x)&=" + deriv + "\\&=" + simplifiedDeriv + "\\)";
+					id("derived-function").innerHTML = "\\(\\begin{align*}f'(x)&=" + deriv + "\\&=" + simplifiedDeriv + "\\end{align*}\\)";
 				} else {
 					id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
 				}
