@@ -11,9 +11,11 @@ de afgeleide van deze functie is:
 		f(x)=<input id='src-functie' autocapitalize="none" /><br>
 	</span>
 </center>
-<div style=' margin: 12px; background: #eaeaea; padding: 20px;'>
-	Jouw functie:&nbsp;&nbsp;<span id='parsed-function'></span><br><br>
-	De afgeleide:&nbsp;&nbsp;<span id="derived-function"></span>
+<div id='results'>
+	<div>
+		Jouw functie:&nbsp;&nbsp;<span id='parsed-function'></span><br><br>
+		De afgeleide:&nbsp;&nbsp;<span id="derived-function"></span>
+	</div>
 </div>
 <br>
 Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a>.
@@ -52,7 +54,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				deriv = calcDeriv(simplifiedFn, false);
 				simplifiedDeriv = calcDeriv(simplifiedFn, true);
 				if (deriv != simplifiedDeriv) {
-					id("derived-function").innerHTML = "\\(\\begin{align*}f'(x)&=" + deriv + "\\\\&=" + simplifiedDeriv + "\\end{align*}\\)";
+					id("derived-function").innerHTML = "\\(\\begin{align*}f'(x)&=" + deriv + "\\\\ &=" + simplifiedDeriv + "\\end{align*}\\)";
 				} else {
 					id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
 				}
@@ -87,6 +89,19 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 </script>
 
 <style>
+	#results {
+		margin: 12px;
+		background: #fafafa;
+		padding: 20px;
+		margin-top: 30px;
+		border-radius: 8px;
+		box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.27);
+	}
+
+	#results div {
+		overflow: auto;
+	}
+
 	span.textbox {
 		background-color: #FFF;
 		color: #888;
