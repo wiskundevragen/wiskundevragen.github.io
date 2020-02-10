@@ -19,7 +19,7 @@ de afgeleide van deze functie is:
 Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a>.
 <script src='../JS/math.js'></script>
 <script>
-	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln\(', 'log\('];
+	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
 
 	function clearOutputs() {
 		id("parsed-function").innerHTML = ''
@@ -35,7 +35,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				return;
 			}
 			for (let i = 0; i < synonyms.length; i += 2) {
-				fn = fn.replace(new RegExp(synonyms[i], "g"), synonyms[i + 1]);
+				fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
 			}
 			try {
 				if (!fn.length) {
@@ -56,6 +56,15 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 			MathJax.typeset();
 		});
 	});
+
+	function replaceAll(str, match, newV) {
+		oldVal = '';
+		while (oldVal != str) {
+			oldVal = str;
+			str = str.replace(match, newV);
+		}
+		return str;
+	}
 </script>
 
 <style>
