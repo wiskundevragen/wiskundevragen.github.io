@@ -45,22 +45,16 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				simplifiedFn = math.simplify(math.parse(fn));
 				if (parsedFn.toTex() != simplifiedFn.toTex()) {
 					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex({ implicit: 'hide' }) + "=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\)";
-					deriv = math.derivative(simplifiedFn, "x", { simplify: false }).toTex({ implicit: "hide" });
-					simplifiedDeriv = math.derivative(simplifiedFn, "x").toTex({ implicit: "hide" });
-					if (deriv != simplifiedDeriv) {
-						id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "=" + simplifiedDeriv + "\\)";
-					} else {
-						id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
-					}
 				} else {
 					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex() + "\\)";
-					deriv = math.derivative(simplifiedFn, "x", { simplify: false }).toTex({ implicit: "hide" });
-					simplifiedDeriv = math.derivative(simplifiedFn, "x").toTex({ implicit: "hide" });
-					if (deriv != simplifiedDeriv) {
-						id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "=" + simplifiedDeriv + "\\)";
-					} else {
-						id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
-					}
+				}
+
+				deriv = calcDeriv(simplifiedFn, false);
+				simplifiedDeriv = calcDeriv(simplifiedFn, true);
+				if (deriv != simplifiedDeriv) {
+					id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "=" + simplifiedDeriv + "\\)";
+				} else {
+					id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
 				}
 			} catch (err) {
 				clearOutputs();
@@ -68,6 +62,19 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 			MathJax.typeset();
 		});
 	});
+
+	function calcDeriv(fn, simplify) {
+		if (simplify) {
+			return math.simplify(
+				math.derivative(simplifiedFn, "x", { simplify: false })
+			).toTex({ implicit: "hide" });
+		} else {
+			return math.simplify(
+				math.derivative(simplifiedFn, "x", { simplify: false }),
+				["1*n1 -> n1", "-1*n1->-n1"]
+			).toTex({ implicit: "hide" });
+		}
+	}
 
 	function replaceAll(str, match, newV) {
 		oldVal = '';
