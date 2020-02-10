@@ -28,15 +28,6 @@
 	{% endif %}
 
 	{% seo %}
-	<meta property="og:locale" content="en_US">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="{%if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-	<meta property='og:icon' content='https://wiskundevragen.github.io/Images/Icon.png'>
-	<meta property="og:description"
-		content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-
-	<meta itemprop="description" name="description"
-		content="{% if page.description %}{{ page.description | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}" />
 	<link rel='apple-touch-icon' href='../Images/apple-touch-icon.png'>
 	<link rel="manifest" href="../manifest.json">
 	<meta name='description' content='{{page.desc}}'>
