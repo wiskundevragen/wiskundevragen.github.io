@@ -35,7 +35,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	}
 
 	window.addEventListener('DOMContentLoaded', (event) => {
-		id("src-functie").addEventListener("input", (event) => {
+		function inputEvent(event) {
 			let fn = id("src-functie").value;
 			if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
 				console.log("cancelling calculation");
@@ -68,7 +68,9 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				clearOutputs();
 			}
 			MathJax.typeset();
-		});
+		};
+		id("src-functie").addEventListener("input", inputEvent);
+		id("afleiden-naar").addEventListener("input", inputEvent);
 	});
 
 	function calcDeriv(fn, simplify) {
