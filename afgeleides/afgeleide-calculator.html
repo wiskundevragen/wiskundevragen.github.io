@@ -10,8 +10,11 @@ de afgeleide van deze functie is:
 	<span class="textbox">
 		f(x)=<input id='src-functie' autocapitalize="none" /><br>
 	</span>
+	<span class="textbox">
+		Afleiden naar: <input id='afleiden-naar' autocapitalize="none" value='x' /><br>
+	</span>
 </center>
-<div id='results'>
+<div id=' results'>
 	<div>
 		<b>Jouw functie:</b><br>
 		<span id='parsed-function'></span>
@@ -32,7 +35,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	}
 
 	window.addEventListener('DOMContentLoaded', (event) => {
-		document.getElementById("src-functie").addEventListener("input", (event) => {
+		id("src-functie").addEventListener("input", (event) => {
 			let fn = id("src-functie").value;
 			if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
 				console.log("cancelling calculation");
@@ -71,11 +74,11 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	function calcDeriv(fn, simplify) {
 		if (simplify) {
 			return math.simplify(
-				math.derivative(simplifiedFn, "x", { simplify: false })
+				math.derivative(simplifiedFn, id("afleiden-naar").value, { simplify: false })
 			).toTex({ implicit: "hide" });
 		} else {
 			return math.simplify(
-				math.derivative(simplifiedFn, "x", { simplify: false }),
+				math.derivative(simplifiedFn, id("afleiden-naar").value, { simplify: false }),
 				["1*n1 -> n1", "-1*n1->-n1"]
 			).toTex({ implicit: "hide" });
 		}
