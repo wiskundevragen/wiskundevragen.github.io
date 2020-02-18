@@ -46,23 +46,24 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
 			}
 			try {
+				afvar = id("afleiden-naar").value || "x";
 				if (!fn.length) {
 					throw 'fn not defined';
 				}
 				parsedFn = math.parse(fn);
 				simplifiedFn = math.simplify(math.parse(fn));
 				if (parsedFn.toTex() != simplifiedFn.toTex()) {
-					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex({ implicit: 'hide' }) + "=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\)";
+					id("parsed-function").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex({ implicit: 'hide' }) + "=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\)";
 				} else {
-					id("parsed-function").innerHTML = "\\(f(x)=" + parsedFn.toTex() + "\\)";
+					id("parsed-function").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex() + "\\)";
 				}
 
 				deriv = calcDeriv(simplifiedFn, false);
 				simplifiedDeriv = calcDeriv(simplifiedFn, true);
 				if (deriv != simplifiedDeriv) {
-					id("derived-function").innerHTML = "\\(\\begin{align*}f'(x)&=" + deriv + "\\\\ &=" + simplifiedDeriv + "\\end{align*}\\)";
+					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv + "\\\\ &=" + simplifiedDeriv + "\\end{align*}\\)";
 				} else {
-					id("derived-function").innerHTML = "\\(f'(x)=" + deriv + "\\)";
+					id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv + "\\)";
 				}
 			} catch (err) {
 				clearOutputs();
@@ -76,11 +77,11 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	function calcDeriv(fn, simplify) {
 		if (simplify) {
 			return math.simplify(
-				math.derivative(simplifiedFn, id("afleiden-naar").value, { simplify: false })
+				math.derivative(simplifiedFn, (id("afleiden-naar").value || "x"), { simplify: false })
 			).toTex({ implicit: "hide" });
 		} else {
 			return math.simplify(
-				math.derivative(simplifiedFn, id("afleiden-naar").value, { simplify: false }),
+				math.derivative(simplifiedFn, (id("afleiden-naar").value || "x"), { simplify: false }),
 				["1*n1 -> n1", "-1*n1->-n1"]
 			).toTex({ implicit: "hide" });
 		}
