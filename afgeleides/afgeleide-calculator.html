@@ -38,7 +38,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		function inputEvent(event) {
 			let fn = id("src-functie").value;
 			if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
-				console.log("cancelling calculation");
+				// console.log("cancelling calculation");
 				clearOutputs();
 				return;
 			}
@@ -82,7 +82,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		} else {
 			return math.simplify(
 				math.derivative(simplifiedFn, (id("afleiden-naar").value || "x"), { simplify: false }),
-				["1*n1 -> n1", "-1*n1->-n1"]
+				["1*n1 -> n1", "-1*n1->-n1", "2-1->1", "n1^1->n1"]
 			).toTex({ implicit: "hide" });
 		}
 	}
