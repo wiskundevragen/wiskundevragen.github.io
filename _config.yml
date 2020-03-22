@@ -75,6 +75,9 @@ page_names:
   vwo_rooster:
     desc: "Eindexamenrooster VWO 2020"
     url: ../examen/vwo
+  mavo_rooster:
+    desc: "Eindexamenrooster VMBO GL en TL 2020"
+    url: ../examen/vmbo-gl-tl
   wisk:
     desc: "Wiskunde overzichtspagina"
     url: ../wiskunde
