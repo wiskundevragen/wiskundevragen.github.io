@@ -60,8 +60,8 @@ window.onload = function () {
 
 function send() {
 	if (encodeURI) {
-		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+a&oq=site%3Awiskundevragen.github.io+' + encodeURI(id("search").value);
+		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+' + encodeURI(id("search").value);
 	} else {
-		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+a&oq=site%3Awiskundevragen.github.io+' + id("search").value;
+		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+' + id("search").value;
 	}
 };
