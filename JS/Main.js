@@ -13,9 +13,9 @@ function id(a) {
 }
 
 window.onload = function () {
-	if (search) {
-		document.getElementById("searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];
-	}
+	// if (search) {
+	// 	document.getElementById("searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];
+	// }
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('../service-worker.js', {
 			scope: '.' // <--- THIS BIT IS REQUIRED
@@ -59,5 +59,9 @@ window.onload = function () {
 };
 
 function send() {
-	location = '../search?q=' + id("search").value;
+	if (encodeURI) {
+		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+a&oq=site%3Awiskundevragen.github.io+' + encodeURI(id("search").value);
+	} else {
+		location = 'https://www.google.com/search?q=site%3Awiskundevragen.github.io+a&oq=site%3Awiskundevragen.github.io+' + id("search").value;
+	}
 };
