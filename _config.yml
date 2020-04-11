@@ -57,6 +57,9 @@ page_names:
   natk:
     desc: "Natuurkunde overzichtspagina"
     url: ../natuurkunde/
+  plotter:
+    desc: "Grafiek plotter"
+    url: ../plotter
   prim_arccos:
     desc: "De primitieve van arccos(x)"
     url: ../primitieven/arccosx

@@ -2,68 +2,166 @@
 description: "Een gratis online tool om afgeleides te berekenen! Toets eenvoudig je functie in en wij berekenen
 de afgeleide ervan."
 title: Afgeleide calculator &mdash; Afgeleide berekenen online!
-see_also: ["afg_lijst", "prim_lijst", "gonio", "help_diff", "help_prim"]
+see_also: ["afg_lijst", "prim_lijst", "gonio", "help_diff", "help_prim", "plotter"]
 ---
 Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat
 de afgeleide van deze functie is:
-<center>
-	<span class="textbox">
-		f(x)=<input id='src-functie' autocapitalize="none" /><br>
-	</span><br>
-	<span class="textbox">
-		Afleiden naar: <input id='afleiden-naar' autocapitalize="none" value='x' /><br>
-	</span>
-</center>
+<br>
+<br>
+<b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus <mathEl data="2.5">2.5</mathEl> in plaats van <mathEl data="2,5">2,5</mathEl></b>
+<br>
+<br>
+<div style='margin-bottom: 20px;'>
+	<label for='src-functie' class='inputLabel hidden'>Functie, zoals (sin(x))^2 * x</label>
+	<input type="text" placeholder="Functie, zoals (sin(x))^2 * x" class="ticketForm hasLabel" id='src-functie'
+		autocapitalize="none">
+</div>
 <div id=' results'>
 	<div>
-		<b>Jouw functie:</b><br>
-		<span id='parsed-function'></span>
-		<br><br>
-		<b>De afgeleide:</b><br>
-		<span id="derived-function"></span>
+		<h3>Jouw functie</h3>
+		<div id='parsed-function' style='min-height: 24px;'></div>
+		<h3>De afgeleide</h3>
+		<div id="derived-function" style='min-height: 24px;'></div>
+		<div id='evaluerenRes'>
+			<h3 style='margin-top: 2rem;'>Geëvalueerd in <span id='evalPlek'>x=...</span></h3>
+			<div id="echteEvalRes" style='min-height: 24px;'></div>
+		</div>
 	</div>
 </div>
+<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
+<div>
+	<label for='afleiden-naar' class='inputLabel hidden'>Afleiden naar welke variabele? (standaard is x)</label>
+	<input type="text" placeholder="Afleiden naar welke variabele? (standaard is x)" class="ticketForm hasLabel"
+		id='afleiden-naar' autocapitalize="none">
+</div>
+<div>
+	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evalueren in x=...</label>
+	<input type="text" placeholder="Evalueren in x=..." class="ticketForm hasLabel" id='evalueren'
+		autocapitalize="none">
+</div>
+<p id='evalwarn'><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
+<br>
+<br>
 <br>
 Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a>.
 <script src='../JS/math.js'></script>
 <script>
 	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
-
+	var commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
 	function clearOutputs() {
 		id("parsed-function").innerHTML = ''
 		id("derived-function").innerHTML = ''
+		id("echteEvalRes").innerHTML = '';
+		id("evaluerenRes").classList.remove("shown");
 	}
 
 	window.addEventListener('DOMContentLoaded', (event) => {
 		function inputEvent(event) {
+			let els = document.querySelectorAll(".ticketForm");
+			for (let i = 0; i < els.length; i++) {
+				const el = els[i];
+				let label = document.querySelector("label[for=\"" + el.id + "\"]");
+				if (el.value) {
+					if (label) {
+						label.classList.remove("hidden");
+					}
+				} else {
+					if (label) {
+						label.classList.add("hidden");
+					}
+				}
+			}
 			let fn = id("src-functie").value;
 			if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
-				// console.log("cancelling calculation");
 				clearOutputs();
 				return;
 			}
-			for (let i = 0; i < synonyms.length; i += 2) {
-				fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
+			if (fn.split("=").length > 2) {
+				id("src-functie").classList.add("errorInput");
+				return;
 			}
+			fn = fn.split("=")[fn.split("=").length - 1];
+			id("src-functie").classList.remove("errorInput");
+			let emptyfunction = fn;
+			fn = parseSynonyms(fn);
+			for (let i = 0; i < commonFns.length; i++) {
+				emptyfunction = replaceAll(emptyfunction, commonFns[i], "");
+			}
+			emptyfunction = replaceAll(emptyfunction, "(", "");
+			emptyfunction = replaceAll(emptyfunction, ")", "");
+
+			let ev = replaceAll(id("evalueren").value, ',', '.');
+			let gaanEval = false;
+			if (ev) {
+				if (!isNaN(ev)) {
+					ev = +ev;
+					gaanEval = true;
+					id("evalueren").classList.remove("errorInput")
+				} else {
+					id("evalueren").classList.add("errorInput")
+				}
+			} else {
+				id("evalueren").classList.remove("errorInput")
+			}
+
+			if(!gaanEval){
+				id("evalwarn").classList.remove("shown");
+				id("evalueren").classList.remove("errorInput");
+			}
+
 			try {
-				afvar = id("afleiden-naar").value || "x";
-				if (!fn.length) {
+				let afvar = id("afleiden-naar").value;
+				if (afvar.replace(/[0-9]/g, '') != afvar || afvar.length > 1) {
+					afvar = 'x';
+					id("afleiden-naar").classList.add("errorInput")
+				} else {
+					id("afleiden-naar").classList.remove("errorInput")
+				}
+				let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
+				if (letters.length > 1) {
+					console.log("HALLO");
+					if(gaanEval){
+						gaanEval = false;
+						id("evalwarn").classList.add("shown");
+						id("evalueren").classList.add("errorInput");
+					}
+					if (!afvar) afvar = 'x';
+				} else if (letters.length == 1) {
+					if (!afvar) afvar = letters;
+				} else {
+					if (!afvar) afvar = 'x';
+				}
+				if (!afvar) afvar = 'x';
+				id("evalueren").placeholder = 'Evalueren in ' + afvar + '=...';
+				id("evaluerenLabel").innerHTML = 'Evalueren in ' + afvar + '=...';
+				if (!fn || !fn.length) {
 					throw 'fn not defined';
 				}
 				parsedFn = math.parse(fn);
 				simplifiedFn = math.simplify(math.parse(fn));
 				if (parsedFn.toTex() != simplifiedFn.toTex()) {
-					id("parsed-function").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex({ implicit: 'hide' }) + "=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\)";
+					id("parsed-function").innerHTML = "\\(\\begin{align*}f(" + afvar + ")&=" + parsedFn.toTex({ implicit: 'hide' }) + "\\\\&=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\end{align*}\\)";
 				} else {
 					id("parsed-function").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex() + "\\)";
 				}
 
-				deriv = calcDeriv(simplifiedFn, false);
-				simplifiedDeriv = calcDeriv(simplifiedFn, true);
-				if (deriv != simplifiedDeriv) {
-					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv + "\\\\ &=" + simplifiedDeriv + "\\end{align*}\\)";
+				deriv = calcDeriv(simplifiedFn, false, afvar);
+				simplifiedDeriv = calcDeriv(simplifiedFn, true, afvar);
+				if (deriv.toTex({ implicit: "hide" }) != simplifiedDeriv.toTex({ implicit: "hide" })) {
+					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv + "\\\\ &=" + simplifiedDeriv.toTex({ implicit: "hide" }) + "\\end{align*}\\)";
 				} else {
-					id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv + "\\)";
+					id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv.toTex({ implicit: "hide" }) + "\\)";
+				}
+				if (gaanEval) {
+					id("evalwarn").classList.remove("shown");
+						id("evalueren").classList.remove("errorInput");
+					id("evaluerenRes").classList.add("shown");
+					id("evalPlek").innerHTML = '\\(' + afvar + '=' + ev + '\\)';
+					let options = {};
+					options[afvar] = ev;
+					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + math.simplify(simplifiedDeriv.evaluate(options)).toTex() + '\\)';
+				} else {
+					id("evaluerenRes").classList.remove("shown");
 				}
 			} catch (err) {
 				clearOutputs();
@@ -72,19 +170,32 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		};
 		id("src-functie").addEventListener("input", inputEvent);
 		id("afleiden-naar").addEventListener("input", inputEvent);
+		id("evalueren").addEventListener("input", inputEvent);
 	});
 
-	function calcDeriv(fn, simplify) {
+	function calcDeriv(fn, simplify, afvar) {
 		if (simplify) {
 			return math.simplify(
-				math.derivative(simplifiedFn, (id("afleiden-naar").value || "x"), { simplify: false })
-			).toTex({ implicit: "hide" });
+				math.derivative(simplifiedFn, afvar, { simplify: false })
+			);
 		} else {
 			return math.simplify(
-				math.derivative(simplifiedFn, (id("afleiden-naar").value || "x"), { simplify: false }),
+				math.derivative(simplifiedFn, afvar, { simplify: false }),
 				["1*n1 -> n1", "-1*n1->-n1", "2-1->1", "3-1->2", "4-1->3", "5-1->4", "6-1->5", "7-1->5", "8-1->5", "9-1->5", "10-1->5", "n1^1->n1"]
-			).toTex({ implicit: "hide" });
+			);
 		}
+	}
+
+	function uniques(str) {
+		let ar = str.split("");
+		let res = [];
+		for (let i = 0; i < ar.length; i++) {
+			const a = ar[i];
+			if (res.indexOf(a) === -1) {
+				res.push(a);
+			}
+		}
+		return res.join("");
 	}
 
 	function replaceAll(str, match, newV) {
@@ -94,6 +205,41 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 			str = str.replace(match, newV);
 		}
 		return str;
+	}
+
+	function permutations(str1) {
+		var array1 = [];
+		for (var x = 0, y = 1; x < str1.length; x++, y++) {
+			array1[x] = str1.substring(x, y);
+		}
+		var combi = [];
+		var temp = "";
+		var slent = Math.pow(2, array1.length);
+
+		for (var i = 0; i < slent; i++) {
+			temp = "";
+			for (var j = 0; j < array1.length; j++) {
+				if ((i & Math.pow(2, j))) {
+					temp += array1[j];
+				}
+			}
+			if (temp.length > 1) {
+				combi.push(temp);
+			}
+		}
+
+		let l = combi.length;
+		for (let i = 0; i < l; i++) {
+			combi.push(combi[i].split("").reverse().join(""))
+		}
+		return combi;
+	}
+
+	function parseSynonyms(fn) {
+		for (let i = 0; i < synonyms.length; i += 2) {
+			fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
+		}
+		return fn;
 	}
 </script>
 
@@ -113,21 +259,12 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		overflow: auto;
 	}
 
-	span.textbox {
-		background-color: #FFF;
-		color: #888;
-		line-height: 20px;
-		height: 20px;
-		padding: 3px;
-		border: 1px #888 solid;
-		border-radius: 2px;
-		font-size: 15px;
+	#evaluerenRes, #evalwarn {
+		opacity: 0;
+		transition-duration: 600ms;
 	}
 
-	span.textbox input {
-		outline: none !important;
-		border: 0px;
-		color: #333;
-		background-color: #FFF;
+	#evaluerenRes.shown, #evalwarn.shown {
+		opacity: 1;
 	}
 </style>

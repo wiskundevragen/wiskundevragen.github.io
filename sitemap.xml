@@ -28,7 +28,7 @@
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/primitieven/integreren</loc>
-		<lastmod>2020-03-31T09:30:29+00:00</lastmod>
+		<lastmod>2020-04-11T09:30:29+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/gonio/</loc>
@@ -112,10 +112,14 @@
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/afgeleides/afgeleide-calculator</loc>
-		<lastmod>2020-04-07T09:30:58+00:00</lastmod>
+		<lastmod>2020-04-11T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/binominaal</loc>
 		<lastmod>2020-03-31T09:30:58+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/plotter</loc>
+		<lastmod>2020-04-11T09:30:58+00:00</lastmod>
 	</url>
 </urlset>

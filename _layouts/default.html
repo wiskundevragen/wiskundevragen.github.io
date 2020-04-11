@@ -15,17 +15,107 @@
 	{% if page.latex %}
 	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	{% endif %}
+	<style>
+		.inputLabel {
+			color: #999;
+			padding-left: 8px;
+			position: absolute;
+			opacity: 1;
+			transition-property: opacity, margin-top;
+			transition-duration: 500ms;
+		}
 
-	<!-- {% if page.search %}
-	<script>
-		var search = true;
-	</script>
-	{% endif %}
-	{% if page.search != true %}
-	<script>
-		var search = false;
-	</script>
-	{% endif %} -->
+		.inputLabel:not(.hidden) {
+			margin-top: 8px;
+		}
+
+		.inputLabel.hidden {
+			opacity: 0;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
+			background: #e5e8ed;
+			margin-bottom: 8px;
+			margin-top: 8px;
+			border-radius: 6px;
+			border: 1px solid #dce0e7;
+			transition-property: background, color, margin-top;
+			transition-duration: 500ms;
+			width: 100%;
+			box-sizing: border-box;
+			height: 60px;
+			font-size: 20px;
+			outline: none;
+			padding: 16px;
+			color: #222;
+		}
+
+		input[type="text"]:-webkit-autofill::first-line,
+		input[type="email"]:-webkit-autofill::first-line,
+		input[type="password"]:-webkit-autofill::first-line {
+			font-size: 20px;
+		}
+
+		input[type="text"]:hover,
+		input[type="email"]:hover,
+		input[type="password"]:hover {
+			background: #d9dde5;
+		}
+
+		input[type="text"]:focus,
+		input[type="email"]:focus,
+		input[type="password"]:focus {
+			background: #ced4dd;
+		}
+
+		input[type="text"].hasLabel,
+		input[type="email"].hasLabel,
+		input[type="password"].hasLabel {
+			margin-top: 32px;
+		}
+
+		input[type="text"].errorInput,
+		input[type="email"].errorInput,
+		input[type="password"].errorInput {
+			background: #d40000;
+			color: white;
+		}
+
+		input[type="text"].errorInput::placeholder,
+		input[type="email"].errorInput::placeholder,
+		input[type="password"].errorInput::placeholder {
+			color: white;
+		}
+
+		@media only screen and (max-width: 400px) {
+
+			input[type="text"].ticketForm::placeholder,
+			input[type="email"].ticketForm::placeholder,
+			input[type="password"].ticketForm::placeholder {
+				font-size: 18px;
+			}
+		}
+
+		@media only screen and (max-width: 380px) {
+
+			input[type="text"].ticketForm::placeholder,
+			input[type="email"].ticketForm::placeholder,
+			input[type="password"].ticketForm::placeholder {
+				font-size: 16px;
+			}
+		}
+
+		@media only screen and (max-width: 330px) {
+
+			input[type="text"].ticketForm::placeholder,
+			input[type="email"].ticketForm::placeholder,
+			input[type="password"].ticketForm::placeholder {
+				font-size: 14px;
+			}
+		}
+	</style>
 
 	{% seo %}
 	<link rel='apple-touch-icon' href='../Images/apple-touch-icon.png'>
