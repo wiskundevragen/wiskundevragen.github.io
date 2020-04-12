@@ -12,6 +12,7 @@ function id(a) {
 	return document.getElementById(a);
 }
 
+
 window.onload = function () {
 	// if (search) {
 	// 	document.getElementById("searchQuery").innerHTML = location.href.split("q=")[1].split("&")[0];

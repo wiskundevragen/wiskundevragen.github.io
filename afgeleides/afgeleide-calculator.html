@@ -8,7 +8,8 @@ Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en on
 de afgeleide van deze functie is:
 <br>
 <br>
-<b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus <mathEl data="2.5">2.5</mathEl> in plaats van <mathEl data="2,5">2,5</mathEl></b>
+<b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus <mathEl data="2.5">2.5</mathEl> in
+	plaats van <mathEl data="2{,}5">2,5</mathEl></b>
 <br>
 <br>
 <div style='margin-bottom: 20px;'>
@@ -17,16 +18,20 @@ de afgeleide van deze functie is:
 		autocapitalize="none">
 </div>
 <div id=' results'>
-	<div>
-		<h3>Jouw functie</h3>
-		<div id='parsed-function' style='min-height: 24px;'></div>
-		<h3>De afgeleide</h3>
-		<div id="derived-function" style='min-height: 24px;'></div>
-		<div id='evaluerenRes'>
-			<h3 style='margin-top: 2rem;'>Geëvalueerd in <span id='evalPlek'>x=...</span></h3>
-			<div id="echteEvalRes" style='min-height: 24px;'></div>
+	<div id='rescols'>
+		<div>
+			<h3><b>Jouw functie</b></h3>
+			<div id='parsed-function' style='min-height: 24px;'></div>
+		</div>
+		<div style='margin-top: 12px;'>
+			<h3><b>De afgeleide</b></h3>
+			<div id="derived-function" style='min-height: 24px;'></div>
 		</div>
 	</div>
+		<div id='evaluerenRes'>
+			<h3 style='margin-top: 2rem;'><b>Geëvalueerd in <span id='evalPlek'>x=...</span></b></h3>
+			<div id="echteEvalRes" style='min-height: 24px;'></div>
+		</div>
 </div>
 <h2 style='margin-bottom: 0px;'>Extra Opties</h2>
 <div>
@@ -90,24 +95,24 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 			emptyfunction = replaceAll(emptyfunction, "(", "");
 			emptyfunction = replaceAll(emptyfunction, ")", "");
 
-			let ev = replaceAll(id("evalueren").value, ',', '.');
+			let ev = parseEv(replaceAll(id("evalueren").value, ',', '.'));
 			let gaanEval = false;
 			if (ev) {
-				if (!isNaN(ev)) {
-					ev = +ev;
+				if (!isNaN(replaceAll(ev, ['Math.exp(1)', 'Math.PI', '*', '/', '+', '-'], ''))) {
+					ev = eval(ev);
 					gaanEval = true;
 					id("evalueren").classList.remove("errorInput")
+					id("evalwarn").classList.remove("shown");
+					id("evalueren").classList.remove("errorInput");
 				} else {
 					id("evalueren").classList.add("errorInput")
 				}
 			} else {
 				id("evalueren").classList.remove("errorInput")
-			}
-
-			if(!gaanEval){
 				id("evalwarn").classList.remove("shown");
 				id("evalueren").classList.remove("errorInput");
 			}
+
 
 			try {
 				let afvar = id("afleiden-naar").value;
@@ -119,8 +124,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				}
 				let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
 				if (letters.length > 1) {
-					console.log("HALLO");
-					if(gaanEval){
+					if (gaanEval) {
 						gaanEval = false;
 						id("evalwarn").classList.add("shown");
 						id("evalueren").classList.add("errorInput");
@@ -146,6 +150,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				}
 
 				deriv = calcDeriv(simplifiedFn, false, afvar);
+				console.log(deriv.toTex());
 				simplifiedDeriv = calcDeriv(simplifiedFn, true, afvar);
 				if (deriv.toTex({ implicit: "hide" }) != simplifiedDeriv.toTex({ implicit: "hide" })) {
 					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv + "\\\\ &=" + simplifiedDeriv.toTex({ implicit: "hide" }) + "\\end{align*}\\)";
@@ -154,12 +159,15 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				}
 				if (gaanEval) {
 					id("evalwarn").classList.remove("shown");
-						id("evalueren").classList.remove("errorInput");
+					id("evalueren").classList.remove("errorInput");
 					id("evaluerenRes").classList.add("shown");
 					id("evalPlek").innerHTML = '\\(' + afvar + '=' + ev + '\\)';
 					let options = {};
 					options[afvar] = ev;
-					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + math.simplify(simplifiedDeriv.evaluate(options)).toTex() + '\\)';
+					let v = simplifiedDeriv.evaluate(options);
+					v = Math.round(v * 1e6) / 1e6;
+					v = strip(v);
+					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + math.simplify(v).toTex() + '\\)';
 				} else {
 					id("evaluerenRes").classList.remove("shown");
 				}
@@ -173,6 +181,10 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		id("evalueren").addEventListener("input", inputEvent);
 	});
 
+	function strip(number) {
+		return (parseFloat(number).toPrecision(12));
+	}
+
 	function calcDeriv(fn, simplify, afvar) {
 		if (simplify) {
 			return math.simplify(
@@ -184,6 +196,27 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				["1*n1 -> n1", "-1*n1->-n1", "2-1->1", "3-1->2", "4-1->3", "5-1->4", "6-1->5", "7-1->5", "8-1->5", "9-1->5", "10-1->5", "n1^1->n1"]
 			);
 		}
+	}
+
+	function parseEv(ev) {
+		return addMultiplications(addMultiplications(ev, 'pi', 'Math.PI'), 'e', 'Math.exp(1)');
+	}
+
+	function addMultiplications(expr, delim, rep) {
+		let res = '';
+		let p = expr.split(delim);
+		for (let i = 0; i < p.length; i++) {
+			if (!i) {
+				res += p[i];
+				continue;
+			}
+			if (res[res.length - 1] != '*' && res.length) res += '*'
+			res += rep || delim;
+			if (p[i][0] != '*') res += '*';
+			res += p[i];
+		}
+		if (res[res.length - 1] == '*') res = res.substr(0, res.length - 1);
+		return res;
 	}
 
 	function uniques(str) {
@@ -199,6 +232,13 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	}
 
 	function replaceAll(str, match, newV) {
+		if (typeof match === 'object') {
+			let res = str;
+			for (let i = 0; i < match.length; i++) {
+				res = replaceAll(res, match[i], newV);
+			}
+			return res;
+		}
 		oldVal = '';
 		while (oldVal != str) {
 			oldVal = str;
@@ -259,12 +299,23 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		overflow: auto;
 	}
 
-	#evaluerenRes, #evalwarn {
+	#evaluerenRes,
+	#evalwarn {
 		opacity: 0;
 		transition-duration: 600ms;
 	}
 
-	#evaluerenRes.shown, #evalwarn.shown {
+	#evaluerenRes.shown,
+	#evalwarn.shown {
 		opacity: 1;
 	}
+
+@media only screen and (min-width: 800px) {
+	#rescols{
+		column-count: 2;		
+	}
+	#rescols div{
+		overflow-x: auto;
+	}
+}
 </style>
