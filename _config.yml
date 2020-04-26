@@ -24,27 +24,12 @@ page_names:
   econ:
     desc: "Economie overzichtspagina"
     url: ../economie/
-  eenheidsc:
-    desc: Eenheidscirkel
-    url: ../gonio/eenheidscirkel
-  gonio:
-    desc: Goniometrie
-    url: ../gonio/index
   havo_rooster:
     desc: "Eindexamenrooster HAVO 2020"
     url: ../examen/havo
-  help_diff:
-    desc: "Hoe differentieer ik?"
-    url: ../afgeleides/differentieren
-  help_prim:
-    desc: "Hoe primitiveer ik?"
-    url: ../primitiveren/integreren
   home:
     desc: "Homepagina WiskundeVragen"
     url: ../
-  integr:
-    desc: "Hoe moet je primitiveren?"
-    url: ../primitieven/primitieven
   nat_form:
     desc: "Formules Natuurkunde"
     url: ../natuurkunde/formules
