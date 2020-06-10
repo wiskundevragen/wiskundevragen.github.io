@@ -24,6 +24,9 @@ page_names:
   econ:
     desc: "Economie overzichtspagina"
     url: ../economie/
+  gonio:
+    desc: "Verdubbelingsformules en Goniometrische Identiteiten"
+    url: ../gonio/
   havo_rooster:
     desc: "Eindexamenrooster HAVO 2020"
     url: ../examen/havo
