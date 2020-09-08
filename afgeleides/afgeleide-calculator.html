@@ -48,11 +48,15 @@ de afgeleide van deze functie is:
 <br>
 <br>
 <br>
-Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a>.
+Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a> en <a href="https://www.mathjax.org/">MathJax</a>.
 <script src='../JS/math.js'></script>
 <script>
-	var synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
-	var commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
+	const texOptions = {
+		implicit: hide
+	};
+	const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
+	const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
+	
 	function clearOutputs() {
 		id("parsed-function").innerHTML = ''
 		id("derived-function").innerHTML = ''
@@ -150,12 +154,11 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 				}
 
 				deriv = calcDeriv(simplifiedFn, false, afvar);
-				console.log(deriv.toTex());
 				simplifiedDeriv = calcDeriv(simplifiedFn, true, afvar);
 				if (deriv.toTex({ implicit: "hide" }) != simplifiedDeriv.toTex({ implicit: "hide" })) {
-					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv + "\\\\ &=" + simplifiedDeriv.toTex({ implicit: "hide" }) + "\\end{align*}\\)";
+					id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv.toTex(texOptions) + "\\\\ &=" + simplifiedDeriv.toTex(texOptions) + "\\end{align*}\\)";
 				} else {
-					id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv.toTex({ implicit: "hide" }) + "\\)";
+					id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv.toTex(texOptions) + "\\)";
 				}
 				if (gaanEval) {
 					id("evalwarn").classList.remove("shown");
