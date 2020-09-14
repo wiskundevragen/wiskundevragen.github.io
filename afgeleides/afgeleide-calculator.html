@@ -165,12 +165,11 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 					id("evalueren").classList.remove("errorInput");
 					id("evaluerenRes").classList.add("shown");
 					id("evalPlek").innerHTML = '\\(' + afvar + '=' + ev + '\\)';
-					let options = {};
-					options[afvar] = ev;
-					let v = simplifiedDeriv.evaluate(options);
-					v = Math.round(v * 1e6) / 1e6;
-					v = strip(v);
-					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + math.simplify(v).toTex() + '\\)';
+
+					let derivValue = evaluate(simplifiedDeriv, afvar, ev);
+					let fnValue = evaluate(simplifiedFn, afvar, ev);
+
+					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + fnValue + '\\)<br>\\(f\'(' + ev + ')=' + derivValue + '\\)';
 				} else {
 					id("evaluerenRes").classList.remove("shown");
 				}
@@ -185,7 +184,13 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	});
 
 	function strip(number) {
-		return (parseFloat(number).toPrecision(12));
+		return parseFloat(number).toPrecision(12);
+	}
+
+	function evaluate(fn, afvar, ev){
+		let options = {};
+		options[afvar] = ev;
+		return math.simplify(strip(Math.round(fn.evaluate(options) * 1e6) / 1e6)).toTex();
 	}
 
 	function calcDeriv(fn, simplify, afvar) {
@@ -248,34 +253,6 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 			str = str.replace(match, newV);
 		}
 		return str;
-	}
-
-	function permutations(str1) {
-		var array1 = [];
-		for (var x = 0, y = 1; x < str1.length; x++, y++) {
-			array1[x] = str1.substring(x, y);
-		}
-		var combi = [];
-		var temp = "";
-		var slent = Math.pow(2, array1.length);
-
-		for (var i = 0; i < slent; i++) {
-			temp = "";
-			for (var j = 0; j < array1.length; j++) {
-				if ((i & Math.pow(2, j))) {
-					temp += array1[j];
-				}
-			}
-			if (temp.length > 1) {
-				combi.push(temp);
-			}
-		}
-
-		let l = combi.length;
-		for (let i = 0; i < l; i++) {
-			combi.push(combi[i].split("").reverse().join(""))
-		}
-		return combi;
 	}
 
 	function parseSynonyms(fn) {
