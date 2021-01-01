@@ -1,2 +1,2 @@
 # wiskundevragen.github.io
-Zie ook zeker de fantastische [afgeleide calculator](https://wiskundevragen.github.io/afgeleide-calculator)
+[Afgeleide calculator](https://wiskundevragen.github.io/afgeleides/afgeleide-calculator)
