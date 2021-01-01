@@ -4,8 +4,8 @@ de afgeleide ervan."
 title: Afgeleide calculator &mdash; Afgeleide berekenen online!
 see_also: ["afg_lijst", "prim_lijst", "plotter"]
 ---
-Hier kun je online afgeleides berekenen!<br>Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat
-de afgeleide van deze functie is:
+Hier kun je online afgeleides berekenen! Nu ook met de mogelijkheid om partiële afgeleides te berekenen (zie extra opties)<br>
+Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de afgeleide van deze functie is:
 <br>
 <br>
 <b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus <mathEl data="2.5">2.5</mathEl> in
@@ -169,7 +169,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 					let derivValue = evaluate(simplifiedDeriv, afvar, ev);
 					let fnValue = evaluate(simplifiedFn, afvar, ev);
 
-					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + fnValue + '\\)<br>\\(f\'(' + ev + ')=' + derivValue + '\\)';
+					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + fnValue + '\\)<br><br>\\(f\'(' + ev + ')=' + derivValue + '\\)';
 				} else {
 					id("evaluerenRes").classList.remove("shown");
 				}
