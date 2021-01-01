@@ -4,8 +4,8 @@ de afgeleide ervan."
 title: Afgeleide calculator &mdash; Afgeleide berekenen online!
 see_also: ["afg_lijst", "prim_lijst", "plotter"]
 ---
-Hier kun je online afgeleides berekenen! Nu ook met de mogelijkheid om partiële afgeleides te berekenen (zie extra opties)<br>
-Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de afgeleide van deze functie is:
+Hier kun je online afgeleides berekenen! Nu ook met de mogelijkheid om partiële afgeleides te berekenen (zie extra
+opties). Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de afgeleide van deze functie is!
 <br>
 <br>
 <b>Let op: Gebruik punten in plaats van komma's als decimaalscheidingsteken. Dus <mathEl data="2.5">2.5</mathEl> in
@@ -28,10 +28,10 @@ Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de a
 			<div id="derived-function" style='min-height: 24px;'></div>
 		</div>
 	</div>
-		<div id='evaluerenRes'>
-			<h3 style='margin-top: 2rem;'><b>Geëvalueerd in <span id='evalPlek'>x=...</span></b></h3>
-			<div id="echteEvalRes" style='min-height: 24px;'></div>
-		</div>
+	<div id='evaluerenRes'>
+		<h3 style='margin-top: 2rem;'><b>Geëvalueerd in <span id='evalPlek'>x=...</span></b></h3>
+		<div id="echteEvalRes" style='min-height: 24px;'></div>
+	</div>
 </div>
 <h2 style='margin-bottom: 0px;'>Extra Opties</h2>
 <div>
@@ -48,7 +48,8 @@ Toets hieronder je functie in, en onze afgeleide calculator zal bepalen wat de a
 <br>
 <br>
 <br>
-Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a> en <a href="https://www.mathjax.org/">MathJax</a>.
+Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a> en <a
+	href="https://www.mathjax.org/">MathJax</a>.
 <script src='../JS/math.js'></script>
 <script>
 	const texOptions = {
@@ -56,7 +57,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 	};
 	const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
 	const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
-	
+
 	function clearOutputs() {
 		id("parsed-function").innerHTML = ''
 		id("derived-function").innerHTML = ''
@@ -187,7 +188,7 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		return parseFloat(number).toPrecision(12);
 	}
 
-	function evaluate(fn, afvar, ev){
+	function evaluate(fn, afvar, ev) {
 		let options = {};
 		options[afvar] = ev;
 		return math.simplify(strip(Math.round(fn.evaluate(options) * 1e6) / 1e6)).toTex();
@@ -290,12 +291,13 @@ Deze afgeleide rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.
 		opacity: 1;
 	}
 
-@media only screen and (min-width: 800px) {
-	#rescols{
-		column-count: 2;		
+	@media only screen and (min-width: 800px) {
+		#rescols {
+			column-count: 2;
+		}
+
+		#rescols div {
+			overflow-x: auto;
+		}
 	}
-	#rescols div{
-		overflow-x: auto;
-	}
-}
 </style>
