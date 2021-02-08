@@ -4,35 +4,15 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
 		<loc>https://wiskundevragen.github.io/</loc>
-		<lastmod>2020-06-06T09:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/wiskunde</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/natuurkunde/</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/economie/</loc>
-		<lastmod>2020-04-06T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/natuurkunde/formules-eindexamen</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/natuurkunde/formules/vwo</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/afgeleides/afgeleides</loc>
 		<lastmod>2020-11-06T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/natuurkunde/formules/havo</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/afgeleides/arcsinx</loc>
@@ -64,19 +44,19 @@
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl</loc>
-		<lastmod>2020-06-06T12:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T12:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/examen/havo</loc>
-		<lastmod>2020-06-06T09:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/examen/vwo</loc>
-		<lastmod>2020-06-06T09:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/examen</loc>
-		<lastmod>2020-06-06T09:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/afgeleides/afgeleide-calculator</loc>
@@ -84,10 +64,6 @@
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/binomiaal</loc>
-		<lastmod>2020-06-06T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/gonio</loc>
-		<lastmod>2020-06-10T10:30:58+00:00</lastmod>
+		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
 	</url>
 </urlset>
