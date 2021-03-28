@@ -1,0 +1,41 @@
+#results {
+	margin: 12px;
+	background: #fafafa;
+	padding: 20px;
+	padding-bottom: 8px;
+	margin-top: 30px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.27);
+}
+
+#results div {
+	padding-bottom: 12px;
+	overflow: auto;
+}
+
+#evaluerenRes,
+#evalwarn {
+	opacity: 0;
+	transition-duration: 600ms;
+}
+
+#evaluerenRes.shown,
+#evalwarn.shown {
+	opacity: 1;
+}
+
+@media only screen and (min-width: 800px) {
+	#rescols {
+		column-count: 2;
+	}
+
+	#rescols div {
+		overflow-x: auto;
+		max-height: 800px;
+	}
+}
+
+#derived-function mjx-container {
+	position: initial!important;
+	padding-bottom: 12px;
+}

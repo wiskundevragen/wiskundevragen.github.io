@@ -1,8 +1,12 @@
 <!DOCTYPE html>
+{% if page.lang %}
+<html lang="{{ page.lang }}">
+{% else %}
 <html lang="nl">
+{% endif %}
 
 <head>
-	<base href="https://wiskundevragen.github.io/" />
+	<!-- <base href="https://wiskundevragen.github.io/" /> -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -92,27 +96,27 @@
 
 		@media only screen and (max-width: 400px) {
 
-			input[type="text"].ticketForm::placeholder,
-			input[type="email"].ticketForm::placeholder,
-			input[type="password"].ticketForm::placeholder {
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
 				font-size: 18px;
 			}
 		}
 
 		@media only screen and (max-width: 380px) {
 
-			input[type="text"].ticketForm::placeholder,
-			input[type="email"].ticketForm::placeholder,
-			input[type="password"].ticketForm::placeholder {
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
 				font-size: 16px;
 			}
 		}
 
 		@media only screen and (max-width: 330px) {
 
-			input[type="text"].ticketForm::placeholder,
-			input[type="email"].ticketForm::placeholder,
-			input[type="password"].ticketForm::placeholder {
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
 				font-size: 14px;
 			}
 		}
@@ -162,7 +166,7 @@
 		<script>
 			var home = false;
 		</script>
-		<a href="https://wiskundevragen.github.io/" class="btn">Homepagina</a>
+		<a href="../" class="btn">{% if page.lang == "en_GB" %} Home page (in Dutch) {% else %} Homepagina {% endif %}</a>
 		{% endif %}
 	</header>
 
@@ -175,10 +179,17 @@
 		<!--googleoff: all-->
 		{% if page.see_also %}
 		<br>
-		<h2>Zie ook</h2>
+		<h2>{% if page.lang == "en_GB" %} See also {% else %}Zie ook{% endif %}</h2>
 		<ul>
 			{% for item in page.see_also %}
-			<li><a href='{{site.page_names[item].url}}'>{{site.page_names[item].desc}}</a></li>
+			{% if site.page_names[item] %}
+			<li>
+				<a href='{{site.page_names[item].url}}'>
+					{{site.page_names[item].desc}}
+				</a>
+				{% if page.lang %} {% if page.lang != "nl" %} {% if site.page_names[item].lang != page.lang %} (in Dutch) {% endif %} {% endif %} {% endif %}
+			</li>
+			{% endif %}
 			{% endfor %}
 		</ul>
 		{% endif %}
