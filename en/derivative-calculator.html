@@ -1,0 +1,51 @@
+---
+description: "A free online tool to compute derivatives. Easily type in your function and we will find its derivative!"
+lang: en_GB
+title: Derivative calculator &mdash; Find derivatives online!
+see_also: ["en_prim_calc", "afg_lijst", "prim_lijst"]
+---
+Here you can compute derivatives online! Now with support for partial derivatives too (see additional options. Type in
+your function below, and our derivative calculator will find its derivative!
+<br>
+<br>
+<div style='margin-bottom: 20px;'>
+	<label for='src-functie' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
+	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+		autocapitalize="none">
+</div>
+<div id=' results'>
+	<div id='rescols'>
+		<div>
+			<h3><b>Your function</b></h3>
+			<div id='parsed-function' style='min-height: 24px;'></div>
+		</div>
+		<div style='margin-top: 12px;'>
+			<h3><b>The derivative</b></h3>
+			<div id="derived-function" style='min-height: 24px;'></div>
+		</div>
+	</div>
+	<div id='evaluerenRes'>
+		<h3 style='margin-top: 2rem;'><b>Evaluated in <span id='evalPlek'>x=...</span></b></h3>
+		<div id="echteEvalRes" style='min-height: 24px;'></div>
+	</div>
+</div>
+<h2 style='margin-bottom: 0px;'>Additional options</h2>
+<div>
+	<label for='afleiden-naar' class='inputLabel hidden'>Derive to which variable? </label>
+	<input type="text" placeholder="Derive to which variable?" class="form hasLabel" id='afleiden-naar'
+		autocapitalize="none">
+</div>
+<div>
+	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evaluate in x=...</label>
+	<input type="text" placeholder="Evaluate in x=..." class="form hasLabel" id='evalueren'
+		autocapitalize="none">
+</div>
+<p id='evalwarn'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
+<br>
+<br>
+<br>
+This derivative calculator was made possible by <a href='https://mathjs.org/'>Math.js</a> and <a
+	href="https://www.mathjax.org/">MathJax</a>.
+<script src='../JS/math.js'></script>
+<script src="../JS/derivative.js"></script>
+<link rel="stylesheet" href="../CSS/derivative.css">

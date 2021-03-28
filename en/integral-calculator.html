@@ -1,0 +1,60 @@
+---
+description: "A free online tool to calculate primitive functions. Easily type in your function and we'll compute its
+integral!"
+lang: en_GB
+title: Integral calculator &mdash; Find primitive functions online!
+see_also: ["en_afg_calc", "afg_lijst", "prim_lijst"]
+---
+On this page you can compute primitive functions online! Type in your function below, and our integral calculator will
+determine what the right primitive function is! Please note that you can only compute integrals of easy functions, sadly
+not of every function imaginable.
+<br>
+<br>
+<div style='margin-bottom: 20px;'>
+	<label for='src-functie' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
+	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+		autocapitalize="none">
+</div>
+<div id=' results'>
+	<div id='rescols'>
+		<div>
+			<h3><b>Your function</b></h3>
+			<div id='parsed-function' style='min-height: 24px;'></div>
+		</div>
+		<div style='margin-top: 12px;'>
+			<h3><b>The primitive function</b></h3>
+			<div id="integrated-function" style='min-height: 24px;'></div>
+		</div>
+	</div>
+	<div id='evaluerenRes'>
+		<h3 style='margin-top: 2rem;'><b>Evaluated from <span id='evalPlekO'>x=...</span> to <span
+					id='evalPlekB'>x=...</span></b></h3>
+		<div id="echteEvalRes" style='min-height: 24px;'></div>
+	</div>
+</div>
+<h2 style='margin-bottom: 0px;'>Additional options</h2>
+<div>
+	<label for='integreren-naar' class='inputLabel hidden'>Integrate to which variable?</label>
+	<input type="text" placeholder="Integrate to which variable? " class="form hasLabel" id='integreren-naar'
+		autocapitalize="none">
+</div>
+<div>
+	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
+	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evalueren'
+		autocapitalize="none">
+</div>
+<div>
+	<label for='evaluerenB' id='evaluerenLabelB' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
+	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluerenB'
+		autocapitalize="none">
+</div>
+<p id='evalwarn'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
+<br>
+<br>
+<br>
+This integral calculator was made possible by <a href='https://mathjs.org/'>Math.js</a> and <a
+	href="https://www.mathjax.org/">MathJax</a>.
+<script src='../JS/math.js'></script>
+<script src='../JS/integral.js'></script>
+
+<link rel="stylesheet" href="../CSS/integral.css" />

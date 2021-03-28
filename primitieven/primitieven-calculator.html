@@ -1,0 +1,63 @@
+---
+description: "Een gratis online tool om primitieven te berekenen! Toets eenvoudig je functie in en wij berekenen
+de integraal ervan."
+title: Primitieven calculator &mdash; Online primitieven berekenen!
+see_also: ["afg_calc", "afg_lijst", "prim_lijst"]
+---
+Hier kun je online primitieven berekenen! Toets hieronder je functie in, en onze primitieven calculator zal bepalen wat
+de primitieve van deze functie is! Je kunt hier de integraal vinden van <b>simpele</b> functies, helaas niet van alle
+functies.
+<br>
+<br>
+<b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus 2.5 in plaats van 2,5 voor het getal
+	"twee en een half"</b>
+<br>
+<br>
+<div style='margin-bottom: 20px;'>
+	<label for='src-functie' class='inputLabel hidden'>Functie, zoals (sin(x))^2 * x</label>
+	<input type="text" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+		autocapitalize="none">
+</div>
+<div id=' results'>
+	<div id='rescols'>
+		<div>
+			<h3><b>Jouw functie</b></h3>
+			<div id='parsed-function' style='min-height: 24px;'></div>
+		</div>
+		<div style='margin-top: 12px;'>
+			<h3><b>De primitieve</b></h3>
+			<div id="integrated-function" style='min-height: 24px;'></div>
+		</div>
+	</div>
+	<div id='evaluerenRes'>
+		<h3 style='margin-top: 2rem;'><b>Geëvalueerd van <span id='evalPlekO'>x=...</span> tot <span
+					id='evalPlekB'>x=...</span></b></h3>
+		<div id="echteEvalRes" style='min-height: 24px;'></div>
+	</div>
+</div>
+<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
+<div>
+	<label for='afleiden-naar' class='inputLabel hidden'>Integreren naar welke variabele? </label>
+	<input type="text" placeholder="Integreren naar welke variabele? " class="form hasLabel"
+		id='afleiden-naar' autocapitalize="none">
+</div>
+<div>
+	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evalueren met ondergrens x=...</label>
+	<input type="text" placeholder="Evalueren met ondergrens x=..." class="form hasLabel" id='evalueren'
+		autocapitalize="none">
+</div>
+<div>
+	<label for='evaluerenB' id='evaluerenLabelB' class='inputLabel hidden'>Evalueren met bovengrens x=...</label>
+	<input type="text" placeholder="Evalueren met bovengrens x=..." class="form hasLabel" id='evaluerenB'
+		autocapitalize="none">
+</div>
+<p id='evalwarn'><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
+<br>
+<br>
+<br>
+Deze primitiven rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a> en <a
+	href="https://www.mathjax.org/">MathJax</a>.
+<script src='../JS/math.js'></script>
+<script src='../JS/integral.js'></script>
+
+<link rel="stylesheet" href="../CSS/integral.css" />

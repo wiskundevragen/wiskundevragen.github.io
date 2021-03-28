@@ -21,6 +21,14 @@ page_names:
   afg_lijst:
     desc: "Lijst van afgeleides"
     url: ../afgeleides/afgeleides
+  en_prim_calc:
+    desc: "Integral calculator"
+    lang: "en_GB"
+    url: ../en/integral-calculator
+  en_afg_calc:
+    desc: "Derivative calculator"
+    lang: "en_GB"
+    url: ../en/derivative-calculator
   gonio:
     desc: "Verdubbelingsformules en Goniometrische Identiteiten"
     url: ../gonio/
@@ -39,6 +47,9 @@ page_names:
   prim_arctan:
     desc: "De primitieve van arctan(x)"
     url: ../primitieven/arctanx
+  prim_calc:
+    desc: "Primitieve calculator"
+    url: ../primitieven/primtieve-calculator
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven
