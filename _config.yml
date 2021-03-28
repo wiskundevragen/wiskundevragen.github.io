@@ -22,14 +22,18 @@ page_names:
   afg_lijst:
     desc: "Lijst van afgeleides"
     url: ../afgeleides/afgeleides
-  en_prim_calc:
-    desc: "Integral calculator"
-    lang: "en_GB"
-    url: ../en/integral-calculator
   en_afg_calc:
     desc: "Derivative calculator"
     lang: "en_GB"
     url: ../en/derivative-calculator
+  en_binom_calc:
+    desc: "Binomial coefficient calculator"
+    lang: "en_GB"
+    url: ../en/binomial-calculator
+  en_prim_calc:
+    desc: "Integral calculator"
+    lang: "en_GB"
+    url: ../en/integral-calculator
   gonio:
     desc: "Verdubbelingsformules en Goniometrische Identiteiten"
     url: ../gonio/
