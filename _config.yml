@@ -2,6 +2,7 @@ defaults:
   - values:
       latex: true
       layout: default
+      lang: nl
 description: "Dé website voor al je brandende wiskundevragen!"
 google_analytics: UA-157507939-1
 lang: nl_NL
