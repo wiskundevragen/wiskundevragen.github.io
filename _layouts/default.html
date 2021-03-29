@@ -6,7 +6,7 @@
 {% endif %}
 
 <head>
-	<base href="https://wiskundevragen.github.io/" />
+	<!-- <base href="https://wiskundevragen.github.io/" /> -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
 		function setCookie(name, value, days) {
@@ -302,36 +302,10 @@
 	<style>
 		{% include styles.css %}
 	</style>
-
-	<style>
-		/* fallback */
-
-		@font-face {
-			font-family: 'Material Icons';
-			font-style: normal;
-			font-weight: 400;
-			src: url(../Fonts/Material-Icons.woff2) format('woff2');
-		}
-
-		.material-icons {
-			font-family: 'Material Icons';
-			font-weight: normal;
-			font-style: normal;
-			font-size: 24px;
-			line-height: 1;
-			letter-spacing: normal;
-			text-transform: none;
-			display: inline-block;
-			white-space: nowrap;
-			word-wrap: normal;
-			direction: ltr;
-			-webkit-font-feature-settings: 'liga';
-			font-feature-settings: 'liga';
-			-webkit-font-smoothing: antialiased;
-		}
-	</style>
 	{% if page.latex %}
-	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script id="MathMathJax-script">
+		{% include MathJax.js %}
+	</script>
 	{% endif %}
 </body>
 

@@ -9,17 +9,16 @@
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 		gtag('config', '{{ site.google_analytics }}');
+		var home = false;
 	</script>
 	<meta charset="UTF-8">
 	{% seo %}
-	<link href="../Fonts/Material-Icons.css" rel="stylesheet">
 	<link rel='apple-touch-icon' href='../Images/apple-touch-icon.png'>
 	<link rel="manifest" href="../manifest.json">
 	<meta name='description' content='{{page.desc}}'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#157878">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="stylesheet" href="{{ '/assets/css/style.css' }}">
 	<link alt='WiskundeVragen Logo' rel='icon' href='../Images/Icon.png'>
 	<link alt='WiskundeVragen Logo' rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="32x32" href="../Images/Icon-32x32.png">
@@ -50,6 +49,9 @@
 		Deze pagina bestaat niet! Controleer of de URL goed gespeld is, en neem ander een kijkje op de <a
 			href="../">homepagina</a>, waar een lijst staat met alle relevante links.
 	</main>
+	<style>
+		{% include styles.css %}
+	</style>
 </body>
 
 </html>
