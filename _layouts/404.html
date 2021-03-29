@@ -4,7 +4,7 @@
 <head>
 	<base href="https://wiskundevragen.github.io/" />
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-	<script>
+	<script defer>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
@@ -25,7 +25,9 @@
 	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="16x16" href="../Images/Icon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
-	<script src='../JS/Main.js'></script>
+	<script defer>
+		{% include Main.js %}
+	</script>
 </head>
 
 <body>
@@ -49,7 +51,7 @@
 		Deze pagina bestaat niet! Controleer of de URL goed gespeld is, en neem ander een kijkje op de <a
 			href="../">homepagina</a>, waar een lijst staat met alle relevante links.
 	</main>
-	<style>
+	<style defer>
 		{% include styles.css %}
 	</style>
 </body>
