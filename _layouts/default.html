@@ -9,8 +9,53 @@
 	<!-- <base href="https://wiskundevragen.github.io/" /> -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
+		function setCookie(name, value, days) {
+			var expires = "";
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+				expires = "; expires=" + date.toUTCString();
+			}
+			document.cookie = name + "=" + (value || "") + expires + "; path=/";
+		}
+		function getCookie(name) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+			}
+			return null;
+		}
+
+		window.addEventListener('DOMContentLoaded', function () {
+			if (!getCookie("askedConsent")) {
+				document.getElementById("cookieBanner").classList.remove("hidden");
+				document.getElementById("overlay").classList.add("shown");
+				document.getElementById("cookieConsentButton").addEventListener("click", function () {
+					gtag('consent', 'update', {
+						'analytics_storage': 'granted'
+					});
+					setCookie("askedConsent", true, 365);
+					setCookie("cookieConsent", true, 365);
+					document.getElementById("overlay").classList.remove("shown");
+					document.getElementById("cookieBanner").classList.add("hidden");
+				});
+				document.getElementById("cookieRefuseButton").addEventListener("click", function () {
+					setCookie("askedConsent", true, 365);
+					setCookie("cookieConsent", false, 365);
+					document.getElementById("overlay").classList.remove("shown");
+					document.getElementById("cookieBanner").classList.add("hidden");
+				});
+			}
+		});
+
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
+		gtag('consent', 'default', {
+			'analytics_storage': 'denied'
+		});
 		gtag('js', new Date());
 		gtag('config', '{{ site.google_analytics }}');
 	</script>
@@ -120,6 +165,41 @@
 				font-size: 14px;
 			}
 		}
+
+		#cookieBanner.hidden {
+			display: none;
+		}
+
+		#cookieBanner>h1,
+		#cookieBanner>p {
+			color: white;
+			margin-top: 0px;
+		}
+
+		#cookieBanner {
+			position: fixed;
+			padding: 48px 20px;
+			bottom: 0;
+			width: 100%;
+			min-height: 200px;
+			z-index: 20;
+			background: #159957;
+		}
+
+		#overlay {
+			position: fixed;
+			display: none;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+			background: rgba(0, 0, 0, .4);
+		}
+
+		#overlay.shown {
+			display: block;
+		}
 	</style>
 
 	{% seo %}
@@ -166,7 +246,8 @@
 		<script>
 			var home = false;
 		</script>
-		<a href="../" class="btn">{% if page.lang == "en_GB" %} Home page (in Dutch) {% else %} Homepagina {% endif %}</a>
+		<a href="../" class="btn">{% if page.lang == "en_GB" %} Home page (in Dutch) {% else %} Homepagina {% endif
+			%}</a>
 		{% endif %}
 	</header>
 
@@ -187,13 +268,29 @@
 				<a href='{{site.page_names[item].url}}'>
 					{{site.page_names[item].desc}}
 				</a>
-				{% if page.lang %} {% if page.lang != "nl" %} {% if site.page_names[item].lang != page.lang %} (in Dutch) {% endif %} {% endif %} {% endif %}
+				{% if page.lang %} {% if page.lang != "nl" %} {% if site.page_names[item].lang != page.lang %} (in
+				Dutch) {% endif %} {% endif %} {% endif %}
 			</li>
 			{% endif %}
 			{% endfor %}
 		</ul>
 		{% endif %}
 	</main>
+	<div id="cookieBanner" class="hidden">
+		<h1>Cookie banner</h1>
+		<p>
+			Om de website goed te laten functioneren, maken wij gebruik van cookies. Door op "Toestemming geven" te
+			klikken, geef je naast de noodzakelijke cookies ook toestemming voor het verzamelen en verzenden van
+			(anonieme) gegevens over de manier waar je je de website gebruikt.
+		</p>
+		<center>
+			<button id="cookieRefuseButton" class="btn">Toestemming
+				weigeren</button>
+			<button id="cookieConsentButton" class="btn">Toestemming
+				geven</button>
+		</center>
+	</div>
+	<div id="overlay"></div>
 </body>
 
 </html>

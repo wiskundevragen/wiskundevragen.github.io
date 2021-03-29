@@ -23,11 +23,15 @@ window.addEventListener('DOMContentLoaded', function () {
 	id("sourceFunction", "integrate-wr-to", "evaluationPoint", "upperEvaluationPoint").forEach((el) => {
 		el.addEventListener("input", function () {
 			inputEvent(el.id)
-		})
+		});
 	});
 });
 
 function inputEvent(inputID) {
+	if ("ga" in window && inputID != "sourceFunction") {
+		ga.getAll()[0].send("event", "IntegralInputs", "type", inputID)
+	}
+
 	let preventFnLatexUpdate = false;
 	if (inputID === "evaluationPoint" || inputID === "upperEvaluationPoint") {
 		preventFnLatexUpdate = true;
@@ -133,7 +137,6 @@ function inputEvent(inputID) {
 			id("upperEvaluationPoint").classList.remove("errorInput");
 		} else {
 			if (integrerenGelukt) {
-				console.log("quoi");
 				id("evaluationResultContainer").classList.remove("shown");
 				id("evaluationWarning").classList.add("shown");
 				id("evaluationPoint").classList.add("errorInput");
@@ -221,12 +224,10 @@ function determineEvaluationPoints(multiVariate, targetFunction) {
 	result.lower = parseEvaluationPoint(replaceAll(input1.value, ',', '.'));
 	result.upper = parseEvaluationPoint(replaceAll(input2.value, ',', '.'));
 
-	console.log(result.upper);
 	if (result.upper && result.lower) {
 		try {
 			if (isNaN(replaceAll(result.lower, permittedStrings, '')) || isNaN(eval(result.lower))) {
 				input1.classList.add("errorInput");
-				console.log("wat");
 				return result;
 			} else {
 				result.lower = eval(result.lower);
@@ -234,13 +235,11 @@ function determineEvaluationPoints(multiVariate, targetFunction) {
 			}
 		} catch (e) {
 			input1.classList.add("errorInput");
-			console.log("wat");
 			return result;
 		}
 
 		try {
 			if (isNaN(replaceAll(result.upper, permittedStrings, '')) || isNaN(eval(result.upper))) {
-				console.log("wat");
 				input2.classList.add("errorInput");
 				return result;
 			} else {
@@ -248,7 +247,6 @@ function determineEvaluationPoints(multiVariate, targetFunction) {
 				input2.classList.remove("errorInput");
 			}
 		} catch (e) {
-			console.log("wat");
 			input2.classList.add("errorInput");
 			return result;
 		}
@@ -261,7 +259,6 @@ function determineEvaluationPoints(multiVariate, targetFunction) {
 		id("evaluationWarning").classList.remove("shown");
 	}
 
-	console.log(result);
 	return result;
 }
 
