@@ -53,8 +53,8 @@ page_names:
     desc: "De primitieve van arctan(x)"
     url: ../primitieven/arctanx
   prim_calc:
-    desc: "Primitieve calculator"
-    url: ../primitieven/primtieve-calculator
+    desc: "Primitieven calculator"
+    url: ../primitieven/primtieven-calculator
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven
