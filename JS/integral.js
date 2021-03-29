@@ -6,14 +6,7 @@ var simplifiedInt;
 var lang = "nl";
 let clearEvalTimeout;
 const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
-const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
-
-function clearOutputs() {
-	id("parsedFunction").innerHTML = '';
-	id("integratedFunction").innerHTML = '';
-	id("evaluationResult").innerHTML = '';
-	id("evaluationResultContainer").classList.remove("shown");
-}
+const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan');
 
 window.addEventListener('DOMContentLoaded', function () {
 	if (location.href.split("/en/").length > 1) {
@@ -77,9 +70,9 @@ function inputEvent(inputID) {
 		let multiVariate = variables.multiVariate;
 		setVariableStrings(intVariable);
 
-		if(preventFnLatexUpdate){
+		if (preventFnLatexUpdate) {
 			integrerenGelukt = true;
-		}else {
+		} else {
 			integrerenGelukt = doIntegration(targetFunction, intVariable);
 		}
 
@@ -95,13 +88,13 @@ function inputEvent(inputID) {
 			id("evalPlekO").innerHTML = '\\(' + intVariable + '=' + displayNum(lowerEvalPoint) + '\\)';
 			id("evalPlekB").innerHTML = '\\(' + intVariable + '=' + displayNum(upperEvalPoint) + '\\)';
 
-			let intValO = evaluate(simplifiedInt, intVariable, lowerEvalPoint);
-			let intValB = evaluate(simplifiedInt, intVariable, upperEvalPoint);
+			let ogIntValO = evaluate(simplifiedInt, intVariable, lowerEvalPoint);
+			let ogIntValB = evaluate(simplifiedInt, intVariable, upperEvalPoint);
 			let intValNumO = evaluate(simplifiedInt, intVariable, lowerEvalPoint, true);
 			let intValNumB = evaluate(simplifiedInt, intVariable, upperEvalPoint, true);
 
-			intValO = noComplexFrac(intValO, intValNumO);
-			intValB = noComplexFrac(intValB, intValNumB);
+			let intValO = noComplexFrac(ogIntValO, intValNumO).value;
+			let intValB = noComplexFrac(ogIntValB, intValNumB).value;
 
 
 			let finalAnswer = intValNumB - intValNumO;
@@ -121,9 +114,6 @@ function inputEvent(inputID) {
 
 		} else {
 			id("evaluationResultContainer").classList.remove("shown");
-			// clearEvalTimeout = setTimeout(function(){
-			// 	id("evaluationResultContainer")
-			// })
 		}
 	} catch (err) {
 		if (String(err).split("Unable to find").length > 1) {
@@ -204,13 +194,22 @@ function doIntegration(targetFunction, intVariable) {
 	return true;
 }
 
+
+function clearOutputs() {
+	id("parsedFunction").innerHTML = '';
+	id("integratedFunction").innerHTML = '';
+	id("evaluationResult").innerHTML = '';
+	id("evaluationResultContainer").classList.remove("shown");
+}
+
+
 function determineEvaluationPoints(multiVariate, targetFunction) {
 	let input1 = id("evaluationPoint");
 	let input2 = id("upperEvaluationPoint");
 	let result = {};
 	result.willEvaluate = false;
 
-	if(!simplifiedInt) return result;
+	if (!simplifiedInt) return result;
 
 	if (multiVariate && input1.value && input2.value) {
 		id("evaluationWarning").classList.add("shown");
@@ -295,7 +294,7 @@ function evaluate(targetFunction, intVariable, ev, noSimplify) {
 	}
 }
 
-function calcIntegral(targetFunction, simplify, intVariable) {
+function calcIntegral(simplifiedFn, simplify, intVariable) {
 	if (simplify) {
 		return math.simplify(
 			math.integral(simplifiedFn, intVariable, { simplify: false })
@@ -393,11 +392,16 @@ function parseSynonyms(targetFunction) {
 	return targetFunction;
 }
 
-function displayNum(n) {
+
+function displayNum(n, noTex) {
+	if (!noTex) n = math.parse(n).toTex();
 	let suffix = "";
 	let scientificDelim = "\\cdot10^";
 	let splitScientific = String(n).split(scientificDelim)
 	if (splitScientific.length > 1) {
+		if (+n.split("\\cdot10^{")[1].split("}")[0] < -7) {
+			return 0;
+		}
 		suffix = scientificDelim + splitScientific[1];
 		n = splitScientific[0];
 	}
@@ -407,7 +411,6 @@ function displayNum(n) {
 		return fixFPError(n) + suffix;
 	}
 }
-
 function firstDigitsOfNum(n) {
 	return String(n).split(".")[0] + "." + String(n).split(".")[1].substr(0, 5);
 }
@@ -444,11 +447,22 @@ function removeTrailingZeroes(n) {
 	return result;
 }
 
+
 function noComplexFrac(n, realV) {
-	if (n.split("\\frac").length > 1) {
-		return displayNum(realV);
+	if (realV <= 1e8) return {
+		value: 0,
+		fixed: false
 	}
-	return n;
+	if (n.split("\\frac").length > 1) {
+		return {
+			value: displayNum(realV, true),
+			fixed: true
+		}
+	}
+	return {
+		value: displayNum(n, true),
+		fixed: false
+	};
 }
 
 
@@ -471,7 +485,7 @@ function fixInputLabels() {
 
 function fixLatex(preventFunctionUpdate) {
 	let elements = ["evaluationResult", "evalPlekO", "evalPlekB"];
-	if(!preventFunctionUpdate){
+	if (!preventFunctionUpdate) {
 		elements.push("parsedFunction", "integratedFunction")
 	}
 	MathJax.typeset(id(elements));

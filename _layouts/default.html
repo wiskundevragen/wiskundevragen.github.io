@@ -276,18 +276,27 @@
 		</ul>
 		{% endif %}
 	</main>
+
 	<div id="cookieBanner" class="hidden">
 		<h1>Cookie banner</h1>
 		<p>
-			Om de website goed te laten functioneren, maken wij gebruik van cookies. Door op "Toestemming geven" te
-			klikken, geef je naast de noodzakelijke cookies ook toestemming voor het verzamelen en verzenden van
+			{% if page.lang == "en_GB" %}
+			To ensure proper functionality on this website, we have to make use of necessary cookies. By pressing "Give
+			consent", you not only consent to the necessary cookies, but also to collect and send data about the way you
+			use the website.
+			{% else %}
+			Om de website goed te laten functioneren, moeten wij gebruik maken van noodzakelijke cookies. Door op
+			"Toestemming geven" te klikken, geef je hiernaast ook toestemming voor het verzamelen en verzenden van
 			(anonieme) gegevens over de manier waar je je de website gebruikt.
+			{% endif %}
 		</p>
 		<center>
-			<button id="cookieRefuseButton" class="btn">Toestemming
-				weigeren</button>
-			<button id="cookieConsentButton" class="btn">Toestemming
-				geven</button>
+			<button id="cookieRefuseButton" class="btn">
+				{% if page.lang == "en_GB" %} Refuse consent {% else %} Toestemming weigeren {% endif %}
+			</button>
+			<button id="cookieConsentButton" class="btn">
+				{% if page.lang == "en_GB" %} Give consent {% else %} Toestemming geven {% endif %}
+			</button>
 		</center>
 	</div>
 	<div id="overlay"></div>
