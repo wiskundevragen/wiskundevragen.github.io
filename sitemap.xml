@@ -1,85 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
 		<loc>https://wiskundevragen.github.io/</loc>
-		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/wiskunde</loc>
-		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/afgeleides/afgeleides</loc>
-		<lastmod>2020-11-06T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/afgeleides/arcsinx</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/afgeleides/arccosx</loc>
-		<lastmod>2020-05-11T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/afgeleides/arctanx</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/primitieven/primitieven</loc>
-		<lastmod>2021-02-09T09:30:58+00:00</lastmod>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>1.00</priority>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/primitieven/primitieven-calculator</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/primitieven/arctanx</loc>
-		<lastmod>2021-02-09T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/primitieven/arccosx</loc>
-		<lastmod>2021-02-09T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/primitieven/arcsinx</loc>
-		<lastmod>2020-04-26T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl</loc>
-		<lastmod>2021-03-29T12:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/examen/havo</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/examen/vwo</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/examen</loc>
-		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/afgeleides/afgeleide-calculator</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/en/integral-calculator</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/en/binomial-coefficient</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
-	</url>
-	<url>
-		<loc>https://wiskundevragen.github.io/en/derivative-calculator</loc>
-		<lastmod>2021-03-29T09:30:58+00:00</lastmod>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
 	</url>
 	<url>
 		<loc>https://wiskundevragen.github.io/binomiaal</loc>
-		<lastmod>2021-02-08T09:30:58+00:00</lastmod>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/gonio</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/</loc>
+		<lastmod>2021-03-29T18:44:40+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/primitieven/</loc>
+		<lastmod>2021-03-29T18:44:40+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/wiskunde</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/afgeleides</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/primitieven/primitieven</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/havo</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vwo</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/primitieven/arcsinx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/primitieven/arccosx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/primitieven/arctanx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.51</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/afgeleide-calculator.html</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.41</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/arcsinx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.41</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/arccosx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.41</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/afgeleides/arctanx</loc>
+		<lastmod>2021-03-29T18:44:43+00:00</lastmod>
+		<priority>0.41</priority>
 	</url>
 </urlset>
