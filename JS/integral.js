@@ -362,12 +362,12 @@ function addMultiplicationsByDelim(expr, delim, replaceBy) {
 }
 
 function uniques(str) {
-	let ar = str.split("");
+	let array = str.split("");
 	let res = [];
-	for (let i = 0; i < ar.length; i++) {
-		const a = ar[i];
-		if (res.indexOf(a) === -1) {
-			res.push(a);
+	for (let i = 0; i < array.length; i++) {
+		const element = array[i];
+		if (res.indexOf(element) === -1) {
+			res.push(element);
 		}
 	}
 	return res.join("");
