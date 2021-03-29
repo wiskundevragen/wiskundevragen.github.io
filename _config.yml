@@ -54,7 +54,7 @@ page_names:
     url: ../primitieven/arctanx
   prim_calc:
     desc: "Primitieven calculator"
-    url: ../primitieven/primtieven-calculator
+    url: ../primitieven/primitieven-calculator
   prim_lijst:
     desc: "Lijst met primitieven"
     url: ../primitieven/primitieven
