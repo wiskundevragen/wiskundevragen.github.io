@@ -72,12 +72,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		var derivationSucceeded = false;
 
 		try {
-			let afvar = id("afleiden-naar").value;
+			let afvar = id("derive-wrt-to").value;
 			if (afvar.replace(/[0-9]/g, '') != afvar || afvar.length > 1) {
 				afvar = 'x';
-				id("afleiden-naar").classList.add("errorInput")
+				id("derive-wrt-to").classList.add("errorInput")
 			} else {
-				id("afleiden-naar").classList.remove("errorInput")
+				id("derive-wrt-to").classList.remove("errorInput")
 			}
 			let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
 			if (letters.length > 1) {
@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		MathJax.typeset();
 	};
 	id("src-functie").addEventListener("input", inputEvent);
-	id("afleiden-naar").addEventListener("input", inputEvent);
+	id("derive-wrt-to").addEventListener("input", inputEvent);
 	id("evalueren").addEventListener("input", inputEvent);
 });
 

@@ -83,12 +83,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 		try {
-			let intvar = id("integreren-naar").value;
+			let intvar = id("integrate-wrt-to").value;
 			if (intvar.replace(/[0-9]/g, '') != intvar || intvar.length > 1) {
 				intvar = 'x';
-				id("integreren-naar").classList.add("errorInput")
+				id("integrate-wrt-to").classList.add("errorInput")
 			} else {
-				id("integreren-naar").classList.remove("errorInput")
+				id("integrate-wrt-to").classList.remove("errorInput")
 			}
 			let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
 			if (letters.length > 1) {
@@ -180,7 +180,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		MathJax.typeset();
 	};
 	id("src-functie").addEventListener("input", inputEvent);
-	id("integreren-naar").addEventListener("input", inputEvent);
+	id("integrate-wrt-to").addEventListener("input", inputEvent);
 	id("evalueren").addEventListener("input", inputEvent);
 	id("evaluerenB").addEventListener("input", inputEvent);
 });
