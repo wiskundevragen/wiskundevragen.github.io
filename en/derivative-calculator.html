@@ -9,38 +9,38 @@ your function below, and our derivative calculator will find its derivative!
 <br>
 <br>
 <div style='margin-bottom: 20px;'>
-	<label for='src-functie' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
-	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+	<label for='sourceFunction' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
+	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='sourceFunction'
 		autocapitalize="none">
 </div>
 <div id=' results'>
 	<div id='rescols'>
 		<div>
 			<h3><b>Your function</b></h3>
-			<div id='parsed-function' style='min-height: 24px;'></div>
+			<div id='parsedFunction'></div>
 		</div>
 		<div style='margin-top: 12px;'>
 			<h3><b>The derivative</b></h3>
-			<div id="derived-function" style='min-height: 24px;'></div>
+			<div id="derivedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluerenRes'>
-		<h3 style='margin-top: 2rem;'><b>Evaluated in <span id='evalPlek'>x=...</span></b></h3>
-		<div id="echteEvalRes" style='min-height: 24px;'></div>
+	<div id='evaluationResultContainer'>
+		<h3><b>Evaluated in <span id='evalPlek'>x=...</span></b></h3>
+		<div id="evaluationResult" ></div>
 	</div>
 </div>
 <h2 style='margin-bottom: 0px;'>Additional options</h2>
 <div>
-	<label for='derive-wrt-to' class='inputLabel hidden'>Derive with respect to which variable? </label>
-	<input type="text" placeholder="Derive with respect to which variable?" class="form hasLabel" id='derive-wrt-to'
+	<label for='derive-wr-to' class='inputLabel hidden'>Derive with respect to which variable? </label>
+	<input type="text" placeholder="Derive with respect to which variable?" class="form hasLabel" id='derive-wr-to'
 		autocapitalize="none">
 </div>
 <div>
-	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evaluate in x=...</label>
-	<input type="text" placeholder="Evaluate in x=..." class="form hasLabel" id='evalueren'
+	<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate in x=...</label>
+	<input type="text" placeholder="Evaluate in x=..." class="form hasLabel" id='evaluationPoint'
 		autocapitalize="none">
 </div>
-<p id='evalwarn'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
+<p id='evaluationWarning'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
 <br>
 <br>
 <br>

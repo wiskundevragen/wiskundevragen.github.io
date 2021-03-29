@@ -11,44 +11,44 @@ not of every function imaginable.
 <br>
 <br>
 <div style='margin-bottom: 20px;'>
-	<label for='src-functie' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
-	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+	<label for='sourceFunction' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
+	<input type="text" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='sourceFunction'
 		autocapitalize="none">
 </div>
 <div id=' results'>
 	<div id='rescols'>
 		<div>
 			<h3><b>Your function</b></h3>
-			<div id='parsed-function' style='min-height: 24px;'></div>
+			<div id='parsedFunction'></div>
 		</div>
 		<div style='margin-top: 12px;'>
 			<h3><b>The primitive function</b></h3>
-			<div id="integrated-function" style='min-height: 24px;'></div>
+			<div id="integratedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluerenRes'>
-		<h3 style='margin-top: 2rem;'><b>Evaluated from <span id='evalPlekO'>x=...</span> to <span
+	<div id='evaluationResultContainer'>
+		<h3><b>Evaluated from <span id='evalPlekO'>x=...</span> to <span
 					id='evalPlekB'>x=...</span></b></h3>
-		<div id="echteEvalRes" style='min-height: 24px;'></div>
+		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<h2 style='margin-bottom: 0px;'>Additional options</h2>
+<h2 style='margin-bottom: 0px;margin-top: 10px;;'>Additional options</h2>
 <div>
-	<label for='integrate-wrt-to' class='inputLabel hidden'>Integrate with respect to which variable?</label>
-	<input type="text" placeholder="Integrate with respect to which variable? " class="form hasLabel" id='integrate-wrt-to'
+	<label for='integrate-wr-to' class='inputLabel hidden'>Integrate with respect to which variable?</label>
+	<input type="text" placeholder="Integrate with respect to which variable? " class="form hasLabel" id='integrate-wr-to'
 		autocapitalize="none">
 </div>
 <div>
-	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
-	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evalueren'
+	<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
+	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluationPoint'
 		autocapitalize="none">
 </div>
 <div>
-	<label for='evaluerenB' id='evaluerenLabelB' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
-	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluerenB'
+	<label for='upperEvaluationPoint' id='upperEvaluationPointLabel' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
+	<input type="text" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='upperEvaluationPoint'
 		autocapitalize="none">
 </div>
-<p id='evalwarn'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
+<p id='evaluationWarning'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
 <br>
 <br>
 <br>

@@ -7,10 +7,10 @@ const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', '
 const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
 
 function clearOutputs() {
-	id("parsed-function").innerHTML = ''
-	id("derived-function").innerHTML = ''
-	id("echteEvalRes").innerHTML = '';
-	id("evaluerenRes").classList.remove("shown");
+	id("parsedFunction").innerHTML = ''
+	id("derivedFunction").innerHTML = ''
+	id("evaluationResult").innerHTML = '';
+	id("evaluationResultContainer").classList.remove("shown");
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -32,59 +32,59 @@ window.addEventListener('DOMContentLoaded', (event) => {
 				}
 			}
 		}
-		let fn = id("src-functie").value;
-		if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
+		let targetFunction = id("sourceFunction").value;
+		if (targetFunction.split("(").length != targetFunction.split(")").length || targetFunction[targetFunction.length - 1] == '^' || targetFunction[targetFunction.length - 1] == '*') {
 			clearOutputs();
 			return;
 		}
-		if (fn.split("=").length > 2) {
-			id("src-functie").classList.add("errorInput");
+		if (targetFunction.split("=").length > 2) {
+			id("sourceFunction").classList.add("errorInput");
 			return;
 		}
-		fn = fn.split("=")[fn.split("=").length - 1];
-		id("src-functie").classList.remove("errorInput");
-		let emptyfunction = fn;
-		fn = parseSynonyms(fn);
+		targetFunction = targetFunction.split("=")[targetFunction.split("=").length - 1];
+		id("sourceFunction").classList.remove("errorInput");
+		let emptyFunction = targetFunction;
+		targetFunction = parseSynonyms(targetFunction);
 		for (let i = 0; i < commonFns.length; i++) {
-			emptyfunction = replaceAll(emptyfunction, commonFns[i], "");
+			emptyFunction = replaceAll(emptyFunction, commonFns[i], "");
 		}
-		emptyfunction = replaceAll(emptyfunction, "(", "");
-		emptyfunction = replaceAll(emptyfunction, ")", "");
+		emptyFunction = replaceAll(emptyFunction, "(", "");
+		emptyFunction = replaceAll(emptyFunction, ")", "");
 
-		let ev = parseEv(replaceAll(id("evalueren").value, ',', '.'));
-		let gaanEval = false;
+		let ev = parseEvaluationPoint(replaceAll(id("evaluationPoint").value, ',', '.'));
+		let willEvaluate = false;
 		if (ev) {
 			if (!isNaN(replaceAll(ev, ['Math.exp(1)', 'Math.PI', '*', '/', '+', '-'], ''))) {
 				ev = eval(ev);
-				gaanEval = true;
-				id("evalueren").classList.remove("errorInput")
-				id("evalwarn").classList.remove("shown");
-				id("evalueren").classList.remove("errorInput");
+				willEvaluate = true;
+				id("evaluationPoint").classList.remove("errorInput")
+				id("evaluationWarning").classList.remove("shown");
+				id("evaluationPoint").classList.remove("errorInput");
 			} else {
-				id("evalueren").classList.add("errorInput")
+				id("evaluationPoint").classList.add("errorInput")
 			}
 		} else {
-			id("evalueren").classList.remove("errorInput")
-			id("evalwarn").classList.remove("shown");
-			id("evalueren").classList.remove("errorInput");
+			id("evaluationPoint").classList.remove("errorInput")
+			id("evaluationWarning").classList.remove("shown");
+			id("evaluationPoint").classList.remove("errorInput");
 		}
 
 		var derivationSucceeded = false;
 
 		try {
-			let afvar = id("derive-wrt-to").value;
+			let afvar = id("derive-wr-to").value;
 			if (afvar.replace(/[0-9]/g, '') != afvar || afvar.length > 1) {
 				afvar = 'x';
-				id("derive-wrt-to").classList.add("errorInput")
+				id("derive-wr-to").classList.add("errorInput")
 			} else {
-				id("derive-wrt-to").classList.remove("errorInput")
+				id("derive-wr-to").classList.remove("errorInput")
 			}
-			let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
+			let letters = uniques(emptyFunction.replace(/[^a-z]/ig, ''));
 			if (letters.length > 1) {
-				if (gaanEval) {
-					gaanEval = false;
-					id("evalwarn").classList.add("shown");
-					id("evalueren").classList.add("errorInput");
+				if (willEvaluate) {
+					willEvaluate = false;
+					id("evaluationWarning").classList.add("shown");
+					id("evaluationPoint").classList.add("errorInput");
 				}
 				if (!afvar) afvar = 'x';
 			} else if (letters.length == 1) {
@@ -96,84 +96,84 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			if (!afvar) afvar = 'x';
 
 			if (lang === "en") {
-				id("evalueren").placeholder = 'Evaluate in ' + afvar + '=...';
-				id("evaluerenLabel").innerHTML = 'Evaluate in ' + afvar + '=...';
+				id("evaluationPoint").placeholder = 'Evaluate in ' + afvar + '=...';
+				id("evaluationPointLabel").innerHTML = 'Evaluate in ' + afvar + '=...';
 			} else {
-				id("evalueren").placeholder = 'Evalueren in ' + afvar + '=...';
-				id("evaluerenLabel").innerHTML = 'Evalueren in ' + afvar + '=...';
+				id("evaluationPoint").placeholder = 'Evalueren in ' + afvar + '=...';
+				id("evaluationPointLabel").innerHTML = 'Evalueren in ' + afvar + '=...';
 			}
 
-			if (!fn || !fn.length) {
-				throw 'fn not defined';
+			if (!targetFunction || !targetFunction.length) {
+				throw 'targetFunction not defined';
 			}
 
-			parsedFn = math.parse(fn);
-			simplifiedFn = math.simplify(math.parse(fn));
+			parsedFn = math.parse(targetFunction);
+			simplifiedFn = math.simplify(math.parse(targetFunction));
 			if (parsedFn.toTex() != simplifiedFn.toTex()) {
-				id("parsed-function").innerHTML = "\\(\\begin{align*}f(" + afvar + ")&=" + parsedFn.toTex({ implicit: 'hide' }) + "\\\\&=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\end{align*}\\)";
+				id("parsedFunction").innerHTML = "\\(\\begin{align*}f(" + afvar + ")&=" + parsedFn.toTex({ implicit: 'hide' }) + "\\\\&=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\end{align*}\\)";
 			} else {
-				id("parsed-function").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex() + "\\)";
+				id("parsedFunction").innerHTML = "\\(f(" + afvar + ")=" + parsedFn.toTex() + "\\)";
 			}
 
 			deriv = calcDeriv(simplifiedFn, false, afvar);
 			simplifiedDeriv = calcDeriv(simplifiedFn, true, afvar);
 			if (deriv.toTex({ implicit: "hide" }) != simplifiedDeriv.toTex({ implicit: "hide" })) {
-				id("derived-function").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv.toTex(texOptions) + "\\\\ &=" + simplifiedDeriv.toTex(texOptions) + "\\end{align*}\\)";
+				id("derivedFunction").innerHTML = "\\(\\begin{align*}f'(" + afvar + ")&=" + deriv.toTex(texOptions) + "\\\\ &=" + simplifiedDeriv.toTex(texOptions) + "\\end{align*}\\)";
 			} else {
-				id("derived-function").innerHTML = "\\(f'(" + afvar + ")=" + deriv.toTex(texOptions) + "\\)";
+				id("derivedFunction").innerHTML = "\\(f'(" + afvar + ")=" + deriv.toTex(texOptions) + "\\)";
 			}
 
 			derivationSucceeded = true;
 
-			if (gaanEval) {
-				id("evalwarn").classList.remove("shown");
-				id("evalueren").classList.remove("errorInput");
-				id("evaluerenRes").classList.add("shown");
+			if (willEvaluate) {
+				id("evaluationWarning").classList.remove("shown");
+				id("evaluationPoint").classList.remove("errorInput");
+				id("evaluationResultContainer").classList.add("shown");
 				id("evalPlek").innerHTML = '\\(' + afvar + '=' + ev + '\\)';
 
 				var evalSucceeded = true;
 				let derivValue = evaluate(simplifiedDeriv, afvar, ev);
-				let fnValue;
+				let targetFunctionValue;
 				try {
-					fnValue = evaluate(simplifiedFn, afvar, ev);
+					targetFunctionValue = evaluate(simplifiedFn, afvar, ev);
 				}catch(err){
 					evalSucceeded = false;
 				}
 
 				if(evalSucceeded){
-					id("echteEvalRes").innerHTML = '\\(f(' + ev + ')=' + fnValue + '\\)<br><br>\\(f\'(' + ev + ')=' + derivValue + '\\)';
+					id("evaluationResult").innerHTML = '\\(f(' + ev + ')=' + targetFunctionValue + '\\)<br><br>\\(f\'(' + ev + ')=' + derivValue + '\\)';
 				}else {
-					id("echteEvalRes").innerHTML = '\\(f\'(' + ev + ')=' + derivValue + '\\)';
+					id("evaluationResult").innerHTML = '\\(f\'(' + ev + ')=' + derivValue + '\\)';
 				}
 			} else {
-				id("evaluerenRes").classList.remove("shown");
+				id("evaluationResultContainer").classList.remove("shown");
 			}
 		} catch (err) {
 			console.log(err);
 			if (derivationSucceeded) {
-				id("evaluerenRes").classList.remove("shown");
+				id("evaluationResultContainer").classList.remove("shown");
 			} else {
 				clearOutputs();
 			}
 		}
 		MathJax.typeset();
 	};
-	id("src-functie").addEventListener("input", inputEvent);
-	id("derive-wrt-to").addEventListener("input", inputEvent);
-	id("evalueren").addEventListener("input", inputEvent);
+	id("sourceFunction").addEventListener("input", inputEvent);
+	id("derive-wr-to").addEventListener("input", inputEvent);
+	id("evaluationPoint").addEventListener("input", inputEvent);
 });
 
 function strip(number) {
 	return parseFloat(number).toPrecision(12);
 }
 
-function evaluate(fn, afvar, ev) {
+function evaluate(targetFunction, afvar, ev) {
 	let options = {};
 	options[afvar] = ev;
-	return math.simplify(strip(Math.round(fn.evaluate(options) * 1e6) / 1e6)).toTex();
+	return math.simplify(strip(Math.round(targetFunction.evaluate(options) * 1e6) / 1e6)).toTex();
 }
 
-function calcDeriv(fn, simplify, afvar) {
+function calcDeriv(targetFunction, simplify, afvar) {
 	if (simplify) {
 		return math.simplify(
 			math.derivative(simplifiedFn, afvar, { simplify: false })
@@ -186,7 +186,7 @@ function calcDeriv(fn, simplify, afvar) {
 	}
 }
 
-function parseEv(ev) {
+function parseEvaluationPoint(ev) {
 	return addMultiplications(addMultiplications(ev, 'pi', 'Math.PI'), 'e', 'Math.exp(1)');
 }
 
@@ -235,11 +235,11 @@ function replaceAll(str, match, newV) {
 	return str;
 }
 
-function parseSynonyms(fn) {
+function parseSynonyms(targetFunction) {
 	for (let i = 0; i < synonyms.length; i += 2) {
-		fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
+		targetFunction = replaceAll(targetFunction, synonyms[i], synonyms[i + 1]);
 	}
-	return fn;
+	return targetFunction;
 }
 
 

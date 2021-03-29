@@ -1,236 +1,364 @@
+const startT = +new Date();
 const texOptions = {
 	implicit: "hide"
 };
+var simplifiedInt;
 var lang = "nl";
+let clearEvalTimeout;
 const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
 const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan')
 
 function clearOutputs() {
-	id("parsed-function").innerHTML = '';
-	id("integrated-function").innerHTML = '';
-	id("echteEvalRes").innerHTML = '';
-	id("evaluerenRes").classList.remove("shown");
+	id("parsedFunction").innerHTML = '';
+	id("integratedFunction").innerHTML = '';
+	id("evaluationResult").innerHTML = '';
+	id("evaluationResultContainer").classList.remove("shown");
 }
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', function () {
 	if (location.href.split("/en/").length > 1) {
 		lang = "en"
 	}
-	function inputEvent(event) {
-		let els = document.querySelectorAll(".form");
-		for (let i = 0; i < els.length; i++) {
-			const el = els[i];
-			let label = document.querySelector("label[for=\"" + el.id + "\"]");
-			if (el.value) {
-				if (label) {
-					label.classList.remove("hidden");
-				}
-			} else {
-				if (label) {
-					label.classList.add("hidden");
-				}
-			}
+
+	id("sourceFunction", "integrate-wr-to", "evaluationPoint", "upperEvaluationPoint").forEach((el) => {
+		el.addEventListener("input", function () {
+			inputEvent(el.id)
+		})
+	});
+});
+
+function inputEvent(inputID) {
+	let preventFnLatexUpdate = false;
+	if (inputID === "evaluationPoint" || inputID === "upperEvaluationPoint") {
+		preventFnLatexUpdate = true;
+	}
+	fixInputLabels();
+
+	let targetFunction = id("sourceFunction").value;
+	if (targetFunction.length === 0 || targetFunction.split("(").length != targetFunction.split(")").length || last(targetFunction) == '^' || last(targetFunction) == '*' || last(targetFunction) == "/") {
+		clearOutputs();
+		simplifiedInt = "";
+		integrationResult = "";
+		id("evaluationWarning").classList.remove("shown");
+		id("evaluationPoint").classList.remove("errorInput");
+		id("upperEvaluationPoint").classList.remove("errorInput");
+		return;
+	}
+
+	if (targetFunction.split("=").length > 2) {
+		id("sourceFunction").classList.add("errorInput");
+		simplifiedInt = "";
+		integrationResult = "";
+		id("evaluationWarning").classList.remove("shown");
+		id("evaluationPoint").classList.remove("errorInput");
+		id("upperEvaluationPoint").classList.remove("errorInput");
+		return;
+	}
+
+	targetFunction = last(targetFunction.split("="));
+	id("sourceFunction").classList.remove("errorInput");
+	let emptyFunction = targetFunction;
+	targetFunction = parseSynonyms(targetFunction);
+	for (let i = 0; i < commonFns.length; i++) {
+		emptyFunction = replaceAll(emptyFunction, commonFns[i], "");
+	}
+	emptyFunction = replaceAll(emptyFunction, "(", "");
+	emptyFunction = replaceAll(emptyFunction, ")", "");
+
+	var integrerenGelukt = false;
+
+	try {
+		let variables = determineIntegrationVariable(emptyFunction);
+		let intVariable = variables.result;
+		let multiVariate = variables.multiVariate;
+		setVariableStrings(intVariable);
+
+		if(preventFnLatexUpdate){
+			integrerenGelukt = true;
+		}else {
+			integrerenGelukt = doIntegration(targetFunction, intVariable);
 		}
 
-		let fn = id("src-functie").value;
-		if (fn.split("(").length != fn.split(")").length || fn[fn.length - 1] == '^' || fn[fn.length - 1] == '*') {
-			clearOutputs();
-			return;
-		}
-		if (fn.split("=").length > 2) {
-			id("src-functie").classList.add("errorInput");
-			return;
-		}
-		fn = fn.split("=")[fn.split("=").length - 1];
-		id("src-functie").classList.remove("errorInput");
-		let emptyfunction = fn;
-		fn = parseSynonyms(fn);
-		for (let i = 0; i < commonFns.length; i++) {
-			emptyfunction = replaceAll(emptyfunction, commonFns[i], "");
-		}
-		emptyfunction = replaceAll(emptyfunction, "(", "");
-		emptyfunction = replaceAll(emptyfunction, ")", "");
+		evPoints = determineEvaluationPoints(multiVariate, targetFunction);
 
-		let evO = parseEv(replaceAll(id("evalueren").value, ',', '.'));
-		let evB = parseEv(replaceAll(id("evaluerenB").value, ',', '.'));
-		let gaanEval = false;
-		if (evB && evO) {
-			gaanEval = true;
-			if (isNaN(replaceAll(evO, ['Math.exp', 'Math.PI', '*', '/', '+', '-', '(', ')'], ''))) {
-				gaanEval = false;
-				id("evalueren").classList.add("errorInput")
+		if (evPoints.willEvaluate) {
+			let lowerEvalPoint = evPoints.lower;
+			let upperEvalPoint = evPoints.upper;
+			id("evaluationWarning").classList.remove("shown");
+			id("evaluationPoint").classList.remove("errorInput");
+			id("upperEvaluationPoint").classList.remove("errorInput");
+			id("evaluationResultContainer").classList.add("shown");
+			id("evalPlekO").innerHTML = '\\(' + intVariable + '=' + displayNum(lowerEvalPoint) + '\\)';
+			id("evalPlekB").innerHTML = '\\(' + intVariable + '=' + displayNum(upperEvalPoint) + '\\)';
+
+			let intValO = evaluate(simplifiedInt, intVariable, lowerEvalPoint);
+			let intValB = evaluate(simplifiedInt, intVariable, upperEvalPoint);
+			let intValNumO = evaluate(simplifiedInt, intVariable, lowerEvalPoint, true);
+			let intValNumB = evaluate(simplifiedInt, intVariable, upperEvalPoint, true);
+
+			intValO = noComplexFrac(intValO, intValNumO);
+			intValB = noComplexFrac(intValB, intValNumB);
+
+
+			let finalAnswer = intValNumB - intValNumO;
+			if (numberIsTruncated(finalAnswer)) {
+				finalAnswer = '\\approx ' + firstDigitsOfNum(finalAnswer);
 			} else {
-				evO = eval(evO);
-				id("evalueren").classList.remove("errorInput")
+				finalAnswer = '= ' + displayNum(finalAnswer);
 			}
-			if (isNaN(replaceAll(evB, ['Math.exp', 'Math.PI', '*', '/', '+', '-', '(', ')'], ''))) {
-				gaanEval = false;
-				id("evaluerenB").classList.add("errorInput")
-			} else {
-				evB = eval(evB);
-				id("evaluerenB").classList.remove("errorInput")
-			}
-			if (gaanEval) {
-				id("evalwarn").classList.remove("shown")
-			}
+
+			id("evaluationResult").innerHTML =
+				`\\(\\begin{align*}\\int^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}f(${intVariable})d${intVariable}&=
+				F(${displayNum(upperEvalPoint)}) - F(${displayNum(lowerEvalPoint)})
+				\\\\&=\\left[${simplifiedInt.toTex(texOptions)}\\right]^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}
+				\\\\&=${displayNum(intValB)} - ${displayNum(intValO)}
+				\\\\&${finalAnswer}\\end{align*}\\)`;
+
+
 		} else {
-			id("evalueren").classList.remove("errorInput")
-			id("evaluerenB").classList.remove("errorInput")
-			id("evalwarn").classList.remove("shown");
+			id("evaluationResultContainer").classList.remove("shown");
+			// clearEvalTimeout = setTimeout(function(){
+			// 	id("evaluationResultContainer")
+			// })
 		}
+	} catch (err) {
+		if (String(err).split("Unable to find").length > 1) {
+			if (lang === "en") {
+				id("integratedFunction").innerHTML = "<b>Unable to compute integral...</b>";
+			} else {
+				id("integratedFunction").innerHTML = "<b>Geen primitieve gevonden...</b>";
+			}
+			id("evaluationWarning").classList.remove("shown");
+			id("evaluationPoint").classList.remove("errorInput");
+			id("upperEvaluationPoint").classList.remove("errorInput");
+		} else {
+			if (integrerenGelukt) {
+				console.log("quoi");
+				id("evaluationResultContainer").classList.remove("shown");
+				id("evaluationWarning").classList.add("shown");
+				id("evaluationPoint").classList.add("errorInput");
+				id("upperEvaluationPoint").classList.add("errorInput");
+			} else {
+				clearOutputs();
+			}
+		}
+	}
+	fixLatex(preventFnLatexUpdate);
+}
 
-		var integrerenGelukt = false;
+function determineIntegrationVariable(emptyFunction) {
+	result = id("integrate-wr-to").value;
 
+	if (result.replace(/[0-9]/g, '') != result || result.length > 1) {
+		result = 'x';
+		id("integrate-wr-to").classList.add("errorInput")
+	} else {
+		id("integrate-wr-to").classList.remove("errorInput")
+	}
+
+
+	let letters = uniques(replaceAll(replaceAll(emptyFunction.replace(/[^a-z]/ig, ''), "e", ""), "pi", ""));
+	if (letters.length > 1) {
+		if (!result) result = 'x';
+	} else if (letters.length == 1) {
+		if (!result) result = letters;
+	} else {
+		if (!result) result = 'x';
+	}
+
+	if (!result) result = 'x';
+
+	return {
+		result: result,
+		multiVariate: letters.length > 1
+	}
+}
+
+
+function doIntegration(targetFunction, intVariable) {
+	if (!targetFunction || !targetFunction.length) {
+		simplifiedInt = "";
+		integrationResult = "";
+		throw "targetFunction is not defined"
+	}
+
+	parsedFn = math.parse(targetFunction);
+	simplifiedFn = math.simplify(math.parse(targetFunction));
+	if (parsedFn.toTex() != simplifiedFn.toTex()) {
+		id("parsedFunction").innerHTML = "\\(\\begin{align*}f(" + intVariable + ")&=" + parsedFn.toTex({ implicit: 'hide' }) + "\\\\&=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\end{align*}\\)";
+	} else {
+		id("parsedFunction").innerHTML = "\\(f(" + intVariable + ")=" + parsedFn.toTex() + "\\)";
+	}
+
+	integrationResult = calcIntegral(simplifiedFn, false, intVariable);
+	simplifiedInt = calcIntegral(simplifiedFn, true, intVariable);
+	if (integrationResult.toTex({ implicit: "hide" }) != simplifiedInt.toTex({ implicit: "hide" })) {
+		id("integratedFunction").innerHTML = "\\(\\begin{align*}F(" + intVariable + ")=\\int{f(" + intVariable + ")}d" + intVariable + "&=" + integrationResult.toTex(texOptions) + "\\\\ &=" + simplifiedInt.toTex(texOptions) + "\\end{align*}\\)";
+	} else {
+		id("integratedFunction").innerHTML = "\\(F(" + intVariable + ")=\\int{f(" + intVariable + ")d" + intVariable + "}=" + integrationResult.toTex(texOptions) + "\\)";
+	}
+
+	return true;
+}
+
+function determineEvaluationPoints(multiVariate, targetFunction) {
+	let input1 = id("evaluationPoint");
+	let input2 = id("upperEvaluationPoint");
+	let result = {};
+	result.willEvaluate = false;
+
+	if(!simplifiedInt) return result;
+
+	if (multiVariate && input1.value && input2.value) {
+		id("evaluationWarning").classList.add("shown");
+		id("evaluationPoint").classList.add("errorInput");
+		id("upperEvaluationPoint").classList.add("errorInput");
+		return result;
+	}
+
+	let permittedStrings = ['Math.exp', 'Math.PI', 'Math.log', '*', '/', '+', '-', '(', ')'];
+
+	result.lower = parseEvaluationPoint(replaceAll(input1.value, ',', '.'));
+	result.upper = parseEvaluationPoint(replaceAll(input2.value, ',', '.'));
+
+	console.log(result.upper);
+	if (result.upper && result.lower) {
+		try {
+			if (isNaN(replaceAll(result.lower, permittedStrings, '')) || isNaN(eval(result.lower))) {
+				input1.classList.add("errorInput");
+				console.log("wat");
+				return result;
+			} else {
+				result.lower = eval(result.lower);
+				input1.classList.remove("errorInput");
+			}
+		} catch (e) {
+			input1.classList.add("errorInput");
+			console.log("wat");
+			return result;
+		}
 
 		try {
-			let intvar = id("integrate-wrt-to").value;
-			if (intvar.replace(/[0-9]/g, '') != intvar || intvar.length > 1) {
-				intvar = 'x';
-				id("integrate-wrt-to").classList.add("errorInput")
+			if (isNaN(replaceAll(result.upper, permittedStrings, '')) || isNaN(eval(result.upper))) {
+				console.log("wat");
+				input2.classList.add("errorInput");
+				return result;
 			} else {
-				id("integrate-wrt-to").classList.remove("errorInput")
+				result.upper = eval(result.upper);
+				input2.classList.remove("errorInput");
 			}
-			let letters = uniques(emptyfunction.replace(/[^a-z]/ig, ''));
-			if (letters.length > 1) {
-				if (gaanEval) {
-					gaanEval = false;
-					id("evalwarn").classList.add("shown");
-					id("evalueren").classList.add("errorInput");
-					id("evaluerenB").classList.add("errorInput");
-				}
-				if (!intvar) intvar = 'x';
-			} else if (letters.length == 1) {
-				if (!intvar) intvar = letters;
-			} else {
-				if (!intvar) intvar = 'x';
-			}
-			if (!intvar) intvar = 'x';
-
-			if (lang === "en") {
-				id("evalueren").placeholder = 'Evaluate with lower bound ' + intvar + '=...';
-				id("evaluerenLabel").innerHTML = 'Evaluate with lower bound ' + intvar + '=...';
-				id("evaluerenB").placeholder = 'Evaluate with upper bound ' + intvar + '=...';
-				id("evaluerenLabelB").innerHTML = 'Evaluate with upper bound ' + intvar + '=...';
-			} else {
-				id("evalueren").placeholder = 'Evalueren met ondergrens ' + intvar + '=...';
-				id("evaluerenLabel").innerHTML = 'Evalueren met ondergrens ' + intvar + '=...';
-				id("evaluerenB").placeholder = 'Evalueren met bovengrens ' + intvar + '=...';
-				id("evaluerenLabelB").innerHTML = 'Evalueren met bovengrens ' + intvar + '=...';
-			}
-
-
-			if (!fn || !fn.length) {
-				throw "fn is not defined"
-			}
-			parsedFn = math.parse(fn);
-			simplifiedFn = math.simplify(math.parse(fn));
-			if (parsedFn.toTex() != simplifiedFn.toTex()) {
-				id("parsed-function").innerHTML = "\\(\\begin{align*}f(" + intvar + ")&=" + parsedFn.toTex({ implicit: 'hide' }) + "\\\\&=" + simplifiedFn.toTex({ implicit: 'hide' }) + "\\end{align*}\\)";
-			} else {
-				id("parsed-function").innerHTML = "\\(f(" + intvar + ")=" + parsedFn.toTex() + "\\)";
-			}
-
-			integr = calcIntegral(simplifiedFn, false, intvar);
-			simplifiedInt = calcIntegral(simplifiedFn, true, intvar);
-			if (integr.toTex({ implicit: "hide" }) != simplifiedInt.toTex({ implicit: "hide" })) {
-				id("integrated-function").innerHTML = "\\(\\begin{align*}F(" + intvar + ")=\\int{f(" + intvar + ")}d" + intvar + "&=" + integr.toTex(texOptions) + "\\\\ &=" + simplifiedInt.toTex(texOptions) + "\\end{align*}\\)";
-			} else {
-				id("integrated-function").innerHTML = "\\(F(" + intvar + ")=\\int{f(" + intvar + ")d" + intvar + "}=" + integr.toTex(texOptions) + "\\)";
-			}
-
-			integrerenGelukt = true;
-
-			if (gaanEval) {
-				id("evalwarn").classList.remove("shown");
-				id("evalueren").classList.remove("errorInput");
-				id("evaluerenRes").classList.add("shown");
-				id("evalPlekO").innerHTML = '\\(' + intvar + '=' + displayNum(evO) + '\\)';
-				id("evalPlekB").innerHTML = '\\(' + intvar + '=' + displayNum(evB) + '\\)';
-
-				let intValO = evaluate(simplifiedInt, intvar, evO);
-				let intValB = evaluate(simplifiedInt, intvar, evB);
-				let intValNumO = evaluate(simplifiedInt, intvar, evO, true);
-				let intValNumB = evaluate(simplifiedInt, intvar, evB, true);
-
-				intValO = noComplexFrac(intValO, intValNumO);
-				intValB = noComplexFrac(intValB, intValNumB);
-
-				id("echteEvalRes").innerHTML = '\\(\\begin{align*}\\int^{' + displayNum(evB) + '}_{' + displayNum(evO) + '} f(' + intvar + ')d' + intvar + ' &= F(' + displayNum(evB) + ') - F(' + displayNum(evO) + ') \\\\&= \\left[' + simplifiedInt.toTex(texOptions) + '\\right]^{' + displayNum(evB) + "}_{" + displayNum(evO) + "}\\\\&=" + intValB + " - " + intValO + "\\\\&=" + displayNum(intValNumB - intValNumO) + '\\end{align*}\\)';
-			} else {
-				id("evaluerenRes").classList.remove("shown");
-			}
-		} catch (err) {
-			if (String(err).split("Unable to find").length > 1) {
-				MathJax.typeset();
-				if (lang === "en") {
-					id("integrated-function").innerHTML = "<b>Unable to compute integral...</b>";
-				} else {
-					id("integrated-function").innerHTML = "<b>Geen primitieve gevonden...</b>";
-				}
-			} else {
-				if (integrerenGelukt) {
-					id("evaluerenRes").classList.remove("shown");
-					id("evalueren").classList.add("errorInput");
-					id("evaluerenB").classList.add("errorInput");
-				} else {
-					clearOutputs();
-				}
-			}
+		} catch (e) {
+			console.log("wat");
+			input2.classList.add("errorInput");
+			return result;
 		}
-		MathJax.typeset();
-	};
-	id("src-functie").addEventListener("input", inputEvent);
-	id("integrate-wrt-to").addEventListener("input", inputEvent);
-	id("evalueren").addEventListener("input", inputEvent);
-	id("evaluerenB").addEventListener("input", inputEvent);
-});
+
+		id("evaluationWarning").classList.remove("shown");
+		result.willEvaluate = true;
+	} else {
+		input1.classList.remove("errorInput");
+		input2.classList.remove("errorInput");
+		id("evaluationWarning").classList.remove("shown");
+	}
+
+	console.log(result);
+	return result;
+}
+
+function setVariableStrings(intVariable) {
+	if (lang === "en") {
+		id("evaluationPoint").placeholder = 'Evaluate with lower bound ' + intVariable + '=...';
+		id("evaluationPointLabel").innerHTML = 'Evaluate with lower bound ' + intVariable + '=...';
+		id("upperEvaluationPoint").placeholder = 'Evaluate with upper bound ' + intVariable + '=...';
+		id("upperEvaluationPointLabel").innerHTML = 'Evaluate with upper bound ' + intVariable + '=...';
+	} else {
+		id("evaluationPoint").placeholder = 'Evalueren met ondergrens ' + intVariable + '=...';
+		id("evaluationPointLabel").innerHTML = 'Evalueren met ondergrens ' + intVariable + '=...';
+		id("upperEvaluationPoint").placeholder = 'Evalueren met bovengrens ' + intVariable + '=...';
+		id("upperEvaluationPointLabel").innerHTML = 'Evalueren met bovengrens ' + intVariable + '=...';
+	}
+}
+
 
 function strip(number) {
 	return parseFloat(number).toPrecision(12);
 }
 
-function evaluate(fn, intvar, ev, noSimplify) {
+function last(item) {
+	return item[item.length - 1];
+}
+
+function evaluate(targetFunction, intVariable, ev, noSimplify) {
 	let options = {};
-	options[intvar] = ev;
+	options[intVariable] = ev;
 	if (noSimplify) {
-		return strip(Math.round(fn.evaluate(options) * 1e6) / 1e6);
+		return strip(Math.round(targetFunction.evaluate(options) * 1e6) / 1e6);
 	} else {
-		return math.simplify(strip(Math.round(fn.evaluate(options) * 1e6) / 1e6)).toTex();
+		return math.simplify(strip(Math.round(targetFunction.evaluate(options) * 1e6) / 1e6)).toTex();
 	}
 }
 
-function calcIntegral(fn, simplify, intvar) {
+function calcIntegral(targetFunction, simplify, intVariable) {
 	if (simplify) {
 		return math.simplify(
-			math.integral(simplifiedFn, intvar, { simplify: false })
+			math.integral(simplifiedFn, intVariable, { simplify: false })
 		);
 	} else {
 		return math.simplify(
-			math.integral(simplifiedFn, intvar, { simplify: false }),
+			math.integral(simplifiedFn, intVariable, { simplify: false }),
 			["1*n1 -> n1", "-1*n1->-n1", "2-1->1", "3-1->2", "4-1->3", "5-1->4", "6-1->5", "7-1->6", "8-1->7", "9-1->8", "10-1->9", "n1^1->n1"]
 		);
 	}
 }
 
-function parseEv(ev) {
-	return addMultiplications(addMultiplications(ev, 'pi', 'Math.PI'), 'e', 'Math.exp(1)');
+function parseEvaluationPoint(ev) {
+	let result = ev;
+	result = addMultiplicationsByDelim(result, "pi", "Math.PI");
+	result = addMultiplicationsByDelim(result, "e", "Math.exp(1)");
+	result = addMultiplicationsByDelim(result, "ln(", "Math.log(");
+
+	for (let i = 0; i < result.length; i++) {
+		if (i > 0) {
+			if (!isNaN(result[i]) && result[i - 1] == ")") {
+				result = result.substr(0, i) + "*" + result.substr(i);
+			}
+		}
+		if (i < result.length - 1) {
+			if (!isNaN(result[i]) && result[i + 1] == "(") {
+				result = result.substr(0, i + 1) + "*" + result.substr(i + 1);
+			}
+		}
+	}
+
+	result = replaceAll(result, "^", "**")
+
+	return result;
 }
 
-function addMultiplications(expr, delim, rep) {
-	let res = '';
-	let p = expr.split(delim);
-	for (let i = 0; i < p.length; i++) {
-		if (!i) {
-			res += p[i];
-			continue;
+function addMultiplicationsByDelim(expr, delim, replaceBy) {
+	let parts = expr.split(delim);
+	let result = parts[0];
+	let lastChar = last(result);
+
+	for (let i = 1; i < parts.length; i++) {
+		lastChar = last(result);
+
+		if ((!isNaN(lastChar) || lastChar == ")") && result.length > 0) {
+			result += '*'
 		}
-		if (res[res.length - 1] != '*' && res.length) res += '*'
-		res += rep || delim;
-		if (p[i][0] != '*') res += '*';
-		res += p[i];
+
+		result += replaceBy || delim;
+		if ((!isNaN(parts[i][0]) || parts[i][0] == "(") && replaceBy.substr(-1) !== "(") {
+			result += '*';
+		}
+		result += parts[i];
 	}
-	if (res[res.length - 1] == '*') res = res.substr(0, res.length - 1);
-	return res;
+
+	if (last(result) == '*') {
+		result = result.substr(0, result.length - 1);
+	}
+
+	return result;
 }
 
 function uniques(str) {
@@ -261,25 +389,93 @@ function replaceAll(str, match, newV) {
 	return str;
 }
 
-function parseSynonyms(fn) {
+function parseSynonyms(targetFunction) {
 	for (let i = 0; i < synonyms.length; i += 2) {
-		fn = replaceAll(fn, synonyms[i], synonyms[i + 1]);
+		targetFunction = replaceAll(targetFunction, synonyms[i], synonyms[i + 1]);
 	}
-	return fn;
+	return targetFunction;
 }
 
 function displayNum(n) {
-	spl = String(n).split(".");
-	if (spl.length > 1 && spl[1].length > 5) {
-		return spl[0] + "." + spl[1].substr(0, 5) + "\\dots";
+	let suffix = "";
+	let scientificDelim = "\\cdot10^";
+	let splitScientific = String(n).split(scientificDelim)
+	if (splitScientific.length > 1) {
+		suffix = scientificDelim + splitScientific[1];
+		n = splitScientific[0];
+	}
+	if (numberIsTruncated(n)) {
+		return firstDigitsOfNum(n) + "\\ldots" + suffix;
+	} else {
+		return fixFPError(n) + suffix;
+	}
+}
+
+function firstDigitsOfNum(n) {
+	return String(n).split(".")[0] + "." + String(n).split(".")[1].substr(0, 5);
+}
+
+function numberIsTruncated(n) {
+	n = fixFPError(n);
+	let splitString = String(n).split(".");
+	return splitString.length > 1 && splitString[1].length > 5;
+}
+
+function fixFPError(n) {
+	let splitString = String(n).split(".");
+	if (splitString.length > 1 && splitString[1].length >= 5) {
+		if (splitString[1].substr(0, 5).substr(-3) == "000") {
+			let decimals = removeTrailingZeroes(splitString[1].substr(0, 5));
+			if (decimals.length === 0) {
+				return splitString[0];
+			} else {
+				return splitString[0] + "." + decimals;
+			}
+		} else {
+			return n;
+		}
 	} else {
 		return n;
 	}
 }
 
+function removeTrailingZeroes(n) {
+	let result = n;
+	while (result[result.length - 1] === "0") {
+		result = result.substr(0, result.length - 1);
+	}
+	return result;
+}
+
 function noComplexFrac(n, realV) {
-	if (n.split("\frac").length > 1) {
+	if (n.split("\\frac").length > 1) {
 		return displayNum(realV);
 	}
 	return n;
+}
+
+
+function fixInputLabels() {
+	let els = document.querySelectorAll(".form");
+	for (let i = 0; i < els.length; i++) {
+		const el = els[i];
+		let label = document.querySelector("label[for=\"" + el.id + "\"]");
+		if (el.value) {
+			if (label) {
+				label.classList.remove("hidden");
+			}
+		} else {
+			if (label) {
+				label.classList.add("hidden");
+			}
+		}
+	}
+}
+
+function fixLatex(preventFunctionUpdate) {
+	let elements = ["evaluationResult", "evalPlekO", "evalPlekB"];
+	if(!preventFunctionUpdate){
+		elements.push("parsedFunction", "integratedFunction")
+	}
+	MathJax.typeset(id(elements));
 }
