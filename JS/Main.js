@@ -10,7 +10,7 @@ function fixMath() {
 
 function id() {
 	let idList = arguments;
-	if(typeOf(arguments[0]) === "Array"){
+	if(typeof arguments[0] === "object"){
 		idList = arguments[0];
 	}
 	if(idList.length === 1){
