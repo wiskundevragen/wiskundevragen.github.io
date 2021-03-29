@@ -14,44 +14,44 @@ functies.
 <br>
 <br>
 <div style='margin-bottom: 20px;'>
-	<label for='src-functie' class='inputLabel hidden'>Functie, zoals (sin(x))^2 * x</label>
-	<input type="text" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" id='src-functie'
+	<label for='sourceFunction' class='inputLabel hidden'>Functie, zoals (sin(x))^2 * x</label>
+	<input type="text" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" id='sourceFunction'
 		autocapitalize="none">
 </div>
 <div id=' results'>
 	<div id='rescols'>
 		<div>
 			<h3><b>Jouw functie</b></h3>
-			<div id='parsed-function' style='min-height: 24px;'></div>
+			<div id='parsedFunction'></div>
 		</div>
 		<div style='margin-top: 12px;'>
 			<h3><b>De primitieve</b></h3>
-			<div id="integrated-function" style='min-height: 24px;'></div>
+			<div id="integratedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluerenRes'>
-		<h3 style='margin-top: 2rem;'><b>Geëvalueerd van <span id='evalPlekO'>x=...</span> tot <span
+	<div id='evaluationResultContainer'>
+		<h3><b>Geëvalueerd van <span id='evalPlekO'>x=...</span> tot <span
 					id='evalPlekB'>x=...</span></b></h3>
-		<div id="echteEvalRes" style='min-height: 24px;'></div>
+		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
+<h2 style='margin-bottom: 0px; margin-top: 10px;;'>Extra Opties</h2>
 <div>
-	<label for='integrate-wrt-to' class='inputLabel hidden'>Integreren naar welke variabele? </label>
-	<input type="text" placeholder="Integreren naar welke variabele? " class="form hasLabel" id='integrate-wrt-to'
+	<label for='integrate-wr-to' class='inputLabel hidden'>Integreren naar welke variabele? </label>
+	<input type="text" placeholder="Integreren naar welke variabele? " class="form hasLabel" id='integrate-wr-to'
 		autocapitalize="none">
 </div>
 <div>
-	<label for='evalueren' id='evaluerenLabel' class='inputLabel hidden'>Evalueren met ondergrens x=...</label>
-	<input type="text" placeholder="Evalueren met ondergrens x=..." class="form hasLabel" id='evalueren'
+	<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evalueren met ondergrens x=...</label>
+	<input type="text" placeholder="Evalueren met ondergrens x=..." class="form hasLabel" id='evaluationPoint'
 		autocapitalize="none">
 </div>
 <div>
-	<label for='evaluerenB' id='evaluerenLabelB' class='inputLabel hidden'>Evalueren met bovengrens x=...</label>
-	<input type="text" placeholder="Evalueren met bovengrens x=..." class="form hasLabel" id='evaluerenB'
+	<label for='upperEvaluationPoint' id='upperEvaluationPointLabel' class='inputLabel hidden'>Evalueren met bovengrens x=...</label>
+	<input type="text" placeholder="Evalueren met bovengrens x=..." class="form hasLabel" id='upperEvaluationPoint'
 		autocapitalize="none">
 </div>
-<p id='evalwarn'><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
+<p id='evaluationWarning'><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
 <br>
 <br>
 <br>

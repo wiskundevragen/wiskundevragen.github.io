@@ -13,15 +13,17 @@
 	overflow: auto;
 }
 
-#evaluerenRes,
-#evalwarn {
+#evaluationResultContainer,
+#evaluationWarning {
 	opacity: 0;
+	max-height: 0;
 	transition-duration: 600ms;
 }
 
-#evaluerenRes.shown,
-#evalwarn.shown {
+#evaluationResultContainer.shown,
+#evaluationWarning.shown {
 	opacity: 1;
+	max-height: 300px;
 }
 
 @media only screen and (min-width: 800px) {
@@ -31,11 +33,17 @@
 
 	#rescols div {
 		overflow-x: auto;
+		min-height: 90px;
 		max-height: 800px;
 	}
 }
 
-#integrated-function mjx-container {
+#integratedFunction mjx-container {
 	position: initial !important;
 	padding-bottom: 12px;
+}
+
+
+#parsedFunction, #integratedFunction {
+	min-height: 48px;
 }

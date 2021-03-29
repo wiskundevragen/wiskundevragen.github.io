@@ -8,8 +8,21 @@ function fixMath() {
 }
 
 
-function id(a) {
-	return document.getElementById(a);
+function id() {
+	let idList = arguments;
+	if(typeOf(arguments[0]) === "Array"){
+		idList = arguments[0];
+	}
+	if(idList.length === 1){
+		return document.getElementById(String(idList[0]));
+	}else{
+		let result = [];
+		for (let i = 0; i < idList.length; i++) {
+			let el = document.getElementById(idList[i]);
+			if(el) result.push(el);
+		}
+		return result;
+	}
 }
 
 
