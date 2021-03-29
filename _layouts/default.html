@@ -60,11 +60,6 @@
 		gtag('config', '{{ site.google_analytics }}');
 	</script>
 	<meta charset="UTF-8">
-	<link href="../Fonts/Material-Icons.css" rel="stylesheet">
-
-	{% if page.latex %}
-	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	{% endif %}
 	<style>
 		.inputLabel {
 			color: #999;
@@ -183,7 +178,7 @@
 			width: 100%;
 			min-height: 200px;
 			z-index: 20;
-			background: #159957;
+			background: #16814b;
 		}
 
 		#overlay {
@@ -200,6 +195,10 @@
 		#overlay.shown {
 			display: block;
 		}
+
+		#see-also-list>li {
+			margin-bottom: 6px;
+		}
 	</style>
 
 	{% seo %}
@@ -209,7 +208,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#157878">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="stylesheet" href="{{ '/assets/css/style.css' }}">
 	<link alt='WiskundeVragen Logo' rel='icon' href='../Images/Icon.png'>
 	<link alt='WiskundeVragen Logo' rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="32x32" href="../Images/Icon-32x32.png">
@@ -233,7 +231,7 @@
 					<i class='material-icons' id='balance'>search</i>
 					<input type="text" id="search" autocomplete="off">
 					<i class='material-icons' type='submit' id='searchIcon' title="Doorzoek WiskundeVragen">search</i>
-					<span id='searchHelp'></span>
+					<label for="search" style="opacity: 0; cursor: default;">Doorzoek de website via Google</label>
 				</div>
 			</div>
 		</center>
@@ -260,8 +258,8 @@
 		<!--googleoff: all-->
 		{% if page.see_also %}
 		<br>
-		<h2>{% if page.lang == "en_GB" %} See also {% else %}Zie ook{% endif %}</h2>
-		<ul>
+		<h2 style="margin-bottom: 4px;">{% if page.lang == "en_GB" %} See also {% else %}Zie ook{% endif %}</h2>
+		<ul id="see-also-list">
 			{% for item in page.see_also %}
 			{% if site.page_names[item] %}
 			<li>
@@ -300,6 +298,41 @@
 		</center>
 	</div>
 	<div id="overlay"></div>
+
+	<style>
+		{% include styles.css %}
+	</style>
+
+	<style>
+		/* fallback */
+
+		@font-face {
+			font-family: 'Material Icons';
+			font-style: normal;
+			font-weight: 400;
+			src: url(../Fonts/Material-Icons.woff2) format('woff2');
+		}
+
+		.material-icons {
+			font-family: 'Material Icons';
+			font-weight: normal;
+			font-style: normal;
+			font-size: 24px;
+			line-height: 1;
+			letter-spacing: normal;
+			text-transform: none;
+			display: inline-block;
+			white-space: nowrap;
+			word-wrap: normal;
+			direction: ltr;
+			-webkit-font-feature-settings: 'liga';
+			font-feature-settings: 'liga';
+			-webkit-font-smoothing: antialiased;
+		}
+	</style>
+	{% if page.latex %}
+	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	{% endif %}
 </body>
 
 </html>
