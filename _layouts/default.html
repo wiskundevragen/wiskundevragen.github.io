@@ -39,12 +39,16 @@
 					});
 					setCookie("askedConsent", true, 365);
 					setCookie("cookieConsent", true, 365);
-					setTimeout(location.reload, 50);
+					setTimeout(function(){
+						location.reload();
+					}, 50);
 				});
 				document.getElementById("cookieRefuseButton").addEventListener("click", function () {
 					setCookie("askedConsent", true, 365);
 					setCookie("cookieConsent", false, 365);
-					setTimeout(location.reload, 50);
+					setTimeout(function(){
+						location.reload();
+					}, 50);
 				});
 			}
 		});
@@ -299,8 +303,6 @@
 	<div id="overlay"></div>
 	
 	<style>
-		/* fallback */
-
 		@font-face {
 			font-family: 'Material Icons';
 			font-style: normal;
