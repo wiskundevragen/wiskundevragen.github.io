@@ -39,14 +39,12 @@
 					});
 					setCookie("askedConsent", true, 365);
 					setCookie("cookieConsent", true, 365);
-					document.getElementById("overlay").classList.remove("shown");
-					document.getElementById("cookieBanner").classList.add("hidden");
+					setTimeout(location.reload, 50);
 				});
 				document.getElementById("cookieRefuseButton").addEventListener("click", function () {
 					setCookie("askedConsent", true, 365);
 					setCookie("cookieConsent", false, 365);
-					document.getElementById("overlay").classList.remove("shown");
-					document.getElementById("cookieBanner").classList.add("hidden");
+					setTimeout(location.reload, 50);
 				});
 			}
 		});
@@ -208,6 +206,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#157878">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="stylesheet" href="{{ '/assets/css/style.css' }}">
 	<link alt='WiskundeVragen Logo' rel='icon' href='../Images/Icon.png'>
 	<link alt='WiskundeVragen Logo' rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link alt='WiskundeVragen Logo' rel="icon" type="image/png" sizes="32x32" href="../Images/Icon-32x32.png">
@@ -298,11 +297,7 @@
 		</center>
 	</div>
 	<div id="overlay"></div>
-
-	<style>
-		{% include styles.css %}
-	</style>
-
+	
 	<style>
 		/* fallback */
 
