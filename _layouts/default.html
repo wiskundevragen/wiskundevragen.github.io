@@ -9,55 +9,52 @@
 	<base href="https://wiskundevragen.github.io/" />
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
-		function setCookie(name, value, days) {
-			var expires = "";
-			if (days) {
-				var date = new Date();
-				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-				expires = "; expires=" + date.toUTCString();
-			}
-			document.cookie = name + "=" + (value || "") + expires + "; path=/";
-		}
-		function getCookie(name) {
-			var nameEQ = name + "=";
-			var ca = document.cookie.split(';');
-			for (var i = 0; i < ca.length; i++) {
-				var c = ca[i];
-				while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-			}
-			return null;
-		}
+		// function setCookie(name, value, days) {
+		// 	var expires = "";
+		// 	if (days) {
+		// 		var date = new Date();
+		// 		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		// 		expires = "; expires=" + date.toUTCString();
+		// 	}
+		// 	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+		// }
+		// function getCookie(name) {
+		// 	var nameEQ = name + "=";
+		// 	var ca = document.cookie.split(';');
+		// 	for (var i = 0; i < ca.length; i++) {
+		// 		var c = ca[i];
+		// 		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		// 		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+		// 	}
+		// 	return null;
+		// }
 
-		window.addEventListener('DOMContentLoaded', function () {
-			if (!getCookie("askedConsent")) {
-				document.getElementById("cookieBanner").classList.remove("hidden");
-				document.getElementById("overlay").classList.add("shown");
-				document.getElementById("cookieConsentButton").addEventListener("click", function () {
-					gtag('consent', 'update', {
-						'analytics_storage': 'granted'
-					});
-					setCookie("askedConsent", true, 365);
-					setCookie("cookieConsent", true, 365);
-					setTimeout(function(){
-						location.reload();
-					}, 50);
-				});
-				document.getElementById("cookieRefuseButton").addEventListener("click", function () {
-					setCookie("askedConsent", true, 365);
-					setCookie("cookieConsent", false, 365);
-					setTimeout(function(){
-						location.reload();
-					}, 50);
-				});
-			}
-		});
+		// window.addEventListener('DOMContentLoaded', function () {
+		// 	if (!getCookie("askedConsent")) {
+		// 		document.getElementById("cookieBanner").classList.remove("hidden");
+		// 		document.getElementById("overlay").classList.add("shown");
+		// 		document.getElementById("cookieConsentButton").addEventListener("click", function () {
+		// 			gtag('consent', 'update', {
+		// 				'analytics_storage': 'granted'
+		// 			});
+		// 			setCookie("askedConsent", true, 365);
+		// 			setCookie("cookieConsent", true, 365);
+		// 			setTimeout(function(){
+		// 				location.reload();
+		// 			}, 50);
+		// 		});
+		// 		document.getElementById("cookieRefuseButton").addEventListener("click", function () {
+		// 			setCookie("askedConsent", true, 365);
+		// 			setCookie("cookieConsent", false, 365);
+		// 			setTimeout(function(){
+		// 				location.reload();
+		// 			}, 50);
+		// 		});
+		// 	}
+		// });
 
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
-		gtag('consent', 'default', {
-			'analytics_storage': 'denied'
-		});
 		gtag('js', new Date());
 		gtag('config', '{{ site.google_analytics }}');
 	</script>
@@ -278,7 +275,7 @@
 		{% endif %}
 	</main>
 
-	<div id="cookieBanner" class="hidden">
+	<!-- <div id="cookieBanner" class="hidden">
 		<h1>Cookie banner</h1>
 		<p>
 			{% if page.lang == "en_GB" %}
@@ -300,7 +297,7 @@
 			</button>
 		</center>
 	</div>
-	<div id="overlay"></div>
+	<div id="overlay"></div> -->
 	
 	<style>
 		@font-face {
