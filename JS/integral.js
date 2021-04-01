@@ -21,9 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 function inputEvent(inputID) {
-	if ("ga" in window && inputID != "sourceFunction") {
-		ga.getAll()[0].send("event", "IntegralInputs", "type", inputID)
-	}
+	ga.getAll()[0].send("event", lang + "-IntegralInputs", "type", inputID)
 
 	let preventFnLatexUpdate = false;
 	if (inputID === "evaluationPoint" || inputID === "upperEvaluationPoint") {

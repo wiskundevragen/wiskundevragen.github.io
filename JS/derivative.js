@@ -16,9 +16,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function inputEvent(event) {
-	if ("ga" in window && event.target.id != "sourceFunction") {
-		ga.getAll()[0].send("event", "DerivativeInputs", "type", event.target.id)
-	}
+	ga.getAll()[0].send("event", lang + "-DerivativeInputs", "type", event.target.id)
+
 	let els = document.querySelectorAll(".form");
 	for (let i = 0; i < els.length; i++) {
 		const el = els[i];
