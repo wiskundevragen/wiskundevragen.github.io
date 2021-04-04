@@ -200,8 +200,8 @@
 		<script>
 			var home = false;
 		</script>
-		<a href="../" class="btn">{% if page.lang == "en_GB" %} Home page (in Dutch) {% else %} Homepagina {% endif
-			%}</a>
+		{% if page.lang == "en_GB" %}<a href="../en/" class="btn">Home page</a> {% else %}<a href="../"
+			class="btn"></a>Homepagina</a> {% endif %}</a>
 		{% endif %}
 	</header>
 
