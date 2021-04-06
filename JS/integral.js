@@ -83,30 +83,31 @@ function inputEvent(inputID) {
 			id("evaluationPoint").classList.remove("errorInput");
 			id("upperEvaluationPoint").classList.remove("errorInput");
 			id("evaluationResultContainer").classList.add("shown");
-			id("evalPlekO").innerHTML = '\\(' + intVariable + '=' + displayNum(lowerEvalPoint) + '\\)';
-			id("evalPlekB").innerHTML = '\\(' + intVariable + '=' + displayNum(upperEvalPoint) + '\\)';
+			id("lowerEvalPoint").innerHTML = '\\(' + intVariable + '=' + displayNum(lowerEvalPoint) + '\\)';
+			id("upperEvalPoint").innerHTML = '\\(' + intVariable + '=' + displayNum(upperEvalPoint) + '\\)';
 
-			let ogIntValO = evaluate(simplifiedInt, intVariable, lowerEvalPoint);
-			let ogIntValB = evaluate(simplifiedInt, intVariable, upperEvalPoint);
-			let intValNumO = evaluate(simplifiedInt, intVariable, lowerEvalPoint, true);
-			let intValNumB = evaluate(simplifiedInt, intVariable, upperEvalPoint, true);
+			let ogLowerIntVal = evaluate(simplifiedInt, intVariable, lowerEvalPoint);
+			let ogUpperIntVal = evaluate(simplifiedInt, intVariable, upperEvalPoint);
+			let lowerIntValNum = evaluate(simplifiedInt, intVariable, lowerEvalPoint, true);
+			let upperIntValNum = evaluate(simplifiedInt, intVariable, upperEvalPoint, true);
 
-			let intValO = noComplexFrac(ogIntValO, intValNumO).value;
-			let intValB = noComplexFrac(ogIntValB, intValNumB).value;
+			let lowerIntVal = noComplexFrac(ogLowerIntVal, lowerIntValNum).value;
+			let upperIntVal = noComplexFrac(ogUpperIntVal, upperIntValNum).value;
 
 
-			let finalAnswer = intValNumB - intValNumO;
+			let finalAnswer = upperIntValNum - lowerIntValNum;
 			if (numberIsTruncated(finalAnswer)) {
 				finalAnswer = '\\approx ' + firstDigitsOfNum(finalAnswer);
 			} else {
 				finalAnswer = '= ' + displayNum(finalAnswer);
 			}
 
+
 			id("evaluationResult").innerHTML =
 				`\\(\\begin{align*}\\int^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}f(${intVariable})d${intVariable}&=
 				F(${displayNum(upperEvalPoint)}) - F(${displayNum(lowerEvalPoint)})
 				\\\\&=\\left[${simplifiedInt.toTex(texOptions)}\\right]^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}
-				\\\\&=${displayNum(intValB)} - ${displayNum(intValO)}
+				\\\\&=${displayNum(upperIntVal)} - ${displayNum(lowerIntVal)}
 				\\\\&${finalAnswer}\\end{align*}\\)`;
 
 
@@ -447,7 +448,7 @@ function removeTrailingZeroes(n) {
 
 
 function noComplexFrac(n, realV) {
-	if (realV <= 1e8) return {
+	if (abs(realV) <= 1e-8) return {
 		value: 0,
 		fixed: false
 	}
@@ -482,9 +483,13 @@ function fixInputLabels() {
 }
 
 function fixLatex(preventFunctionUpdate) {
-	let elements = ["evaluationResult", "evalPlekO", "evalPlekB"];
+	let elements = ["evaluationResult", "lowerEvalPoint", "upperEvalPoint"];
 	if (!preventFunctionUpdate) {
 		elements.push("parsedFunction", "integratedFunction")
 	}
 	MathJax.typeset(id(elements));
+}
+
+function abs(n){
+	return (n < 0 ? -n : n);
 }

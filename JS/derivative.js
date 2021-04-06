@@ -381,7 +381,7 @@ function removeTrailingZeroes(n) {
 }
 
 function noComplexFrac(n, realV) {
-	if (realV <= 1e8) return {
+	if (abs(realV) <= 1e-8) return {
 		value: 0,
 		fixed: false
 	}
@@ -413,4 +413,8 @@ function fixInputLabels() {
 			}
 		}
 	}
+}
+
+function abs(n){
+	return (n < 0 ? -n : n);
 }
