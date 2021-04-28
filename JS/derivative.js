@@ -4,7 +4,7 @@ const texOptions = {
 };
 var lang = "nl";
 const synonyms = ['arctan', 'atan', 'arcsin', 'asin', 'arccos', 'acos', 'ln(', 'log('];
-const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan');
+const commonFns = synonyms.concat('exp', 'sin', 'cos', 'tan', 'sqrt');
 
 window.addEventListener('DOMContentLoaded', (event) => {
 	if (location.href.split("/en/").length > 1) {
@@ -122,7 +122,6 @@ function inputEvent(event) {
 				evalSucceeded = false;
 			}
 
-
 			if (evalSucceeded) {
 				id("evaluationResult").innerHTML = `\\(f(${displayNum(evPoint)})${funcValIsApproximated ? "\\approx" : "="}${displayNum(targetFunctionValue, true)}\\)<br><br>\\(f\'(${displayNum(evPoint)})${derivIsApproximated ? "\\approx" : "="}${displayNum(derivValue, true)}\\)`;
 			} else {
@@ -181,6 +180,8 @@ function clearOutputs() {
 	id("derivedFunction").innerHTML = ''
 	id("evaluationResult").innerHTML = '';
 	id("evaluationResultContainer").classList.remove("shown");
+	id("evaluationPoint").classList.remove("errorInput")
+	id("evaluationWarning").classList.remove("shown");
 }
 
 function determineEvPoint() {
@@ -193,14 +194,12 @@ function determineEvPoint() {
 			result.willEvaluate = true;
 			id("evaluationPoint").classList.remove("errorInput")
 			id("evaluationWarning").classList.remove("shown");
-			id("evaluationPoint").classList.remove("errorInput");
 		} else {
 			id("evaluationPoint").classList.add("errorInput")
 		}
 	} else {
 		id("evaluationPoint").classList.remove("errorInput")
 		id("evaluationWarning").classList.remove("shown");
-		id("evaluationPoint").classList.remove("errorInput");
 	}
 	return result;
 }

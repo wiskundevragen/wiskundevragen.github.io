@@ -1,1 +1,1 @@
-bundle exec jekyll serve
+JEKYLL_ENV=stan_dev bundle exec jekyll serve

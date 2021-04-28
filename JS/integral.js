@@ -94,7 +94,6 @@ function inputEvent(inputID) {
 			let lowerIntVal = noComplexFrac(ogLowerIntVal, lowerIntValNum).value;
 			let upperIntVal = noComplexFrac(ogUpperIntVal, upperIntValNum).value;
 
-
 			let finalAnswer = upperIntValNum - lowerIntValNum;
 			if (numberIsTruncated(finalAnswer)) {
 				finalAnswer = '\\approx ' + firstDigitsOfNum(finalAnswer);
@@ -102,15 +101,12 @@ function inputEvent(inputID) {
 				finalAnswer = '= ' + displayNum(finalAnswer);
 			}
 
-
 			id("evaluationResult").innerHTML =
 				`\\(\\begin{align*}\\int^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}f(${intVariable})d${intVariable}&=
 				F(${displayNum(upperEvalPoint)}) - F(${displayNum(lowerEvalPoint)})
 				\\\\&=\\left[${simplifiedInt.toTex(texOptions)}\\right]^{${displayNum(upperEvalPoint)}}_{${displayNum(lowerEvalPoint)}}
-				\\\\&=${displayNum(upperIntVal)} - ${displayNum(lowerIntVal)}
+				\\\\&=${displayNum(upperIntValNum)} - ${displayNum(lowerIntValNum)}
 				\\\\&${finalAnswer}\\end{align*}\\)`;
-
-
 		} else {
 			id("evaluationResultContainer").classList.remove("shown");
 		}
