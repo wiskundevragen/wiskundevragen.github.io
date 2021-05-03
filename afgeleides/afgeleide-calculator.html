@@ -16,7 +16,7 @@ opties). Toets hieronder je functie in, en onze afgeleide calculator zal bepalen
 	<input type="text" autocomplete="off" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" id='sourceFunction'
 		autocapitalize="none">
 </div>
-<div id=' results'>
+<div id='results'>
 	<div id='rescols'>
 		<div>
 			<h2 style="font-size: 1.17em;"><b>Jouw functie</b></h3>
@@ -32,18 +32,22 @@ opties). Toets hieronder je functie in, en onze afgeleide calculator zal bepalen
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
-<div>
-	<label for='derive-wr-to' class='inputLabel hidden'>Afleiden naar welke variabele? </label>
-	<input type="text" autocomplete="off" placeholder="Afleiden naar welke variabele? " class="form hasLabel"
-		id='derive-wr-to' autocapitalize="none">
+<div id="options">
+	<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
+	<div>
+		<label for='derive-wr-to' class='inputLabel hidden'>Afleiden naar welke variabele? </label>
+		<input type="text" autocomplete="off" placeholder="Afleiden naar welke variabele? " class="form hasLabel"
+			id='derive-wr-to' autocapitalize="none">
+	</div>
+	<div>
+		<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evalueren in x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evalueren in x=..." class="form hasLabel" id='evaluationPoint'
+			autocapitalize="none">
+	</div>
+	<p id='evaluationWarning'>
+		<b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b>
+	</p>
 </div>
-<div>
-	<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evalueren in x=...</label>
-	<input type="text" autocomplete="off" placeholder="Evalueren in x=..." class="form hasLabel" id='evaluationPoint'
-		autocapitalize="none">
-</div>
-<p id='evaluationWarning'><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
 <br>
 <br>
 <br>
