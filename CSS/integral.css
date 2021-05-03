@@ -1,4 +1,4 @@
-#results {
+#results, #options {
 	margin: 12px;
 	background: #fafafa;
 	padding: 20px;
@@ -11,6 +11,11 @@
 #results div {
 	padding-bottom: 12px;
 	overflow: auto;
+}
+
+#options {
+    position: relative;
+    z-index: 20;
 }
 
 #evaluationResultContainer,
