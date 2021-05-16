@@ -12,11 +12,11 @@ not of every function imaginable.
 <br>
 <br>
 <div style='margin-bottom: 20px;'>
-	<label for='sourceFunction' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
-	<input type="text" autocomplete="off" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel" id='sourceFunction'
-		autocapitalize="none">
+	<label for='sourceFunction' class='inputLabel hidden'>Function, such as x^2 + log(2*y) + 4*x*y</label>
+	<input type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Function, such as x^2 + log(2*y) + 4*x*y" 
+	       class="form hasLabel" id="sourceFunction" autocapitalize="none">
 </div>
-<div id=' results'>
+<div id='results'>
 	<div id='rescols'>
 		<div>
 			<h2 style="font-size: 1.17em;"><b>Your function</b></h3>
@@ -33,23 +33,27 @@ not of every function imaginable.
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<h2 style='margin-bottom: 0px;margin-top: 10px;;'>Additional options</h2>
-<div>
-	<label for='integrate-wr-to' class='inputLabel hidden'>Integrate with respect to which variable?</label>
-	<input type="text" autocomplete="off" placeholder="Integrate with respect to which variable? " class="form hasLabel" id='integrate-wr-to'
-		autocapitalize="none">
+<div id="options">
+	<h2 style='margin-bottom: 0px;margin-top: 10px;;'>Additional options</h2>
+	<div>
+		<label for='integrate-wr-to' class='inputLabel hidden'>Integrate with respect to which variable?</label>
+		<input type="text" autocomplete="off" placeholder="Integrate with respect to which variable? " class="form hasLabel" id='integrate-wr-to'
+			autocapitalize="none">
+	</div>
+	<div>
+		<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluationPoint'
+			autocapitalize="none">
+	</div>
+	<div>
+		<label for='upperEvaluationPoint' id='upperEvaluationPointLabel' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='upperEvaluationPoint'
+			autocapitalize="none">
+	</div>
+	<p id='evaluationWarning'>
+		<b>Evaluations for multivariate functions are sadly not yet possible on this site.</b>
+	</p>
 </div>
-<div>
-	<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
-	<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluationPoint'
-		autocapitalize="none">
-</div>
-<div>
-	<label for='upperEvaluationPoint' id='upperEvaluationPointLabel' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
-	<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='upperEvaluationPoint'
-		autocapitalize="none">
-</div>
-<p id='evaluationWarning'><b>Evaluations for multivariate functions are sadly not yet possible on this site.</b></p>
 <br>
 <br>
 <br>

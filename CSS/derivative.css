@@ -1,3 +1,8 @@
+#options {
+    position: relative;
+    z-index: 20;
+}
+
 #evaluationResultContainer,
 #evaluationWarning {
 	opacity: 0;

@@ -15,8 +15,8 @@ functies.
 <br>
 <br>
 <div style="margin-bottom: 20px;">
-	<label for="sourceFunction" class="inputLabel hidden">Functie, zoals (sin(x))^2 * x</label>
-	<input type="text" autocomplete="off" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" id="sourceFunction"
+	<label for="sourceFunction" class="inputLabel hidden">Functie, zoals x^2 + log(2*y) + 4*x*y</label>
+	<input type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Functie, zoals x^2 + log(2*y) + 4*x*y" class="form hasLabel" id="sourceFunction"
 		autocapitalize="none">
 </div>
 <div id="results">
@@ -36,23 +36,27 @@ functies.
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<h2 style="margin-bottom: 0px; margin-top: 10px;;">Extra Opties</h2>
-<div>
-	<label for="integrate-wr-to" class="inputLabel hidden">Integreren naar welke variabele? </label>
-	<input type="text" autocomplete="off" placeholder="Integreren naar welke variabele? " class="form hasLabel" id="integrate-wr-to"
-		autocapitalize="none">
+<div id="options">
+	<h2 style="margin-bottom: 0px; margin-top: 10px;;">Extra Opties</h2>
+	<div>
+		<label for="integrate-wr-to" class="inputLabel hidden">Integreren naar welke variabele? </label>
+		<input type="text" autocomplete="off" placeholder="Integreren naar welke variabele? " class="form hasLabel" id="integrate-wr-to"
+			autocapitalize="none">
+	</div>
+	<div>
+		<label for="evaluationPoint" id="evaluationPointLabel" class="inputLabel hidden">Evalueren met ondergrens x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evalueren met ondergrens x=..." class="form hasLabel" id="evaluationPoint"
+			autocapitalize="none">
+	</div>
+	<div>
+		<label for="upperEvaluationPoint" id="upperEvaluationPointLabel" class="inputLabel hidden">Evalueren met bovengrens x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evalueren met bovengrens x=..." class="form hasLabel" id="upperEvaluationPoint"
+			autocapitalize="none">
+	</div>
+	<p id="evaluationWarning">
+		<b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b>
+	</p>
 </div>
-<div>
-	<label for="evaluationPoint" id="evaluationPointLabel" class="inputLabel hidden">Evalueren met ondergrens x=...</label>
-	<input type="text" autocomplete="off" placeholder="Evalueren met ondergrens x=..." class="form hasLabel" id="evaluationPoint"
-		autocapitalize="none">
-</div>
-<div>
-	<label for="upperEvaluationPoint" id="upperEvaluationPointLabel" class="inputLabel hidden">Evalueren met bovengrens x=...</label>
-	<input type="text" autocomplete="off" placeholder="Evalueren met bovengrens x=..." class="form hasLabel" id="upperEvaluationPoint"
-		autocapitalize="none">
-</div>
-<p id="evaluationWarning"><b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b></p>
 <br>
 <br>
 <br>
