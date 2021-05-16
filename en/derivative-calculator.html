@@ -9,48 +9,48 @@ Here you can compute derivatives online! Now with support for partial derivative
 your function below, and our derivative calculator will find its derivative!
 <br>
 <br>
-<div style='margin-bottom: 20px;'>
-	<label for='sourceFunction' class='inputLabel hidden'>Function, such as (sin(x))^2 * x</label>
+<div style="margin-bottom: 20px;">
+	<label for="sourceFunction" class="inputLabel hidden">Function, such as (sin(x))^2 * x</label>
 	<input type="text" spellcheck="false" autocorrect="off" autocomplete="off" placeholder="Function, such as (sin(x))^2 * x" class="form hasLabel"
-	       id='sourceFunction' autocapitalize="none">
+	       id="sourceFunction" autocapitalize="none">
 </div>
-<div id=' results'>
-	<div id='rescols'>
+<div class="container" id="results">
+	<div id="resultsColumns">
 		<div>
 			<h2 style="font-size: 1.17em;"><b>Your function</b></h3>
-			<div id='parsedFunction'></div>
+			<div id="parsedFunction"></div>
 		</div>
-		<div style='margin-top: 12px;'>
+		<div style="margin-top: 12px;">
 			<h2 style="font-size: 1.17em;"><b>The derivative</b></h3>
 			<div id="derivedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluationResultContainer'>
-		<h2 style="font-size: 1.17em;"><b>Evaluated in <span id='evalPlek'>x=...</span></b></h3>
+	<div id="evaluationResultContainer">
+		<h2 style="font-size: 1.17em;"><b>Evaluated in <span id="evalPlek">x=...</span></b></h3>
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<div id="options">
-	<h2 style='margin-bottom: 0px;'>Additional options</h2>
+<div class="container"  id="options">
+	<h2 style="margin-bottom: 0px;">Additional options</h2>
 	<div>
-		<label for='derive-wr-to' class='inputLabel hidden'>Derive with respect to which variable? </label>
-		<input type="text" autocomplete="off" placeholder="Derive with respect to which variable?" class="form hasLabel" id='derive-wr-to'
+		<label for="derive-wr-to" class="inputLabel hidden">Derive with respect to which variable? </label>
+		<input type="text" autocomplete="off" placeholder="Derive with respect to which variable?" class="form hasLabel" id="derive-wr-to"
 			autocapitalize="none">
 	</div>
 	<div>
-		<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate in x=...</label>
-		<input type="text" autocomplete="off" placeholder="Evaluate in x=..." class="form hasLabel" id='evaluationPoint'
+		<label for="evaluationPoint" id="evaluationPointLabel" class="inputLabel hidden">Evaluate in x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evaluate in x=..." class="form hasLabel" id="evaluationPoint"
 			autocapitalize="none">
 	</div>
-	<p id='evaluationWarning'>
+	<p id="evaluationWarning">
 		<b>Evaluations for multivariate functions are sadly not yet possible on this site.</b>
 	</p>
 </div>
 <br>
 <br>
 <br>
-This derivative calculator was made possible by <a href='https://mathjs.org/'>Math.js</a> and <a
+This derivative calculator was made possible by <a href="https://mathjs.org/">Math.js</a> and <a
 	href="https://www.mathjax.org/">MathJax</a>.
-<script src='../JS/math.js'></script>
+<script src="../JS/math.js"></script>
 <script src="../JS/derivative.js"></script>
 <link rel="stylesheet" href="../CSS/derivative.css">

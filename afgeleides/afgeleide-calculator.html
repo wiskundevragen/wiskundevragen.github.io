@@ -12,48 +12,48 @@ opties). Toets hieronder je functie in, en onze afgeleide calculator zal bepalen
 <b>Let op: Gebruik punten in plaats van komma's als decimaal-scheidingsteken. Dus 2.5 in plaats van 2,5 voor het getal "twee en een half"</b>
 <br>
 <br>
-<div style='margin-bottom: 20px;'>
-	<label for='sourceFunction' class='inputLabel hidden'>Functie, zoals (sin(x))^2 * x</label>
+<div style="margin-bottom: 20px;">
+	<label for="sourceFunction" class="inputLabel hidden">Functie, zoals (sin(x))^2 * x</label>
 	<input type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Functie, zoals (sin(x))^2 * x" class="form hasLabel" 
-	       id='sourceFunction' autocapitalize="none">
+	       id="sourceFunction" autocapitalize="none">
 </div>
-<div id='results'>
-	<div id='rescols'>
+<div class="container" id="results">
+	<div id="resultsColumns">
 		<div>
 			<h2 style="font-size: 1.17em;"><b>Jouw functie</b></h3>
-			<div id='parsedFunction'></div>
+			<div id="parsedFunction"></div>
 		</div>
-		<div style='margin-top: 12px;'>
+		<div style="margin-top: 12px;">
 			<h2 style="font-size: 1.17em;"><b>De afgeleide</b></h3>
 			<div id="derivedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluationResultContainer'>
-		<h2 style="font-size: 1.17em;"><b>Geëvalueerd in <span id='evalPlek'>x=...</span></b></h3>
+	<div id="evaluationResultContainer">
+		<h2 style="font-size: 1.17em;"><b>Geëvalueerd in <span id="evalPlek">x=...</span></b></h3>
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<div id="options">
-	<h2 style='margin-bottom: 0px;'>Extra Opties</h2>
+<div class="container" id="options">
+	<h2 style="margin-bottom: 0px;">Extra Opties</h2>
 	<div>
-		<label for='derive-wr-to' class='inputLabel hidden'>Afleiden naar welke variabele? </label>
+		<label for="derive-wr-to" class="inputLabel hidden">Afleiden naar welke variabele? </label>
 		<input type="text" autocomplete="off" placeholder="Afleiden naar welke variabele? " class="form hasLabel"
-			id='derive-wr-to' autocapitalize="none">
+			id="derive-wr-to" autocapitalize="none">
 	</div>
 	<div>
-		<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evalueren in x=...</label>
-		<input type="text" autocomplete="off" placeholder="Evalueren in x=..." class="form hasLabel" id='evaluationPoint'
+		<label for="evaluationPoint" id="evaluationPointLabel" class="inputLabel hidden">Evalueren in x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evalueren in x=..." class="form hasLabel" id="evaluationPoint"
 			autocapitalize="none">
 	</div>
-	<p id='evaluationWarning'>
+	<p id="evaluationWarning">
 		<b>Evalueren in multivariabele functies is momenteel nog niet mogelijk.</b>
 	</p>
 </div>
 <br>
 <br>
 <br>
-Deze afgeleiden rekenmachine wordt mogelijk gemaakt door <a href='https://mathjs.org/'>Math.js</a> en <a
+Deze afgeleiden rekenmachine wordt mogelijk gemaakt door <a href="https://mathjs.org/">Math.js</a> en <a
 	href="https://www.mathjax.org/">MathJax</a>.
-<script src='../JS/math.js'></script>
+<script src="../JS/math.js"></script>
 <script src="../JS/derivative.js"></script>
 <link rel="stylesheet" href="../CSS/derivative.css">

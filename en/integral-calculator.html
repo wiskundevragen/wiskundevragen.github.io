@@ -1,5 +1,5 @@
 ---
-description: "A free online tool to calculate primitive functions. Easily type in your function and we'll compute its
+description: "A free online tool to calculate primitive functions. Easily type in your function and we will compute its
 integral!"
 lang: en_GB
 title: Integral calculator
@@ -11,55 +11,55 @@ determine what the right primitive function is! Please note that you can only co
 not of every function imaginable.
 <br>
 <br>
-<div style='margin-bottom: 20px;'>
-	<label for='sourceFunction' class='inputLabel hidden'>Function, such as x^2 + log(2*y) + 4*x*y</label>
+<div style="margin-bottom: 20px;">
+	<label for="sourceFunction" class="inputLabel hidden">Function, such as x^2 + log(2*y) + 4*x*y</label>
 	<input type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Function, such as x^2 + log(2*y) + 4*x*y" 
 	       class="form hasLabel" id="sourceFunction" autocapitalize="none">
 </div>
-<div id='results'>
-	<div id='rescols'>
+<div class="container" id="results">
+	<div id="resultsColumns">
 		<div>
 			<h2 style="font-size: 1.17em;"><b>Your function</b></h3>
-			<div id='parsedFunction'></div>
+			<div id="parsedFunction"></div>
 		</div>
-		<div style='margin-top: 12px;'>
+		<div style="margin-top: 12px;">
 			<h2 style="font-size: 1.17em;"><b>The primitive function</b></h3>
 			<div id="integratedFunction" ></div>
 		</div>
 	</div>
-	<div id='evaluationResultContainer'>
-		<h2 style="font-size: 1.17em;"><b>Evaluated from <span id='lowerEvalPoint'>x=...</span> to <span
-					id='upperEvalPoint'>x=...</span></b></h3>
+	<div id="evaluationResultContainer">
+		<h2 style="font-size: 1.17em;"><b>Evaluated from <span id="lowerEvalPoint">x=...</span> to <span
+					id="upperEvalPoint">x=...</span></b></h3>
 		<div id="evaluationResult" ></div>
 	</div>
 </div>
-<div id="options">
-	<h2 style='margin-bottom: 0px;margin-top: 10px;;'>Additional options</h2>
+<div class="container" id="options">
+	<h2 style="margin-bottom: 0px;margin-top: 10px;;">Additional options</h2>
 	<div>
-		<label for='integrate-wr-to' class='inputLabel hidden'>Integrate with respect to which variable?</label>
-		<input type="text" autocomplete="off" placeholder="Integrate with respect to which variable? " class="form hasLabel" id='integrate-wr-to'
+		<label for="integrate-wr-to" class="inputLabel hidden">Integrate with respect to which variable?</label>
+		<input type="text" autocomplete="off" placeholder="Integrate with respect to which variable? " class="form hasLabel" id="integrate-wr-to"
 			autocapitalize="none">
 	</div>
 	<div>
-		<label for='evaluationPoint' id='evaluationPointLabel' class='inputLabel hidden'>Evaluate with lower bound x=...</label>
-		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='evaluationPoint'
+		<label for="evaluationPoint" id="evaluationPointLabel" class="inputLabel hidden">Evaluate with lower bound x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id="evaluationPoint"
 			autocapitalize="none">
 	</div>
 	<div>
-		<label for='upperEvaluationPoint' id='upperEvaluationPointLabel' class='inputLabel hidden'>Evaluate with upper bound x=...</label>
-		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id='upperEvaluationPoint'
+		<label for="upperEvaluationPoint" id="upperEvaluationPointLabel" class="inputLabel hidden">Evaluate with upper bound x=...</label>
+		<input type="text" autocomplete="off" placeholder="Evaluate with upper bound x=..." class="form hasLabel" id="upperEvaluationPoint"
 			autocapitalize="none">
 	</div>
-	<p id='evaluationWarning'>
+	<p id="evaluationWarning">
 		<b>Evaluations for multivariate functions are sadly not yet possible on this site.</b>
 	</p>
 </div>
 <br>
 <br>
 <br>
-This integral calculator was made possible by <a href='https://mathjs.org/'>Math.js</a> and <a
+This integral calculator was made possible by <a href="https://mathjs.org/">Math.js</a> and <a
 	href="https://www.mathjax.org/">MathJax</a>.
-<script src='../JS/math.js'></script>
-<script src='../JS/integral.js'></script>
+<script src="../JS/math.js"></script>
+<script src="../JS/integral.js"></script>
 
 <link rel="stylesheet" href="../CSS/integral.css" />
