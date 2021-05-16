@@ -32,6 +32,16 @@
 		<priority>0.80</priority>
 	</url>
 	<url>
+		<loc>https://wiskundevragen.github.io/cijfers/</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/cijfertabel/</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
 		<loc>https://wiskundevragen.github.io/gonio</loc>
 		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
 		<priority>0.80</priority>
@@ -82,12 +92,57 @@
 		<priority>0.64</priority>
 	</url>
 	<url>
+		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl-1</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl-2</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vmbo-gl-tl-3</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
 		<loc>https://wiskundevragen.github.io/examen/havo</loc>
 		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
 		<priority>0.64</priority>
 	</url>
 	<url>
+		<loc>https://wiskundevragen.github.io/examen/havo-1</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/havo-2</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/havo-3</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
 		<loc>https://wiskundevragen.github.io/examen/vwo</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vwo-1</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vwo-2</loc>
+		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
+		<priority>0.64</priority>
+	</url>
+	<url>
+		<loc>https://wiskundevragen.github.io/examen/vwo-3</loc>
 		<lastmod>2021-04-01T10:35:29+00:00</lastmod>
 		<priority>0.64</priority>
 	</url>

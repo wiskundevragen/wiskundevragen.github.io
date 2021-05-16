@@ -38,11 +38,32 @@ page_names:
     desc: "Verdubbelingsformules en Goniometrische Identiteiten"
     url: ../gonio/
   havo_rooster:
-    desc: "Eindexamenrooster HAVO 2021"
+    desc: "Examenrooster HAVO 2021"
     url: ../examen/havo
+  havo_rooster_1:
+    desc: "Examenrooster HAVO 2021 Eerste Tijdvak"
+    url: ../examen/havo-1
+  havo_rooster_2:
+    desc: "Examenrooster HAVO 2021 Tweede Tijdvak"
+    url: ../examen/havo-2
+  havo_rooster_3:
+    desc: "Examenrooster HAVO 2021 Derde Tijdvak"
+    url: ../examen/havo-3
   home:
     desc: "Homepagina WiskundeVragen"
     url: ../
+  mavo_rooster:
+    desc: "Examenrooster VMBO GL en TL 2021"
+    url: ../examen/vmbo-gl-tl
+  mavo_rooster_1:
+    desc: "Examenrooster VMBO GL en TL 2021 Eerste Tijdvak"
+    url: ../examen/vmbo-gl-tl-1
+  mavo_rooster_2:
+    desc: "Examenrooster VMBO GL en TL 2021 Tweede Tijdvak"
+    url: ../examen/vmbo-gl-tl-2
+  mavo_rooster_3:
+    desc: "Examenrooster VMBO GL en TL 2021 Derde Tijdvak"
+    url: ../examen/vmbo-gl-tl-3
   prim_arccos:
     desc: "De primitieve van arccos(x)"
     url: ../primitieven/arccosx
@@ -62,11 +83,17 @@ page_names:
     desc: "Alle eindexamen roosters 2021"
     url: ../examen/
   vwo_rooster:
-    desc: "Eindexamenrooster VWO 2021"
+    desc: "Examenrooster VWO 2021"
     url: ../examen/vwo
-  mavo_rooster:
-    desc: "Eindexamenrooster VMBO GL en TL 2021"
-    url: ../examen/vmbo-gl-tl
+  vwo_rooster_1:
+    desc: "Examenrooster VWO 2021 Eerste Tijdvak"
+    url: ../examen/vwo-1
+  vwo_rooster_2:
+    desc: "Examenrooster VWO 2021 Tweede Tijdvak"
+    url: ../examen/vwo-2
+  vwo_rooster_3:
+    desc: "Examenrooster VWO 2021 Derde Tijdvak"
+    url: ../examen/vwo-3
   wisk:
     desc: "Wiskunde overzichtspagina"
     url: ../wiskunde
