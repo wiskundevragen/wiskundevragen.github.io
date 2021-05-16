@@ -99,3 +99,5 @@ page_names:
     url: ../wiskunde
 theme: jekyll-theme-cayman
 title: "Wiskunde Vragen"
+plugins:
+  - jekyll-redirect-from
