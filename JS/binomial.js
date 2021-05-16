@@ -8,11 +8,15 @@ function faculteit(n) {
 	}
 }
 
+function isEngels(){
+	return location.href.split("/en/").length > 1;
+}
+
 function erreur() {
-	if(location.href.split("/en/").length > 1){
-		id("result").innerHTML = 'Something went wrong! Please check your inputs';
+	if(isEngels()){
+		id("result").innerHTML = '<b>Something went wrong! Please check your inputs</b>';
 	}else{
-		id("result").innerHTML = 'Er ging iets fout! Controleer de juistheid van je invoer';
+		id("result").innerHTML = '<b>Er ging iets fout! Controleer de juistheid van je invoer</b>';
 	}
 }
 
@@ -33,7 +37,15 @@ function handleInput() {
 				id("result").innerHTML = 0;
 			} else {
 				var v = faculteit(nval) / (faculteit(kval) * (faculteit(nval - kval)));
-				id("result").innerHTML = Math.round(v * 1000) / 1000;
+				if(isFinite(v)) {
+					id("result").innerHTML = Math.round(v);
+				} else {
+					if(isEngels()){
+						id("result").innerHTML = "<b>Outcome too large</b>";
+					}else {
+						id("result").innerHTML = "<b>Uitkomst te groot</b>";
+					}
+				}
 			}
 		}
 	} catch (e) {
