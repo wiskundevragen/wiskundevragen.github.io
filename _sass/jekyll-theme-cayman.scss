@@ -384,13 +384,10 @@ table tr:nth-of-type(2n + 1) {
   background: #f4f4f4;
 }
 
-#searchBoxO {
-  padding: 28px 0;
-}
-
 #searchBox {
   width: 77.5%;
   max-width: 710px;
+  margin: 28px auto;
   background: rgba(255, 255, 255, 0.29);
   cursor: text;
   height: 48px;

@@ -69,7 +69,7 @@ page_names:
     url: ../primitieven/arccosx
   prim_arcsin:
     desc: "De primitieve van arcsin(x)"
-    url: ../primitiveren/arcsinx
+    url: ../primitieven/arcsinx
   prim_arctan:
     desc: "De primitieve van arctan(x)"
     url: ../primitieven/arctanx
