@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 {% if page.lang %}
-	<html lang="{{ page.lang }}">
+<html lang="{{ page.lang }}">
 {% else %}
-	<html lang="nl">
+<html lang="nl">
 {% endif %}
 
 <head>
 	{% if jekyll.environment != "stan_dev" %}
-		<base href="https://wiskundevragen.github.io/" />
+	<base href="https://wiskundevragen.github.io/" />
 	{% endif %}
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 	<script>
@@ -33,6 +33,276 @@
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<script src='../JS/Main.js'></script>
+	<style>
+		@import "jekyll-theme-cayman";
+
+		.inputLabel {
+			color: #999;
+			padding-left: 8px;
+			position: absolute;
+			opacity: 1;
+			transition-property: opacity, margin-top;
+			transition-duration: 500ms;
+		}
+
+		.inputLabel:not(.hidden) {
+			margin-top: 8px;
+		}
+
+		.inputLabel.hidden {
+			opacity: 0;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
+			background: #e5e8ed;
+			margin-bottom: 8px;
+			margin-top: 8px;
+			border-radius: 6px;
+			border: 1px solid #dce0e7;
+			transition-property: background, color, margin-top;
+			transition-duration: 500ms;
+			width: 100%;
+			box-sizing: border-box;
+			height: 60px;
+			font-size: 20px;
+			outline: none;
+			padding: 16px;
+			color: #222;
+		}
+
+		input[type="text"]:-webkit-autofill::first-line,
+		input[type="email"]:-webkit-autofill::first-line,
+		input[type="password"]:-webkit-autofill::first-line {
+			font-size: 20px;
+		}
+
+		input[type="text"]:hover,
+		input[type="email"]:hover,
+		input[type="password"]:hover {
+			background: #d9dde5;
+		}
+
+		input[type="text"]:focus,
+		input[type="email"]:focus,
+		input[type="password"]:focus {
+			background: #ced4dd;
+		}
+
+		input[type="text"].hasLabel,
+		input[type="email"].hasLabel,
+		input[type="password"].hasLabel {
+			margin-top: 32px;
+		}
+
+		input[type="text"].errorInput,
+		input[type="email"].errorInput,
+		input[type="password"].errorInput {
+			background: #d40000;
+			color: white;
+		}
+
+		input[type="text"].errorInput::placeholder,
+		input[type="email"].errorInput::placeholder,
+		input[type="password"].errorInput::placeholder {
+			color: white;
+		}
+
+		@media only screen and (max-width: 400px) {
+
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
+				font-size: 18px;
+			}
+		}
+
+		@media only screen and (max-width: 380px) {
+
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
+				font-size: 16px;
+			}
+		}
+
+		@media only screen and (max-width: 330px) {
+
+			input[type="text"].form::placeholder,
+			input[type="email"].form::placeholder,
+			input[type="password"].form::placeholder {
+				font-size: 14px;
+			}
+		}
+
+		#cookieBanner {
+			position: fixed;
+			padding: 48px 20px;
+			bottom: 0;
+			width: 100%;
+			min-height: 200px;
+			z-index: 20;
+			background: #16814b;
+		}
+
+		#cookieBanner.hidden {
+			display: none;
+		}
+
+		#cookieBanner>h1,
+		#cookieBanner>p {
+			color: white;
+			margin-top: 0px;
+		}
+
+		#overlay {
+			position: fixed;
+			display: none;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+			background: rgba(0, 0, 0, 0.4);
+		}
+
+		#overlay.shown {
+			display: block;
+		}
+
+		#see-also-list>li {
+			margin-bottom: 6px;
+		}
+
+		@media only screen and (max-width: 500px) {
+
+			main.main-content,
+			.project-tagline {
+				font-size: 0.85rem;
+			}
+		}
+
+		.project-tagline {
+			margin-bottom: 0;
+		}
+
+		.home-btn {
+			margin-bottom: 0;
+		}
+
+		@media only screen and (max-width: 500px) {
+			h1 {
+				font-size: 1.8rem;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				text-align: center;
+			}
+
+			.hide-mobile {
+				display: none;
+			}
+
+			.main-content h1.title {
+				margin-bottom: 8px;
+				margin-top: 0px;
+				font-weight: bold;
+			}
+
+			.main-content h2.subtitle {
+				font-size: 1.3rem;
+				margin-top: 0px;
+			}
+		}
+
+		@media only screen and (min-width: 501px) {
+			.mobile {
+				display: none;
+			}
+		}
+
+		@font-face {
+			font-family: 'Material Icons';
+			font-style: normal;
+			font-weight: 400;
+			src: url(../../Fonts/Material-Icons.woff2) format('woff2');
+		}
+
+		.material-icons {
+			font-family: 'Material Icons';
+			font-weight: normal;
+			font-style: normal;
+			font-size: 24px;
+			line-height: 1;
+			letter-spacing: normal;
+			text-transform: none;
+			display: inline-block;
+			white-space: nowrap;
+			word-wrap: normal;
+			direction: ltr;
+			-webkit-font-feature-settings: 'liga';
+			font-feature-settings: 'liga';
+			-webkit-font-smoothing: antialiased;
+		}
+
+		main.main-content h1.title {
+			margin-bottom: 8px;
+			margin-top: 0px;
+			font-weight: bold;
+			font-size: 2.6rem;
+		}
+
+		@media only screen and (max-width: 950px) {
+			main.main-content h1.title {
+				font-size: 2rem;
+			}
+		}
+
+		@media only screen and (max-width: 400px) {
+			main.main-content h1.title {
+				font-size: 1.6rem;
+			}
+		}
+
+		main.main-content h2.subtitle {
+			margin-top: 0px;
+			font-style: italic;
+			font-size: 1.7rem;
+		}
+
+		@media only screen and (max-width: 950px) {
+			main.main-content h2.subtitle {
+				font-size: 1.4rem;
+			}
+		}
+
+		@media only screen and (max-width: 400px) {
+			main.main-content h2.subtitle {
+				font-size: 1.2rem;
+			}
+		}
+
+		.container {
+			margin: 12px;
+			background: #fafafa;
+			padding: 20px;
+			padding-bottom: 8px;
+			margin-top: 30px;
+			border-radius: 8px;
+			box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.container div {
+			padding-bottom: 12px;
+			overflow: auto;
+		}
+	</style>
 </head>
 
 <body>
@@ -54,30 +324,30 @@
 			</div>
 		</center>
 		{% if page.home %}
-			<script>
-				var home = true;
-			</script>
+		<script>
+			var home = true;
+		</script>
 		{% endif %}
 		{% if page.home != true %}
-			<script>
-				var home = false;
-			</script>
-			{% if page.lang == "en_GB" %}
-				<a href="../en/" class="btn home-btn">Home page</a>
-			{% else %}
-				<a href="../" class="btn home-btn">Homepagina</a>
-			{% endif %}
+		<script>
+			var home = false;
+		</script>
+		{% if page.lang == "en_GB" %}
+		<a href="../en/" class="btn home-btn">Home page</a>
+		{% else %}
+		<a href="../" class="btn home-btn">Homepagina</a>
+		{% endif %}
 		{% endif %}
 	</header>
 
 	<main id="content" class="main-content" role="main">
 		{% if page.home != true %}
-			{% if page.subtitle %}
-				<h1 class="title">{{page.title}}</h1>
-				<h2 class="subtitle">{{page.subtitle}}</h2>
-			{% else %}
-				<h1 class="title">{{page.title}}</h1>
-			{% endif %}
+		{% if page.subtitle %}
+		<h1 class="title">{{page.title}}</h1>
+		<h2 class="subtitle">{{page.subtitle}}</h2>
+		{% else %}
+		<h1 class="title">{{page.title}}</h1>
+		{% endif %}
 		{% endif %}
 		{{ content }}
 
@@ -86,33 +356,33 @@
 		<br>
 		<h2 style="margin-bottom: 4px;">
 			{% if page.lang == "en_GB" %}
-				See also
+			See also
 			{% else %}
-				Zie ook
+			Zie ook
 			{% endif %}
 		</h2>
 		<ul id="see-also-list">
 			{% for item in page.see_also %}
-				{% if site.page_names[item] %}
-					<li>
-						<a href='{{site.page_names[item].url}}'>
-							{{site.page_names[item].desc}}
-						</a>
-						{% if page.lang %}
-							{% if page.lang != "nl" %}
-								{% if site.page_names[item].lang != page.lang %}
-									(in Dutch)
-								{% endif %}
-							{% endif %}
-						{% endif %}
-					</li>
+			{% if site.page_names[item] %}
+			<li>
+				<a href='{{site.page_names[item].url}}'>
+					{{site.page_names[item].desc}}
+				</a>
+				{% if page.lang %}
+				{% if page.lang != "nl" %}
+				{% if site.page_names[item].lang != page.lang %}
+				(in Dutch)
 				{% endif %}
+				{% endif %}
+				{% endif %}
+			</li>
+			{% endif %}
 			{% endfor %}
 		</ul>
 		{% endif %}
 	</main>
 	{% if page.latex %}
-		<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script id="MathMathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	{% endif %}
 </body>
 
