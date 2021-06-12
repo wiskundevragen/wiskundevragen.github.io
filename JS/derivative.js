@@ -16,7 +16,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function inputEvent(event) {
-	ga.getAll()[0].send("event", lang + "-DerivativeInputs", "type", event.target.id)
+	try {
+		ga.getAll()[0].send("event", lang + "-DerivativeInputs", "type", event.target.id)
+	} catch (error) {
+		console.log("Probably disabled tracking...")
+	}
 
 	let els = document.querySelectorAll(".form");
 	for (let i = 0; i < els.length; i++) {

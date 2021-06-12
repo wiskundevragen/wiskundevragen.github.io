@@ -21,7 +21,11 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 function inputEvent(inputID) {
-	ga.getAll()[0].send("event", lang + "-IntegralInputs", "type", inputID)
+	try {
+		ga.getAll()[0].send("event", lang + "-IntegralInputs", "type", inputID)
+	} catch (error) {
+		console.log("Probably disabled tracking...")
+	}
 
 	let preventFnLatexUpdate = false;
 	if (inputID === "evaluationPoint" || inputID === "upperEvaluationPoint") {
